@@ -1,0 +1,64 @@
+.nav {
+  display: none;
+
+  @include onTablet {
+    display: flex;
+    justify-self:flex-start;
+  }
+
+  &__list {
+    display: flex;
+    gap: 32px;
+
+    @include onDesktop {
+      gap: 64px;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+
+    color: $text-color-secondary;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 12px;
+    letter-spacing: 4%;
+
+    transition: color $transition-duration;
+
+    &:hover {
+      color: $theme-color-light;
+    }
+
+    &--active {
+      color: $theme-color-light;
+
+      &::after {
+        position: absolute;
+        bottom: -2px;
+        content: "";
+        height: 3px;
+        background: $theme-color-light;
+        border-radius: 4px;
+
+        animation: underline $transition-duration ease forwards;
+      }
+    }
+  }
+}
+
+@keyframes underline {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
