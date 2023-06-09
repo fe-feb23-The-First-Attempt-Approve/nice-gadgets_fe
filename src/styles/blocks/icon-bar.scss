@@ -1,0 +1,44 @@
+.icon-bar {
+  display: flex;
+  justify-content: flex-end;
+  flex-basis: 100%;
+
+  &__item {
+    border-left: 0.5px solid $separator-color;
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+    transition: background-color $transition-duration;
+
+    &:hover {
+      background-color: $bg-controllers;
+    }
+
+    &--active {
+      color: $theme-color-light;
+
+      &::after {
+        position: absolute;
+        bottom: -2px;
+        content: "";
+        height: 3px;
+        background: $theme-color-light;
+        border-radius: 4px;
+
+        animation: underline $transition-duration ease forwards;
+      }
+    }
+  }
+
+  &__icon {
+    margin: 16px;
+    height: 16px;
+    fill: $theme-color-light;
+
+    @include onTablet {
+      margin: 24px;
+    }
+  }
+}
