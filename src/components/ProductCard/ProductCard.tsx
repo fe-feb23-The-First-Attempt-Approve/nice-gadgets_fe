@@ -1,6 +1,6 @@
-import './Card.scss';
+import './ProductCard.scss';
 
-export const Card = () => {
+export const ProductCard = () => {
   return (
     <div className="product-card__container">
       <div className="product-card__item">
@@ -10,14 +10,14 @@ export const Card = () => {
         >
           <div className="product-card__photo-container">
             <img
-              src="/img/cell-phone-it-should-be-delete.png"
-              alt="cell-phone"
+              src="/img/product-card/cell-phone-it-should-be-delete.png"
+              alt="Apple iPhone Xs 64GB Silver (iMT9G2FS/A)"
               className="product-card__image"
             />
           </div>
         </a>
 
-        <div className="product-card__item-deskription">
+        <div className="product-card__item-description">
           <a href="/" className="product-card__device-link">
             <h3 className="product-card__title">
               Apple iPhone Xs 64GB Silver (iMT9G2FS/A)
@@ -35,38 +35,43 @@ export const Card = () => {
 
           <div className="product-card__separator" />
 
-          <div className="product-card__parameters parametrs">
-            <p className="parametrs__description parametrs__description_key">
+          <div className="product-card__parameters parameters">
+            <p className="parametrs__description parameters__description_key">
               Screen
             </p>
-            <p className="parametrs__description parametrs__description_value">
+
+            <p className="parametrs__description parameters__description_value">
               5.8” OLED
             </p>
-            <p className="parametrs__description parametrs__description_key">
+
+            <p className="parametrs__description parameters__description_key">
               Capacity
             </p>
-            <p className="parametrs__description parametrs__description_value">
+
+            <p className="parametrs__description parameters__description_value">
               64 GB
             </p>
-            <p className="parametrs__description parametrs__description_key">
+
+            <p className="parametrs__description parameters__description_key">
               RAM
             </p>
-            <p className="parametrs__description parametrs__description_value">
+
+            <p className="parametrs__description parameters__description_value">
               4 GB
             </p>
           </div>
 
           <div className="product-card__footer">
-            <a href="/" className="product-card__button">
+            <button type="button" className="product-card__button button-reset">
               Add to cart
-            </a>
-            <a href="/" className="product-card__like">
+            </button>
+            <button type="button" className="product-card__like button-reset ">
               <img
                 src="/img/svg/heart-like.svg"
                 alt="heart-like"
                 className="product-card__heart-like"
               />
-            </a>
+            </button>
           </div>
 
         </div>

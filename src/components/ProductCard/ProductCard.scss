@@ -7,6 +7,14 @@
   /*should be delet*/
 }
 
+.button-reset {
+  padding: 0;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
 .product-card {
   &__container {
     padding: 32px;
@@ -144,7 +152,7 @@
   }
 }
 
-.parametrs {
+.parameters {
   &__description {
     margin-top: 8px;
   }

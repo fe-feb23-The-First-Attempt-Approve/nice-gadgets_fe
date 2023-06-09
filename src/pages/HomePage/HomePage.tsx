@@ -1,1 +1,10 @@
-export const HomePage = () => (<h1 className="title">Home page</h1>);
+import { ProductCard } from '../../components/ProductCard/ProductCard';
+
+export const HomePage = () => {
+  return (
+    <>
+      <h1>HomePage</h1>
+      <ProductCard />
+    </>
+  );
+};

@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  /*should be delet*/
+  padding: 0;
+  /*should be delet*/
+  box-sizing: border-box;
+  /*should be delet*/
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
+
+.button-reset {
+  padding: 0;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.footer {
+  background: #161827;
+
+  &__container {
+    max-width: 288px;
+    padding: 0 16px;
+  }
+
+  &__logo {}
+
+  &__naveigation {}
+
+  &__nav-list {}
+
+  &__nav-item {}
+
+  &__nav-link {}
+
+  &__arrow-up {}
+
+  &__arrow-conteiner {}
+
+  &__arrow-up-image {}
+}
+
+.logo {}
