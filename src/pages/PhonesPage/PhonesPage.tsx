@@ -1,1 +1,1 @@
-export const PhonePage = () => (<h1 className="title">Phone page</h1>);
+export const PhonesPage = () => (<h1 className="title">Phones page</h1>);

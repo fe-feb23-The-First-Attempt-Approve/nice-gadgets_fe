@@ -1,25 +1,12 @@
-* {
-  margin: 0;
-  /*should be delet*/
-  padding: 0;
-  /*should be delet*/
-  box-sizing: border-box;
-  /*should be delet*/
-}
-
-.button-reset {
-  padding: 0;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-  outline: none;
-}
-
 .product-card {
   &__container {
     padding: 32px;
     max-width: 272px;
-    background: #161827;
+    transition: box-shadow .3s ease;
+
+    &:hover {
+      box-shadow: inset 0 0 10px 1px $accent-color;
+    }
   }
 
   &__item {
@@ -29,9 +16,12 @@
   }
 
   &__link {
-    text-decoration: none;
-    /*should be delet*/
     cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03)
+    }
   }
 
   &__image {
@@ -48,7 +38,6 @@
 
   &__device-link {
     padding-top: 16px;
-    cursor: pointer;
   }
 
   &__item-deskription {
@@ -60,8 +49,7 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
-    color: #f1f2f9;
-    /*should be variable*/
+    color: $theme-color-light;
   }
 
   &__price {
@@ -72,18 +60,17 @@
     font-weight: 800;
     font-size: 22px;
     line-height: 140%;
-    color: #f1f2f9;
-    /*should be variable*/
+    color: $theme-color-light
   }
 
   &__price_not-actual {
-    color: #75767f;
+    color: $text-color-secondary;
   }
 
   &__separator {
     margin-top: 8px;
     max-width: 208px;
-    border: 1px solid #3b3e4a;
+    border: 1px solid $separator-color;
   }
 
   &__parameters {
@@ -99,7 +86,6 @@
 
   &__button {
     text-decoration: none;
-    cursor: pointer;
     width: 160px;
     height: 40px;
 
@@ -107,7 +93,7 @@
     justify-content: center;
     align-items: center;
 
-    background-color: #905bff;
+    background-color: $accent-color;
     font-style: normal;
     font-weight: 700;
     font-size: 14px;
@@ -123,18 +109,16 @@
     }
 
     &:active {
-      background-color: #323542;
+      background-color: $bg-controllers;
     }
   }
 
   &__like {
-    text-decoration: none;
-    cursor: pointer;
     width: 40px;
     height: 40px;
     color: #f1f2f9;
     /*should be deleted*/
-    background: #323542;
+    background: $theme-color-dark;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -146,7 +130,7 @@
     }
 
     &:active {
-      background-color: #323542;
+      background-color: $bg-controllers;
     }
 
   }
@@ -162,7 +146,7 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
-    color: #75767f;
+    color: $text-color-secondary;
   }
 
   &__description_value {
@@ -171,6 +155,6 @@
     font-size: 12px;
     line-height: 15px;
     text-align: right;
-    color: #f1f2f9;
+    color: $theme-color-light;
   }
 }

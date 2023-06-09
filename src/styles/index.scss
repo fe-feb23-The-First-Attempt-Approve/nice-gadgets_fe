@@ -1,0 +1,20 @@
+@import "utils/vars";
+@import "utils/mixins";
+@import "utils/fonts";
+
+@import "utils/reset";
+@import "utils/normalize";
+
+@import "utils/themes";
+
+@import "../components/header/header.scss";
+@import "../components/Logo/logo.scss";
+@import "../components/Navigation/navigation.scss";
+@import "../components/IconBar/icon-bar.scss";
+@import "../components/ProductCard/ProductCard.scss";
+
+
+body {
+  background-color: $theme-color-dark;
+  color: $theme-color-light;
+}

@@ -1,5 +1,3 @@
-import './ProductCard.scss';
-
 export const ProductCard = () => {
   return (
     <div className="product-card__container">
