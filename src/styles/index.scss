@@ -7,7 +7,7 @@
 
 @import "utils/themes";
 
-@import "blocks/header.scss";
-@import "blocks/logo.scss";
-@import "blocks/navigation.scss";
-@import "blocks/icon-bar.scss";
+@import "../components/header/header.module.scss";
+@import "../components/Logo/logo.module.scss";
+@import "../components/Navigation/navigation.module.scss";
+@import "../components/IconBar/icon-bar.module.scss";

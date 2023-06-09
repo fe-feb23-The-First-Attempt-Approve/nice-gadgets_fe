@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-
 import { Header } from './components/Header';
 import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
