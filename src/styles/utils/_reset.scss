@@ -18,7 +18,9 @@ ul {
   list-style: none;
 }
 
-button {
-  border: none;
+button,
+input {
   background: none;
+  border: none;
+  outline: none;
 }

@@ -1,0 +1,12 @@
+.searching-area {
+  display: flex;
+  position: relative;
+
+  &__query {
+    color: $theme-color-light;
+
+    &::placeholder {
+      color: $text-color-secondary;
+    }
+  }
+}

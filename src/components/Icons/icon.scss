@@ -1,0 +1,9 @@
+.icon {
+  margin: 16px;
+  height: 16px;
+  fill: $theme-color-light;
+
+  @include onTablet {
+    margin: 24px;
+  }
+}
