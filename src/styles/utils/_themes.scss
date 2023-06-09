@@ -1,0 +1,11 @@
+.store-theme {
+  &--dark {
+    background-color: $theme-color-dark;
+    color: $theme-color-light;
+  }
+
+  &--light {
+    background-color: $theme-color-light;
+    color: $theme-color-dark;
+  }
+}
