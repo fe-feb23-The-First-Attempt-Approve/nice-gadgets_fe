@@ -1,5 +1,4 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import { Header } from './components/Header';
 import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
@@ -12,10 +11,6 @@ import { Footer } from './components/Footer';
 
 const App = () => (
   <>
-    <Helmet>
-      <body className="store-theme store-theme--dark" />
-    </Helmet>
-
     <Header />
 
     <div className="content">
