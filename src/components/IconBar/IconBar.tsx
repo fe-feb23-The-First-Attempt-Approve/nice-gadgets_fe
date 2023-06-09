@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { useNavigation } from '../../Context';
 import { SearchingArea } from '../SearchingArea';
 import { IconTranslate } from '../Icons/IconTranslate';
 import { IconTheme } from '../Icons/IconTheme';
@@ -7,6 +8,12 @@ import { IconLike } from '../Icons/IconLike';
 import { IconCart } from '../Icons/IconCart';
 
 export const IconBar = () => {
+  const { collapseSearchBar } = useNavigation();
+
+  const handleClick = () => {
+    collapseSearchBar();
+  };
+
   return (
     <ul className="icon-bar">
       <li className="icon-bar__item">
@@ -30,6 +37,7 @@ export const IconBar = () => {
           to="/favorites"
           className={({ isActive }) => cn('icon-bar__link',
             { 'icon-bar__link--active': isActive })}
+          onClick={handleClick}
         >
           <IconLike />
         </NavLink>
@@ -40,6 +48,7 @@ export const IconBar = () => {
           to="/cart"
           className={({ isActive }) => cn('icon-bar__link',
             { 'icon-bar__link--active': isActive })}
+          onClick={handleClick}
         >
           <IconCart />
         </NavLink>
