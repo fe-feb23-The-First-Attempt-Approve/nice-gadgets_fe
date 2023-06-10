@@ -1,8 +1,22 @@
 import { Link } from 'react-router-dom';
 import { HeartButton } from '../HeartButton/HeartButton';
-import { phone } from '../../img/images';
+import { Phone } from '../../types/Phone';
 
-export const ProductCard = () => {
+interface Props {
+  phone: Phone,
+}
+
+export const ProductCard:React.FC<Props> = ({ phone }) => {
+  const {
+    name,
+    fullPrice,
+    price,
+    screen,
+    capacity,
+    ram,
+    image,
+  } = phone;
+
   return (
     <div className="product-card__container">
       <div className="product-card__item">
@@ -12,7 +26,7 @@ export const ProductCard = () => {
         >
           <div className="product-card__photo-container">
             <img
-              src={phone}
+              src={image}
               alt="Apple iPhone Xs 64GB Silver (iMT9G2FS/A)"
               className="product-card__image"
             />
@@ -22,17 +36,18 @@ export const ProductCard = () => {
         <div className="product-card__item-description">
           <Link to="/" className="product-card__device-link">
             <h3 className="product-card__title">
-              Apple iPhone Xs 64GB Silver (iMT9G2FS/A)
+              {name}
             </h3>
           </Link>
 
           <p className="product-card__price">
-            &#x24; 399.00
+            &#x24;
+            {price}
           </p>
 
           <p className="product-card__price product-card__price_not-actual">
             &#x24;
-            <del>399.00</del>
+            <del>{fullPrice}</del>
           </p>
 
           <div className="product-card__separator" />
@@ -43,7 +58,7 @@ export const ProductCard = () => {
             </p>
 
             <p className="parametrs__description parameters__description_value">
-              5.8” OLED
+              {screen}
             </p>
 
             <p className="parametrs__description parameters__description_key">
@@ -51,7 +66,7 @@ export const ProductCard = () => {
             </p>
 
             <p className="parametrs__description parameters__description_value">
-              64 GB
+              {capacity}
             </p>
 
             <p className="parametrs__description parameters__description_key">
@@ -59,7 +74,7 @@ export const ProductCard = () => {
             </p>
 
             <p className="parametrs__description parameters__description_value">
-              4 GB
+              {ram}
             </p>
           </div>
 

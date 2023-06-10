@@ -1,32 +1,31 @@
 import { NavLink } from 'react-router-dom';
-// import { useCallback, useEffect, useState } from 'react';
-// import { ProductCard } from '../../components/ProductCard';
+import { useCallback, useEffect, useState } from 'react';
+import { ProductCard } from '../../components/ProductCard';
 import { home, arrow } from '../../img/images';
 // import { Pagination } from '../../components/Pagination';
-// import { getPhones } from '../../api/phones';
-// import { Phone } from '../../types/Phone';
+import { getPhones } from '../../api/phones';
+import { Phone } from '../../types/Phone';
 
 export const PhonesPage = () => {
   // const [countPerPage, setCountPerPage] = useState(5);
   // const [currentPage, setCurrentPage] = useState(1);
-  // const [phones, setPhones] = useState<Phone[]>([]);
+  const [phones, setPhones] = useState<Phone[]>([]);
 
-  // const loadPhones = useCallback(async () => {
-  //   try {
-  //     const phonesFromServer = await getPhones([]);
+  const loadPhones = useCallback(async () => {
+    try {
+      const phonesFromServer = await getPhones();
 
-  //     setPhones(phonesFromServer);
-  //   } catch {
-  //     // eslint-disable-next-line no-console
-  //     console.log('failed to load phones');
-  //   }
-  // }, []);
+      setPhones(phonesFromServer);
+    } catch {
+      // eslint-disable-next-line no-console
+      console.log('failed to load phones');
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   loadPhones();
-  // }, []);
-  // const products = [...Array(80)]
-  //   .map(() => <ProductCard />);
+  useEffect(() => {
+    loadPhones();
+  }, []);
+
   // const firstVisibleItemIndex = (currentPage - 1) * countPerPage;
   // const lastItemIndex = firstVisibleItemIndex + countPerPage;
   // const lastVisibleItemIndex = lastItemIndex > products.length
@@ -41,7 +40,7 @@ export const PhonesPage = () => {
   //   setCurrentPage(1);
   // };
   // eslint-disable-next-line no-console
-  // console.log(phones);
+  console.log(phones);
 
   return (
     <div className="container">
@@ -59,6 +58,7 @@ export const PhonesPage = () => {
 
       <h1 className="title">Mobile phones</h1>
 
+      {phones.map(phone => <ProductCard phone={phone} />)}
       {/* <Pagination
         total={42}
         perPage={20}
