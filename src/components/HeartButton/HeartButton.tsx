@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { heart, redHeart } from '../../img/images';
 
 export const HeartButton = () => {
   const [isLiked, setIsLiked] = useState(false);
@@ -14,7 +15,7 @@ export const HeartButton = () => {
       onClick={onHandleClick}
     >
       <img
-        src={`/img/svg/${isLiked ? 'heart-like.svg' : 'heart-like-red.svg'}`}
+        src={isLiked ? heart : redHeart}
         alt="heart-like"
         className="like__heart"
       />

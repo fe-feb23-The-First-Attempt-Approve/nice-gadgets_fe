@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { HeartButton } from '../HeartButton/HeartButton';
+import { phone } from '../../img/images';
 
 export const ProductCard = () => {
   return (
@@ -11,7 +12,7 @@ export const ProductCard = () => {
         >
           <div className="product-card__photo-container">
             <img
-              src="../../img/product-card/cell-phone-it-should-be-delete.png"
+              src={phone}
               alt="Apple iPhone Xs 64GB Silver (iMT9G2FS/A)"
               className="product-card__image"
             />
