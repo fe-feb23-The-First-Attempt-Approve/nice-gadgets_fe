@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { Link } from 'react-router-dom';
 import { Logo } from '../Logo';
 import { ArrowButton } from '../ArrowButton';
@@ -14,15 +15,22 @@ export const Footer = () => {
         <nav className="footer__navigation">
           <ul className="footer__nav-list">
             <li className="footer__nav-item">
-              <Link to="/" className="footer__nav-link">Github</Link>
+              <a
+                href="https://github.com/orgs/fe-feb23-The-First-Attempt-Approve/repositories"
+                target="_blank"
+                className="footer__nav-link"
+                rel="noreferrer"
+              >
+                Github
+              </a>
             </li>
 
             <li className="footer__nav-item">
-              <Link to="/" className="footer__nav-link">Contacts</Link>
+              <Link to="/contacts" className="footer__nav-link">Contacts</Link>
             </li>
 
             <li className="footer__nav-item">
-              <Link to="/" className="footer__nav-link">rights</Link>
+              <Link to="/rights" className="footer__nav-link">rights</Link>
             </li>
           </ul>
         </nav>
