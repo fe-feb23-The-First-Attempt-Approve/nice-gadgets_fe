@@ -14,15 +14,15 @@ export const Footer = () => {
         <nav className="footer__navigation">
           <ul className="footer__nav-list">
             <li className="footer__nav-item">
-              <a href="/" className="footer__nav-link">Github</a>
+              <Link to="/" className="footer__nav-link">Github</Link>
             </li>
 
             <li className="footer__nav-item">
-              <a href="/" className="footer__nav-link">Contacts</a>
+              <Link to="/" className="footer__nav-link">Contacts</Link>
             </li>
 
             <li className="footer__nav-item">
-              <a href="/" className="footer__nav-link">rights</a>
+              <Link to="/" className="footer__nav-link">rights</Link>
             </li>
           </ul>
         </nav>

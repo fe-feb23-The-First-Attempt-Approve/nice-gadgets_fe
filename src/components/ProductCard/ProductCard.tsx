@@ -1,12 +1,13 @@
+import { Link } from 'react-router-dom';
 import { HeartButton } from '../HeartButton/HeartButton';
 
 export const ProductCard = () => {
   return (
     <div className="product-card__container">
       <div className="product-card__item">
-        <a
+        <Link
           className="product-card__link"
-          href="/"
+          to="/"
         >
           <div className="product-card__photo-container">
             <img
@@ -15,14 +16,14 @@ export const ProductCard = () => {
               className="product-card__image"
             />
           </div>
-        </a>
+        </Link>
 
         <div className="product-card__item-description">
-          <a href="/" className="product-card__device-link">
+          <Link to="/" className="product-card__device-link">
             <h3 className="product-card__title">
               Apple iPhone Xs 64GB Silver (iMT9G2FS/A)
             </h3>
-          </a>
+          </Link>
 
           <p className="product-card__price">
             &#x24; 399.00
