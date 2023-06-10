@@ -14,10 +14,6 @@ $separator-color: #3b3e4a;
 
 $transition-duration: 0.3s;
 
-
-$bg-main: $accent-color;
-// #e4e3ff -- легкий фіолетовий відтінок
-
 // DARK THEME
 $dt-accent-color: #905bff;
 $dt-accent-color-hov: #a378ff;
@@ -39,12 +35,12 @@ $lt-accent-color: #905bff;
 $lt-accent-color-hov: #a378ff;
 $lt-selected-color: #eb5757;
 
-$lt-bg-color-main: #f1f2f9; //+
+$lt-bg-color-main: #f1f2f9;
 $lt-bg-color-products: #b3bce3;
 $lt-bg-color-controllers: #cfd5ec;
 $lt-bg-color-controllers-hov: #dcdfeb;
 
 $lt-separator-color: #3b3e4a;
 
-$lt-text-color-main: #0f1121; //+
-$lt-text-color-secondary: #75767f; //
+$lt-text-color-main: #0f1121;
+$lt-text-color-secondary: #75767f;
