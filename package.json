@@ -11,7 +11,11 @@
     "classnames": "^2.3.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
+    "react-router-dom": "^6.3.0",
+=======
     "react-router-dom": "^6.12.1",
+>>>>>>> c820027f11e0d576e922bbd9e47d5868761a7e8f
     "react-scripts": "^4.0.3"
   },
   "devDependencies": {

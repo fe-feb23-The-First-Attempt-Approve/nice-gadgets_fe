@@ -11,6 +11,11 @@
 @import "../components/Logo/logo.scss";
 @import "../components/Navigation/navigation.scss";
 @import "../components/IconBar/icon-bar.scss";
+@import "../components/ProductCard/ProductCard.scss";
+@import "../components/Footer/Footer.scss";
+@import "../components/ArrowButton/ArrowButton.scss";
+@import "../components/HeartButton/HeartButton.scss";
+
 
 body {
   background-color: $theme-color-dark;

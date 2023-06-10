@@ -1,0 +1,14 @@
+.arrow-conteiner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: $bg-controllers;
+  transition: background-color 0.3s ease;
+  margin-left: 16px;
+
+  &:hover {
+    background-color: $bg-controllers-hov;
+  }
+}

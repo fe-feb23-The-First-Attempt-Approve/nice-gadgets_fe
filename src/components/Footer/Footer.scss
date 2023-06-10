@@ -1,0 +1,104 @@
+.footer {
+  width: 100%;
+  border-top: 1px solid $separator-color;
+  bottom: 0;
+  position: absolute;
+  transition: background-color 0.3s, border 0.3s;
+
+  &__navigation {
+    @include onTablet {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 1200px;
+
+    @include onTablet {
+      padding: 0 10px;
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+
+  &__logo {
+    margin: 32px 16px;
+    position: relative;
+
+    @include onTablet {
+      margin: 32px 0 32px 24px;
+    }
+
+    @include onDesktop {
+      margin: 32px 0 32px 32px;
+    }
+  }
+
+  &__nav-list {
+    list-style: none;
+    margin: 0 16px 32px;
+    padding: 0;
+
+    @include onTablet {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-direction: row;
+      gap: 16px;
+      margin: 0;
+    }
+
+    @include onDesktop {
+      gap: 104px;
+    }
+  }
+
+  &__nav-item {
+    margin-bottom: 16px;
+
+    @include onTablet {
+      margin: 0;
+    }
+  }
+
+  &__nav-link {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 12px;
+    line-height: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $theme-color-light;
+    transition: padding 0.3s ease;
+
+    &:hover {
+      border-bottom: 2px solid $theme-color-light;
+      padding-bottom: 8px;
+    }
+  }
+
+  &__arrow-up {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: right;
+    color: $text-color-secondary;
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $theme-color-light;
+    }
+
+    @include onTablet {
+      margin-bottom: 0;
+    }
+  }
+}

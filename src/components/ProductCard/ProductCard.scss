@@ -1,0 +1,157 @@
+.product-card {
+  &__container {
+    padding: 32px;
+    max-width: 272px;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: inset 0 0 10px 1px $accent-color;
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__link {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  &__image {
+    max-width: 208px;
+
+    @media (max-width: 1200px) {
+      max-width: 237px;
+    }
+
+    @media (max-width: 640px) {
+      max-width: 212px;
+    }
+  }
+
+  &__device-link {
+    padding-top: 16px;
+  }
+
+  &__item-deskription {
+    margin-top: 8px;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: $theme-color-light;
+  }
+
+  &__price {
+    margin-top: 8px;
+    margin-right: 8px;
+    display: inline-block;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 140%;
+    color: $theme-color-light;
+  }
+
+  &__price_not-actual {
+    color: $text-color-secondary;
+  }
+
+  &__separator {
+    margin-top: 8px;
+    max-width: 208px;
+    border: 1px solid $separator-color;
+  }
+
+  &__parameters {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__footer {
+    margin-top: 8px;
+    display: flex;
+  }
+
+  &__button {
+    text-decoration: none;
+    width: 160px;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $accent-color;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    color: $theme-color-light;
+    margin-right: 8px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $accent-color-hov;
+      transition: background-color 0.3s ease;
+    }
+
+    &:active {
+      background-color: $bg-controllers;
+    }
+  }
+
+  &__like {
+    width: 40px;
+    height: 40px;
+    color: $theme-color-light;
+    background: $theme-color-dark;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $bg-controllers-hov;
+      transition: background-color 0.3s ease;
+    }
+
+    &:active {
+      background-color: $bg-controllers;
+    }
+  }
+}
+
+.parameters {
+  &__description {
+    margin-top: 8px;
+  }
+
+  &__description_key {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: $text-color-secondary;
+  }
+
+  &__description_value {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: right;
+    color: $theme-color-light;
+  }
+}
