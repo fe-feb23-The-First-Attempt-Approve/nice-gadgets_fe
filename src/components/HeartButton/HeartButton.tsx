@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { heart, redHeart } from '../../img/images';
+import { IconLikeEmpty } from '../Icons/IconLikeEmpty';
+import { IconLikeFull } from '../Icons/IconLikeFull';
 
 export const HeartButton = () => {
   const [isLiked, setIsLiked] = useState(false);
@@ -14,11 +15,7 @@ export const HeartButton = () => {
       className="like"
       onClick={onHandleClick}
     >
-      <img
-        src={isLiked ? heart : redHeart}
-        alt="heart-like"
-        className="like__heart"
-      />
+      {isLiked ? <IconLikeEmpty /> : <IconLikeFull />}
     </button>
   );
 };

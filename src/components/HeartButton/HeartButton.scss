@@ -1,16 +1,12 @@
 .like {
   width: 40px;
   height: 40px;
-  color: #f1f2f9;
-  background: $theme-color-dark;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background-color 0.3s ease;
 
   &:hover {
     background-color: #4a4d58;
-    transition: background-color 0.3s ease;
   }
 
   &:active {
