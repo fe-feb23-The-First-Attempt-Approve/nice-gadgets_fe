@@ -15,7 +15,8 @@
 @import "../components/Footer/Footer.scss";
 @import "../components/ArrowButton/ArrowButton.scss";
 @import "../components/HeartButton/HeartButton.scss";
-
+@import "../pages/HomePage/home-page.scss";
+@import "../components/Categories/categories.scss";
 
 body {
   background-color: $theme-color-dark;
