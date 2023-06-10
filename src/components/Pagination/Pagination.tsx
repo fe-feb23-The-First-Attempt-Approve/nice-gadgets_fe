@@ -1,85 +1,122 @@
 import cn from 'classnames';
+import { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { Phone } from '../../types/Phone';
+import { Directions } from '../../types/directions';
+import { ArrowButton } from '../ArrowButton';
+import { ProductCard } from '../ProductCard';
+import { getSearchWith } from '../../utils/searchHelper';
 
 type Props = {
-  total: number,
-  perPage: number
-  currentPage: number,
-  onPageChange: (newPage: number) => void,
-  visibleItems: JSX.Element[];
+  items: Phone[];
 };
 
-export const Pagination: React.FC<Props> = ({
-  total,
-  perPage,
-  currentPage,
-  onPageChange,
-}) => {
-  const pageCount = Math.ceil(total / perPage);
-  const pages = [...Array(pageCount)];
+export const Pagination: React.FC<Props> = ({ items }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentPage = Number(searchParams.get('page') || 1);
+
+  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+  const pages: number[] = Array.from(Array(pageCount), (_, i) => i + 1);
+
+  const firstVisibleItemIndex = (currentPage - 1) * itemsPerPage;
+  const lastItemIndex = firstVisibleItemIndex + itemsPerPage;
+  const lastVisibleItemIndex = lastItemIndex > items.length
+    ? items.length
+    : lastItemIndex;
+
+  const visibleTtems = items.slice(firstVisibleItemIndex, lastVisibleItemIndex);
+
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
   const isFirstPage = prevPage < 1;
   const isLastPage = nextPage > pageCount;
 
-  return (
-    <ul className="pagination">
-      <li className={cn('page-item', {
-        disabled: isFirstPage,
-      })}
-      >
-        <a
-          data-cy="prevLink"
-          className="page-link"
-          href="#prev"
-          aria-disabled={isFirstPage}
-          onClick={() => {
-            if (!isFirstPage) {
-              onPageChange(prevPage);
-            }
-          }}
-        >
-          «
-        </a>
-      </li>
+  // const { category } = items[0];
 
-      {
-        pages.map(page => (
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setItemsPerPage(Number(event.target.value));
+    setSearchParams(getSearchWith(searchParams, { page: null }));
+  };
+
+  return (
+    <div className="pagination">
+      <div className="pagination__items">
+        {visibleTtems.map((item) => <ProductCard key={item.id} phone={item} />)}
+      </div>
+
+      <label htmlFor="perPageSelector" className="col-form-label col">
+        Items per page
+      </label>
+      <div className="form-group row">
+        <div className="col-3">
+          <select
+            className="form-control"
+            onChange={handleChange}
+            value={itemsPerPage}
+          >
+            <option value="8">8</option>
+            <option value="16">16</option>
+            <option value="32">32</option>
+            <option value="64">64</option>
+          </select>
+        </div>
+      </div>
+
+      <ul className="pagination__page-list">
+        <li className={cn('page-item', {
+          disabled: isFirstPage,
+        })}
+        >
+          <Link
+            className="page-link"
+            to={{
+              search: getSearchWith(
+                searchParams, { page: prevPage.toString() },
+              ),
+            }}
+            aria-disabled={isFirstPage}
+          >
+            <ArrowButton direction={Directions.Left} />
+          </Link>
+        </li>
+
+        {pages.map(pageNum => (
           <li
-            key={page}
+            key={pageNum}
             className={cn('page-item', {
-              active: currentPage === page,
+              active: currentPage === pageNum,
             })}
           >
-            <a
-              data-cy="pageLink"
+            <Link
               className="page-link"
-              href={`#${page}`}
-              onClick={() => onPageChange(page)}
+              to={{
+                search: getSearchWith(
+                  searchParams, { page: pageNum.toString() },
+                ),
+              }}
             >
-              {page}
-            </a>
+              {pageNum}
+            </Link>
           </li>
-        ))
-      }
+        ))}
 
-      <li className={cn('page-item', {
-        disabled: isLastPage,
-      })}
-      >
-        <a
-          data-cy="nextLink"
-          className="page-link"
-          href="#next"
-          aria-disabled={isLastPage}
-          onClick={() => {
-            if (!isLastPage) {
-              onPageChange(nextPage);
-            }
-          }}
+        <li className={cn('page-item', {
+          disabled: isLastPage,
+        })}
         >
-          »
-        </a>
-      </li>
-    </ul>
+          <Link
+            to={{
+              search: getSearchWith(
+                searchParams, { page: nextPage.toString() },
+              ),
+            }}
+            aria-disabled={isLastPage}
+          >
+            <ArrowButton direction={Directions.Right} />
+          </Link>
+        </li>
+      </ul>
+    </div>
   );
 };
