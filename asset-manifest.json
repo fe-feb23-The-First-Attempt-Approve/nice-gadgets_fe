@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "./static/css/main.415cb4b4.chunk.css",
-    "main.js": "./static/js/main.2e0e31f5.chunk.js",
-    "main.js.map": "./static/js/main.2e0e31f5.chunk.js.map",
+    "main.js": "./static/js/main.a0e319bd.chunk.js",
+    "main.js.map": "./static/js/main.a0e319bd.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.330dba63.js",
     "runtime-main.js.map": "./static/js/runtime-main.330dba63.js.map",
     "static/js/2.8e96727f.chunk.js": "./static/js/2.8e96727f.chunk.js",
@@ -11,12 +11,15 @@
     "static/css/main.415cb4b4.chunk.css.map": "./static/css/main.415cb4b4.chunk.css.map",
     "static/js/2.8e96727f.chunk.js.LICENSE.txt": "./static/js/2.8e96727f.chunk.js.LICENSE.txt",
     "static/media/index.scss": "./static/media/Mont-SemiBold.8979d71a.otf",
-    "static/media/cell-phone-it-should-be-delete.0d6d17e6.png": "./static/media/cell-phone-it-should-be-delete.0d6d17e6.png"
+    "static/media/arrow.756d3b79.svg": "./static/media/arrow.756d3b79.svg",
+    "static/media/cell-phone-it-should-be-delete.0d6d17e6.png": "./static/media/cell-phone-it-should-be-delete.0d6d17e6.png",
+    "static/media/heart-like-red.e06f6852.svg": "./static/media/heart-like-red.e06f6852.svg",
+    "static/media/heart-like.40477fe0.svg": "./static/media/heart-like.40477fe0.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.330dba63.js",
     "static/js/2.8e96727f.chunk.js",
     "static/css/main.415cb4b4.chunk.css",
-    "static/js/main.2e0e31f5.chunk.js"
+    "static/js/main.a0e319bd.chunk.js"
   ]
 }
