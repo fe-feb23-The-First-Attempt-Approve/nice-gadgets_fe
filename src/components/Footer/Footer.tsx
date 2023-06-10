@@ -1,45 +1,39 @@
-import './Footer.scss';
+import { Link } from 'react-router-dom';
+import { Logo } from '../Logo';
+import { ArrowButton } from '../ArrowButton';
+import { Directions } from '../../types/directions';
 
 export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__container">
-        <a className="footer__logo" href="/">
-          <img
-            src="/img/footer/logo.png"
-            alt="logotip"
-            className="footer__logo logo"
-          />
+        <Link to="/" className="logo footer__logo">
+          <Logo />
+        </Link>
 
-          <nav className="footer__naveigation">
-            <ul className="footer__nav-list">
-              <li className="footer__nav-item">
-                <a href="/" className="footer__nav-link">Github</a>
-              </li>
+        <nav className="footer__navigation">
+          <ul className="footer__nav-list">
+            <li className="footer__nav-item">
+              <a href="/" className="footer__nav-link">Github</a>
+            </li>
 
-              <li className="footer__nav-item">
-                <a href="/" className="footer__nav-link">Contacts</a>
-              </li>
+            <li className="footer__nav-item">
+              <a href="/" className="footer__nav-link">Contacts</a>
+            </li>
 
-              <li className="footer__nav-item">
-                <a href="/" className="footer__nav-link">rights</a>
-              </li>
-            </ul>
-          </nav>
-          <button
-            type="button"
-            className="footer__arrow-up button-reset"
-          >
-            Back to top
-            <span className="footer__arrow-conteiner">
-              <img
-                src="/img/footer/arrow-up.svg"
-                alt="arrow up to top"
-                className="footer__arrow-up-image"
-              />
-            </span>
-          </button>
-        </a>
+            <li className="footer__nav-item">
+              <a href="/" className="footer__nav-link">rights</a>
+            </li>
+          </ul>
+        </nav>
+
+        <button
+          type="button"
+          className="footer__arrow-up"
+        >
+          Back to top
+          <ArrowButton direction={Directions.Up} />
+        </button>
       </div>
     </footer>
   );

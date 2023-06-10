@@ -1,3 +1,5 @@
+import { HeartButton } from '../HeartButton/HeartButton';
+
 export const ProductCard = () => {
   return (
     <div className="product-card__container">
@@ -60,15 +62,11 @@ export const ProductCard = () => {
           </div>
 
           <div className="product-card__footer">
-            <button type="button" className="product-card__button button-reset">
+            <button type="button" className="product-card__button">
               Add to cart
             </button>
-            <button type="button" className="product-card__like button-reset ">
-              <img
-                src="/img/svg/heart-like.svg"
-                alt="heart-like"
-                className="product-card__heart-like"
-              />
+            <button type="button" className="product-card__like">
+              <HeartButton />
             </button>
           </div>
 

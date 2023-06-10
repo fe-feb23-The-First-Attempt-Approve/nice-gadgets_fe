@@ -5,14 +5,16 @@ import { IconBar } from '../IconBar';
 
 export const Header = () => {
   return (
-    <header className="header">
-      <Link to="/" className="logo">
-        <Logo />
-      </Link>
+    <>
+      <header className="header">
+        <Link to="/" className="logo">
+          <Logo />
+        </Link>
 
-      <Navigation />
+        <Navigation />
 
-      <IconBar />
-    </header>
+        <IconBar />
+      </header>
+    </>
   );
 };

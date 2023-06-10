@@ -2,7 +2,7 @@
   &__container {
     padding: 32px;
     max-width: 272px;
-    transition: box-shadow .3s ease;
+    transition: box-shadow 0.3s ease;
 
     &:hover {
       box-shadow: inset 0 0 10px 1px $accent-color;
@@ -20,7 +20,7 @@
     transition: transform 0.3s ease;
 
     &:hover {
-      transform: scale(1.03)
+      transform: scale(1.03);
     }
   }
 
@@ -60,7 +60,7 @@
     font-weight: 800;
     font-size: 22px;
     line-height: 140%;
-    color: $theme-color-light
+    color: $theme-color-light;
   }
 
   &__price_not-actual {
@@ -98,13 +98,12 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
-    color: #f1f2f9;
-    /*should be variable*/
+    color: $theme-color-light;
     margin-right: 8px;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #a378ff;
+      background-color: $accent-color-hov;
       transition: background-color 0.3s ease;
     }
 
@@ -116,8 +115,7 @@
   &__like {
     width: 40px;
     height: 40px;
-    color: #f1f2f9;
-    /*should be deleted*/
+    color: $theme-color-light;
     background: $theme-color-dark;
     display: flex;
     justify-content: center;
@@ -125,14 +123,13 @@
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: #4a4d58;
+      background-color: $bg-controllers-hov;
       transition: background-color 0.3s ease;
     }
 
     &:active {
       background-color: $bg-controllers;
     }
-
   }
 }
 
