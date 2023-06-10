@@ -1,9 +1,12 @@
+@import "src/styles/utils/vars";
+
 .footer {
   width: 100%;
   border-top: 1px solid $separator-color;
   bottom: 0;
   position: absolute;
-  transition: background-color 0.3s, border 0.3s;
+  transition: background-color $footer-transition-duration,
+    border $footer-transition-duration;
 
   &__navigation {
     @include onTablet {
@@ -17,6 +20,7 @@
     flex-direction: column;
     margin: auto;
     max-width: 1200px;
+    padding: 20px;
 
     @include onTablet {
       padding: 0 10px;
@@ -26,7 +30,6 @@
   }
 
   &__logo {
-    margin: 32px 16px;
     position: relative;
 
     @include onTablet {
@@ -73,7 +76,7 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     color: $theme-color-light;
-    transition: padding 0.3s ease;
+    transition: padding $footer-transition-duration ease;
 
     &:hover {
       border-bottom: 2px solid $theme-color-light;
@@ -84,14 +87,15 @@
   &__arrow-up {
     font-style: normal;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 15px;
     text-align: right;
     color: $text-color-secondary;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 32px;
-    transition: color 0.3s ease;
+    transition: color $footer-transition-duration ease;
 
     &:hover {
       color: $theme-color-light;
@@ -99,6 +103,7 @@
 
     @include onTablet {
       margin-bottom: 0;
+      justify-content: flex-end;
     }
   }
 }
