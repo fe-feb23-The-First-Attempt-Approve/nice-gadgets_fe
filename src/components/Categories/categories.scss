@@ -1,0 +1,25 @@
+.categories {
+  margin-bottom: 56px;
+
+  @include onTablet {
+    margin-bottom: 64px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
+
+  &__title {
+    margin-bottom: 24px;
+  }
+
+  &__categories-cards {
+    display: grid;
+    column-gap: 16px;
+    margin: 0;
+
+    @include onTablet {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}
