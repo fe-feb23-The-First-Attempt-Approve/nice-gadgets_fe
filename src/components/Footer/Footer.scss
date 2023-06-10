@@ -3,8 +3,6 @@
 .footer {
   width: 100%;
   border-top: 1px solid $separator-color;
-  bottom: 0;
-  position: absolute;
   transition: background-color $footer-transition-duration,
     border $footer-transition-duration;
 
