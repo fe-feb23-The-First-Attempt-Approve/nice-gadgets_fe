@@ -11,7 +11,7 @@ export const ProductCard = () => {
         >
           <div className="product-card__photo-container">
             <img
-              src="/img/product-card/cell-phone-it-should-be-delete.png"
+              src="../../img/product-card/cell-phone-it-should-be-delete.png"
               alt="Apple iPhone Xs 64GB Silver (iMT9G2FS/A)"
               className="product-card__image"
             />
