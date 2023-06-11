@@ -7,10 +7,40 @@ $selected-color: #eb5757;
 
 $text-color-secondary: #75767f;
 
-$bg-products: #161827;
-$bg-controllers: #323542;
+$bg-products: #161827; // use for product card & cart items
+$bg-controllers: #323542; // ?? use for controllers & like button & selected items?
 $bg-controllers-hov: #4a4d58;
 $separator-color: #3b3e4a;
 
-$transition-duration: 1s;
-$footer-transition-duration: 0.7s;
+$transition-duration: 0.3s;
+
+// DARK THEME
+$dt-accent-color: #905bff;
+$dt-accent-color-hov: #a378ff;
+$dt-selected-color: #eb5757;
+
+$dt-bg-color-main: #0f1121;
+$dt-bg-color-products: #161827;
+$dt-bg-color-controllers: #323542;
+$dt-bg-color-controllers-hov: #444958;
+
+$dt-separator-color: #3b3e4a;
+
+$dt-text-color-main: #f1f2f9;
+$dt-text-color-secondary: #75767f;
+
+
+// LIGHT THEME
+$lt-accent-color: #905bff;
+$lt-accent-color-hov: #a378ff;
+$lt-selected-color: #eb5757;
+
+$lt-bg-color-main: #f1f2f9;
+$lt-bg-color-products: #b3bce3;
+$lt-bg-color-controllers: #cfd5ec;
+$lt-bg-color-controllers-hov: #dcdfeb;
+
+$lt-separator-color: #3b3e4a;
+
+$lt-text-color-main: #0f1121;
+$lt-text-color-secondary: #75767f;

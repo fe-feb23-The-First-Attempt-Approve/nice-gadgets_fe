@@ -1,11 +1,154 @@
-.store-theme {
-  &--dark {
-    background-color: $theme-color-dark;
-    color: $theme-color-light;
+@mixin Theme(
+  $accent-color,
+  $accent-color-hov,
+  $selected-color,
+
+  $bg-color-main,
+  $bg-color-products,
+  $bg-color-controllers,
+  $bg-color-controllers-hov,
+
+  $separator-color,
+
+  $text-color-main,
+  $text-color-secondary,
+) {
+  background-color: $bg-color-main;
+  color: $text-color-main;
+
+  & * svg {
+    fill: $text-color-main;
   }
 
-  &--light {
-    background-color: $theme-color-light;
-    color: $theme-color-dark;
+  & * .arrow-container {
+    background-color: $bg-color-controllers;
   }
+
+  & * button:hover .arrow-container {
+    background-color: $bg-color-controllers-hov;
+  }
+
+  & * .like {
+    background-color: $bg-color-controllers;
+
+    &:hover {
+      background-color: $bg-color-controllers-hov;
+    }
+  }
+
+  & * h3 {
+    color: $text-color-main;
+  }
+
+  & * .product-card__price {
+    color: $text-color-main;
+
+    &_not-actual {
+      color: $text-color-secondary;
+    }
+  }
+
+  & * .parameters__description_value {
+    color: $text-color-main;
+  }
+
+  & * a {
+    color: $text-color-secondary;
+
+    &:hover {
+      color: $text-color-main;
+    }
+  }
+
+  & * input {
+    color: $text-color-main;
+
+    &::placeholder {
+      color: $text-color-secondary;
+    }
+  }
+
+  & * .nav__link--active {
+    color: $text-color-main;
+
+    &::after {
+      background: $text-color-main;
+    }
+  }
+
+  & * .icon--selected {
+    fill: $selected-color;
+  }
+
+  & * .icon-bar__link {
+    &:hover {
+      background-color: $bg-color-controllers-hov;
+    }
+
+    &--active::after {
+      background: $text-color-main;
+    }
+  }
+
+  & *.footer__arrow-up {
+    color: $text-color-secondary;
+
+    &:hover {
+      color: $text-color-main;
+    }
+  }
+
+  & *.footer__nav-link:hover {
+    border-bottom: 2px solid $text-color-main;
+  }
+}
+
+
+.layout {
+  height: 100vh;
+  min-width: fit-content;
+
+  &--dark-theme {
+    @include Theme(
+      $dt-accent-color,
+      $dt-accent-color-hov,
+      $dt-selected-color,
+
+      $dt-bg-color-main,
+      $dt-bg-color-products,
+      $dt-bg-color-controllers,
+      $dt-bg-color-controllers-hov,
+
+      $dt-separator-color,
+
+      $dt-text-color-main,
+      $dt-text-color-secondary,
+    )
+  }
+
+  &--light-theme {
+    @include Theme(
+      $lt-accent-color,
+      $lt-accent-color-hov,
+      $lt-selected-color,
+
+      $lt-bg-color-main,
+      $lt-bg-color-products,
+      $lt-bg-color-controllers,
+      $lt-bg-color-controllers-hov,
+
+      $lt-separator-color,
+
+      $lt-text-color-main,
+      $lt-text-color-secondary,
+    )
+  }
+}
+
+button,
+a,
+div {
+  transition-property: background-color, color, padding;
+  transition-duration: $transition-duration;
+  transition-timing-function: ease;
 }

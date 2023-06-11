@@ -3,7 +3,7 @@
     background-color: $bg-products;
     padding: 32px;
     max-width: 272px;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow $transition-duration ease;
 
     &:hover {
       box-shadow: inset 0 0 10px 1px $accent-color;
@@ -16,13 +16,8 @@
     align-items: center;
   }
 
-  &__link {
-    cursor: pointer;
-    transition: transform 0.3s ease;
-
-    &:hover {
+  &__link:hover {
       transform: scale(1.03);
-    }
   }
 
   &__image {
@@ -50,7 +45,6 @@
     font-weight: 600;
     font-size: 14px;
     line-height: 21px;
-    color: $theme-color-light;
   }
 
   &__price {
@@ -61,11 +55,6 @@
     font-weight: 800;
     font-size: 22px;
     line-height: 140%;
-    color: $theme-color-light;
-  }
-
-  &__price_not-actual {
-    color: $text-color-secondary;
   }
 
   &__separator {
@@ -105,7 +94,6 @@
 
     &:hover {
       background-color: $accent-color-hov;
-      transition: background-color 0.3s ease;
     }
 
     &:active {
@@ -116,20 +104,13 @@
   &__like {
     width: 40px;
     height: 40px;
-    color: $theme-color-light;
-    background: $theme-color-dark;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: $bg-controllers-hov;
       transition: background-color 0.3s ease;
-    }
-
-    &:active {
-      background-color: $bg-controllers;
     }
   }
 }
@@ -153,6 +134,5 @@
     font-size: 12px;
     line-height: 15px;
     text-align: right;
-    color: $theme-color-light;
   }
 }

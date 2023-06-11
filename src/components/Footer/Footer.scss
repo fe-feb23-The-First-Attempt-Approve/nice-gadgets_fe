@@ -28,21 +28,12 @@
   }
 
   &__logo {
+    padding: 32px 0;
     position: relative;
-
-    @include onTablet {
-      margin: 32px 0 32px 24px;
-    }
-
-    @include onDesktop {
-      margin: 32px 0 32px 32px;
-    }
   }
 
   &__nav-list {
-    list-style: none;
     margin: 0 16px 32px;
-    padding: 0;
 
     @include onTablet {
       display: flex;
@@ -73,11 +64,8 @@
     line-height: 11px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    color: $theme-color-light;
-    transition: padding $footer-transition-duration ease;
 
     &:hover {
-      border-bottom: 2px solid $theme-color-light;
       padding-bottom: 8px;
     }
   }
@@ -88,16 +76,10 @@
     font-size: 14px;
     line-height: 15px;
     text-align: right;
-    color: $text-color-secondary;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 32px;
-    transition: color $footer-transition-duration ease;
-
-    &:hover {
-      color: $theme-color-light;
-    }
 
     @include onTablet {
       margin-bottom: 0;

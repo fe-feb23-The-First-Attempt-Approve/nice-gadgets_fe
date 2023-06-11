@@ -2,13 +2,12 @@
 import { Link } from 'react-router-dom';
 import { Logo } from '../Logo';
 import { ArrowButton } from '../ArrowButton';
-import { Directions } from '../../types/directions';
 
 export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__container">
-        <Link to="/" className="logo footer__logo">
+        <Link to="/home" className="logo footer__logo">
           <Logo />
         </Link>
 
@@ -40,7 +39,7 @@ export const Footer = () => {
           className="footer__arrow-up"
         >
           Back to top
-          <ArrowButton direction={Directions.Up} />
+          <ArrowButton />
         </button>
       </div>
     </footer>

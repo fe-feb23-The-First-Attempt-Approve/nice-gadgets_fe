@@ -1,12 +1,12 @@
 @import "utils/vars";
+@import "utils/themes";
 @import "utils/mixins";
 @import "utils/fonts";
 
 @import "utils/reset";
 @import "utils/normalize";
 
-@import "utils/themes";
-
+@import "../components/Icons/icon.scss";
 @import "../components/header/header.scss";
 @import "../components/Logo/logo.scss";
 @import "../components/Navigation/navigation.scss";
@@ -17,6 +17,7 @@
 @import "../components/HeartButton/HeartButton.scss";
 @import "../pages/HomePage/home-page.scss";
 @import "../components/Categories/categories.scss";
+@import "../components/SearchingArea/searching-area.scss";
 
 @import "../components/Pagination/pagination.scss";
 
