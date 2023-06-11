@@ -1,5 +1,6 @@
 .product-card {
   &__container {
+    background-color: $bg-products;
     padding: 32px;
     max-width: 272px;
     transition: box-shadow $transition-duration ease;
@@ -35,7 +36,7 @@
     padding-top: 16px;
   }
 
-  &__item-deskription {
+  &__item-description {
     margin-top: 8px;
   }
 

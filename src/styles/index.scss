@@ -15,4 +15,13 @@
 @import "../components/Footer/Footer.scss";
 @import "../components/ArrowButton/ArrowButton.scss";
 @import "../components/HeartButton/HeartButton.scss";
+@import "../pages/HomePage/home-page.scss";
+@import "../components/Categories/categories.scss";
 @import "../components/SearchingArea/searching-area.scss";
+
+@import "../components/Pagination/pagination.scss";
+
+body {
+  background-color: $theme-color-dark;
+  color: $theme-color-light;
+}
