@@ -2,7 +2,6 @@ import cn from 'classnames';
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Phone } from '../../types/Phone';
-import { Directions } from '../../types/directions';
 import { ArrowButton } from '../ArrowButton';
 import { ProductCard } from '../ProductCard';
 import { getSearchWith } from '../../utils/searchHelper';
@@ -77,7 +76,7 @@ export const Pagination: React.FC<Props> = ({ items }) => {
             }}
             aria-disabled={isFirstPage}
           >
-            <ArrowButton direction={Directions.Left} />
+            <ArrowButton />
           </Link>
         </li>
 
@@ -113,7 +112,7 @@ export const Pagination: React.FC<Props> = ({ items }) => {
             }}
             aria-disabled={isLastPage}
           >
-            <ArrowButton direction={Directions.Right} />
+            <ArrowButton />
           </Link>
         </li>
       </ul>
