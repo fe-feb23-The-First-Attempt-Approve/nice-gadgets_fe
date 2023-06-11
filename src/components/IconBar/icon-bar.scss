@@ -10,35 +10,23 @@
   &__link {
     position: relative;
     display: flex;
-    transition: background-color $transition-duration;
+    padding: 16px;
 
-    &:hover {
-      background-color: $bg-controllers;
+    @include onTablet {
+      padding: 24px;
     }
 
     &--active {
-      color: $theme-color-light;
-
       &::after {
         position: absolute;
+        left: 0;
         bottom: -2px;
         content: "";
         height: 3px;
-        background: $theme-color-light;
         border-radius: 4px;
 
         animation: underline $transition-duration ease forwards;
       }
-    }
-  }
-
-  &__icon {
-    margin: 16px;
-    height: 16px;
-    fill: $theme-color-light;
-
-    @include onTablet {
-      margin: 24px;
     }
   }
 }
