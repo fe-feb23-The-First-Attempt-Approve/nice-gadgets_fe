@@ -1,4 +1,12 @@
 .icon {
   display: block;
   height: 16px;
+
+  @include onDesktop {
+    height: 18px;
+  }
+
+  &--selected {
+    fill: $selected-color;
+  }
 }

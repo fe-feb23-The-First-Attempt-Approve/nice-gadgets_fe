@@ -1,6 +1,11 @@
 .arrow-container {
   padding: 4px;
   margin-left: 16px;
-  transform: rotate(270deg);
+  background-color: $bg-color-controllers;
   border-radius: 2px;
+  transform: rotate(270deg);
+}
+
+button:hover .arrow-container {
+  background-color: $bg-color-controllers-hov;
 }

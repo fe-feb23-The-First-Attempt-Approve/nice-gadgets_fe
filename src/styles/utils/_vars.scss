@@ -1,50 +1,17 @@
-$theme-color-dark: #0f1121;
-$theme-color-light: #f1f2f9;
+// colors
+$accent-color: var(--accent-color);
+$accent-color-hov: var(--accent-color-hov);
+$selected-color: var(--selected-color);
 
-$accent-color: #905bff;
-$accent-color-hov: #a378ff;
-$selected-color: #eb5757;
+$bg-color-main: var(--bg-color-main);
+$bg-color-products: var(--bg-color-products);
+$bg-color-controllers: var(--bg-color-controllers);
+$bg-color-controllers-hov: var(--bg-color-controllers-hov);
 
-$text-color-secondary: #75767f;
+$separator-color: var(--separator-color);
 
-$bg-products: #161827; // use for product card & cart items
-$bg-controllers: #323542; // ?? use for controllers & like button & selected items?
-$bg-controllers-hov: #4a4d58;
-$separator-color: #3b3e4a;
+$text-color-main: var(--text-color-main);
+$text-color-secondary: var(--text-color-secondary);
 
+// animation
 $transition-duration: 0.3s;
-
-
-$bg-main: $accent-color;
-// #e4e3ff -- легкий фіолетовий відтінок
-
-// DARK THEME
-$dt-accent-color: #905bff;
-$dt-accent-color-hov: #a378ff;
-$dt-selected-color: #eb5757;
-
-$dt-bg-color-main: #0f1121;
-$dt-bg-color-products: #161827;
-$dt-bg-color-controllers: #323542;
-$dt-bg-color-controllers-hov: #444958;
-
-$dt-separator-color: #3b3e4a;
-
-$dt-text-color-main: #f1f2f9;
-$dt-text-color-secondary: #75767f;
-
-
-// LIGHT THEME
-$lt-accent-color: #905bff;
-$lt-accent-color-hov: #a378ff;
-$lt-selected-color: #eb5757;
-
-$lt-bg-color-main: #f1f2f9; //+
-$lt-bg-color-products: #b3bce3;
-$lt-bg-color-controllers: #cfd5ec;
-$lt-bg-color-controllers-hov: #dcdfeb;
-
-$lt-separator-color: #3b3e4a;
-
-$lt-text-color-main: #0f1121; //+
-$lt-text-color-secondary: #75767f; //

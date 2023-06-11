@@ -1,32 +1,52 @@
 .icon-bar {
-  display: flex;
-  justify-content: flex-end;
-  flex-basis: 100%;
+  display: none;
+
+  @include onDesktop {
+    display: flex;
+    justify-content: flex-end;
+    flex-basis: 100%;
+  }
 
   &__item {
     border-left: 0.5px solid $separator-color;
+
+    &--no-borders {
+      border: none;
+    }
   }
 
   &__link {
     position: relative;
     display: flex;
+    justify-content: center;
+    margin: auto;
     padding: 16px;
 
-    @include onTablet {
+    @include onDesktop {
       padding: 24px;
     }
 
-    &--active {
-      &::after {
-        position: absolute;
-        left: 0;
-        bottom: -2px;
-        content: "";
-        height: 3px;
-        border-radius: 4px;
+    &:hover {
+      background-color: $bg-color-controllers-hov;
+    }
 
-        animation: underline $transition-duration ease forwards;
-      }
+    &--active {
+      @include underlineActive;
+    }
+
+    &--hidden {
+      display: none;
+    }
+  }
+
+  &__mobile {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+    &::after {
+      display: none;
     }
   }
 }

@@ -2,6 +2,7 @@
   &__container {
     padding: 32px;
     max-width: 272px;
+    background-color: $bg-color-products;
     transition: box-shadow $transition-duration ease;
 
     &:hover {
@@ -15,8 +16,12 @@
     align-items: center;
   }
 
-  &__link:hover {
+  &__link {
+    transition: transform $transition-duration;
+
+    &:hover {
       transform: scale(1.03);
+    }
   }
 
   &__image {
@@ -54,6 +59,11 @@
     font-weight: 800;
     font-size: 22px;
     line-height: 140%;
+    color: $text-color-main;
+
+    &_not-actual {
+      color: $text-color-secondary;
+    }
   }
 
   &__separator {
@@ -87,16 +97,12 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
-    color: $theme-color-light;
+    color: $text-color-main;
     margin-right: 8px;
     transition: background-color 0.3s ease;
 
     &:hover {
       background-color: $accent-color-hov;
-    }
-
-    &:active {
-      background-color: $bg-controllers;
     }
   }
 
@@ -133,5 +139,6 @@
     font-size: 12px;
     line-height: 15px;
     text-align: right;
+    color: $text-color-main;
   }
 }

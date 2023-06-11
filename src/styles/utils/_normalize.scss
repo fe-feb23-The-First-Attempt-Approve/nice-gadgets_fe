@@ -6,7 +6,50 @@ html {
   font-family: "Mont";
 }
 
+body {
+  min-height: 100vh;
+  min-width: fit-content;
+  background-color: $bg-color-main;
+  color: $text-color-main;
+
+  .scrolling-blocked {
+    overflow: hidden;
+  }
+}
+
+h3 {
+  color: $text-color-main;
+}
+
+svg {
+  fill: $text-color-main;
+}
+
 button,
 a {
   cursor: pointer;
+}
+
+a {
+  color: $text-color-secondary;
+
+  &:hover {
+    color: $text-color-main;
+  }
+}
+
+input {
+  color: $text-color-main;
+
+  &::placeholder {
+    color: $text-color-secondary;
+  }
+}
+
+button,
+a,
+body {
+  transition-property: background-color, color;
+  transition-duration: $transition-duration;
+  transition-timing-function: ease;
 }

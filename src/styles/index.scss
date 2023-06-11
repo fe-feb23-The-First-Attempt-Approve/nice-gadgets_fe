@@ -1,18 +1,40 @@
-@import "utils/vars";
 @import "utils/themes";
+@import "utils/vars";
 @import "utils/mixins";
-@import "utils/fonts";
 
 @import "utils/reset";
 @import "utils/normalize";
+@import "utils/fonts";
+@import "utils/animations";
 
-@import "../components/Icons/icon.scss";
-@import "../components/header/header.scss";
 @import "../components/Logo/logo.scss";
+@import "../components/Icons/icon.scss";
+
+// header elements
+@import "../components/header/header.scss";
 @import "../components/Navigation/navigation.scss";
+@import "../components/NavigationToggled/navigation-toggled.scss";
 @import "../components/IconBar/icon-bar.scss";
+@import "../components/IconSet/icon-set.scss";
+@import "../components/Burger/burger.scss";
+@import "../components/SearchingArea/searching-area.scss";
+@import "../components/SearchingField/searching-field.scss";
+
+// product card
 @import "../components/ProductCard/ProductCard.scss";
-@import "../components/Footer/Footer.scss";
 @import "../components/ArrowButton/ArrowButton.scss";
 @import "../components/HeartButton/HeartButton.scss";
-@import "../components/SearchingArea/searching-area.scss";
+
+// footer
+@import "../components/Footer/Footer.scss";
+
+
+
+// should be moved to element folders
+.content {
+  padding-top: 72px;
+
+  @include onTablet {
+    padding-top: 88px;
+  }
+}

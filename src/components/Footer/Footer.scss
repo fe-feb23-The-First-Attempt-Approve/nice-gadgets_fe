@@ -64,6 +64,7 @@
 
     &:hover {
       padding-bottom: 8px;
+      border-bottom: 2px solid $text-color-main;
     }
   }
 
@@ -76,9 +77,14 @@
     display: flex;
     align-items: center;
     margin-bottom: 32px;
+    color: $text-color-secondary;
 
     @include onTablet {
       margin-bottom: 0;
+    }
+
+    &:hover {
+      color: $text-color-main;
     }
   }
 }
