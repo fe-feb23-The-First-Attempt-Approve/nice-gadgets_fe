@@ -3,8 +3,8 @@
 .footer {
   width: 100%;
   border-top: 1px solid $separator-color;
-  transition: background-color $footer-transition-duration,
-    border $footer-transition-duration;
+  transition: background-color $transition-duration,
+    border $transition-duration;
 
   &__navigation {
     @include onTablet {
