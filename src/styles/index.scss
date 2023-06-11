@@ -1,5 +1,6 @@
 @import "utils/themes";
 @import "utils/vars";
+@import "utils/themes";
 @import "utils/mixins";
 
 @import "utils/reset";
@@ -20,14 +21,20 @@
 @import "../components/SearchingArea/searching-area.scss";
 @import "../components/SearchingField/searching-field.scss";
 
+// home page
+@import "../pages/HomePage/home-page.scss";
+@import "../components/Categories/categories.scss";
+
 // product card
 @import "../components/ProductCard/ProductCard.scss";
 @import "../components/ArrowButton/ArrowButton.scss";
 @import "../components/HeartButton/HeartButton.scss";
 
+// sliders
+@import "../components/Pagination/pagination.scss";
+
 // footer
 @import "../components/Footer/Footer.scss";
-
 
 
 // should be moved to element folders

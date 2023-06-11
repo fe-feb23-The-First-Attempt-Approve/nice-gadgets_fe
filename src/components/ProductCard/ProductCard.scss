@@ -1,5 +1,6 @@
 .product-card {
   &__container {
+    background-color: $bg-products;
     padding: 32px;
     max-width: 272px;
     background-color: $bg-color-products;
@@ -21,7 +22,6 @@
 
     &:hover {
       transform: scale(1.03);
-    }
   }
 
   &__image {
@@ -40,7 +40,7 @@
     padding-top: 16px;
   }
 
-  &__item-deskription {
+  &__item-description {
     margin-top: 8px;
   }
 
@@ -104,6 +104,10 @@
     &:hover {
       background-color: $accent-color-hov;
     }
+
+    &:active {
+      background-color: $bg-color-controllers;
+    }
   }
 
   &__like {
@@ -141,4 +145,5 @@
     text-align: right;
     color: $text-color-main;
   }
+}
 }

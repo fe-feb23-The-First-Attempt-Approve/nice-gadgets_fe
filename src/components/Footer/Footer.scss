@@ -16,6 +16,7 @@
     flex-direction: column;
     margin: auto;
     max-width: 1200px;
+    padding: 20px;
 
     @include onTablet {
       padding: 0 10px;
@@ -71,16 +72,18 @@
   &__arrow-up {
     font-style: normal;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 15px;
     text-align: right;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 32px;
     color: $text-color-secondary;
 
     @include onTablet {
       margin-bottom: 0;
+      justify-content: flex-end;
     }
 
     &:hover {

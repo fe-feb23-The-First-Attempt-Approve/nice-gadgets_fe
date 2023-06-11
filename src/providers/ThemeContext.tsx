@@ -1,5 +1,13 @@
 import {
+<<<<<<< HEAD
   FC, createContext, useContext, useState, useEffect,
+=======
+  FC,
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+>>>>>>> main
 } from 'react';
 import '../styles/index.scss';
 
@@ -21,12 +29,24 @@ export const ThemeProvider: FC = ({ children }) => {
 
   useEffect(() => {
     localStorage.setItem('theme', theme);
+<<<<<<< HEAD
     document.body.setAttribute('data-theme', theme);
   }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
+=======
+  }, [theme]);
+
+  const layoutClassName = `layout layout--${theme}-theme`;
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <div className={layoutClassName}>
+        {children}
+      </div>
+>>>>>>> main
     </ThemeContext.Provider>
   );
 };
