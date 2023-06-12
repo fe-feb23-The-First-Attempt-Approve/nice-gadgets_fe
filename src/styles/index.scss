@@ -1,15 +1,17 @@
 @import "utils/themes";
 @import "utils/vars";
-@import "utils/themes";
 @import "utils/mixins";
 
 @import "utils/reset";
 @import "utils/normalize";
+@import "utils/container";
 @import "utils/fonts";
 @import "utils/animations";
 
 @import "../components/Logo/logo.scss";
 @import "../components/Icons/icon.scss";
+
+@import "../components/Breadcrumbs/breadcrumbs.scss";
 
 // header elements
 @import "../components/header/header.scss";
@@ -23,7 +25,14 @@
 
 // home page
 @import "../pages/HomePage/home-page.scss";
+
+// categories
 @import "../components/Categories/categories.scss";
+@import "../components/CategoryCard/category-card.scss";
+
+// gadgets page
+@import "../components/GadgetsPage/gadgets-page.scss";
+@import "../components/GadhetsFilters/gadhets-filters.scss";
 
 // product card
 @import "../components/ProductCard/ProductCard.scss";
@@ -37,11 +46,20 @@
 @import "../components/Footer/Footer.scss";
 
 
-// should be moved to element folders
-.content {
-  padding-top: 72px;
 
-  @include onTablet {
-    padding-top: 88px;
-  }
+// should be moved to other folder
+.content {
+  background-color: $bg-color-main;
+}
+
+
+// just for preview
+.banner {
+  text-align: center;
+  margin: auto;
+  height: 400px;
+  width: 1040px;
+  background: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1420&q=80');
+  background-size: cover;
+  background-position: center;
 }

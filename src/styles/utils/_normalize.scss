@@ -11,10 +11,10 @@ body {
   min-width: fit-content;
   background-color: $bg-color-main;
   color: $text-color-main;
+}
 
-  .scrolling-blocked {
-    overflow: hidden;
-  }
+.scrolling-blocked {
+  overflow: hidden;
 }
 
 h3 {
@@ -48,7 +48,8 @@ input {
 
 button,
 a,
-body {
+body,
+div {
   transition-property: background-color, color;
   transition-duration: $transition-duration;
   transition-timing-function: ease;

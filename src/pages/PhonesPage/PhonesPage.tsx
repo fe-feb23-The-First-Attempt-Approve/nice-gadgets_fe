@@ -1,11 +1,15 @@
-import { NavLink } from 'react-router-dom';
+// import { NavLink } from 'react-router-dom';
 import { useCallback, useEffect, useState } from 'react';
-import { home, arrow } from '../../img/images';
+// import { home, arrow } from '../../img/images';
 import { Pagination } from '../../components/Pagination';
 import { getPhones } from '../../api/phones';
 import { Phone } from '../../types/Phone';
+import { Breadcrumbs } from '../../components/Breadcrumbs';
+import { GadhetsFilters } from '../../components/GadhetsFilters';
 
 export const PhonesPage = () => {
+  const category = 'Phones';
+
   const [phones, setPhones] = useState<Phone[]>([]);
   const loadPhones = useCallback(async () => {
     try {
@@ -23,8 +27,10 @@ export const PhonesPage = () => {
   }, []);
 
   return (
-    <div className="container">
-      <div className="page-links">
+    <div className="container gadgets-page">
+      <Breadcrumbs category={category} />
+
+      {/* <div className="page-links">
         <NavLink to="/" className="link-line__link">
           <img src={home} alt="home" />
         </NavLink>
@@ -34,12 +40,15 @@ export const PhonesPage = () => {
 
           <span>Phones</span>
         </NavLink>
-      </div>
+      </div> */}
 
-      <h1 className="title">Mobile phones</h1>
-      <p>
+      <h1 className="gadgets-page__title">Mobile phones</h1>
+
+      <p className="gadgets-page__description">
         {`${phones.length} models`}
       </p>
+
+      <GadhetsFilters />
 
       {!!phones.length && <Pagination items={phones} />}
     </div>

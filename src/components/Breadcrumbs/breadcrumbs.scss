@@ -1,0 +1,21 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 12px;
+  line-height: 12px;
+
+  @include onTablet {
+    margin-bottom: 40px;
+  }
+
+  &__link {
+    margin-bottom: -2px;
+    color: $text-color-main;
+  }
+
+  &__text {
+    margin-bottom: -2px;
+    color: $text-color-secondary;
+  }
+}

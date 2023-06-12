@@ -6,6 +6,10 @@
     height: 18px;
   }
 
+  &--secondary {
+    fill: $text-color-secondary;
+  }
+
   &--selected {
     fill: $selected-color;
   }

@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import cn from 'classnames';
 import { useSearchPanel } from '../../providers/SearchContext';
 import { IconSearching } from '../Icons/IconSearching';
 
@@ -21,7 +22,13 @@ export const SearchingField = () => {
   };
 
   return (
-    <form className="searching-field" onBlur={handleFormBlur} ref={formRef}>
+    <form
+      className={cn('searching-field', {
+        'is-searching': isSearching,
+      })}
+      onBlur={handleFormBlur}
+      ref={formRef}
+    >
       <input
         type="text"
         placeholder="Searching..."
