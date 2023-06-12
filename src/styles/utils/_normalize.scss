@@ -30,6 +30,15 @@ a {
   cursor: pointer;
 }
 
+button,
+a,
+body,
+div {
+  transition-property: background-color, color;
+  transition-duration: $transition-duration;
+  transition-timing-function: ease;
+}
+
 a {
   color: $text-color-secondary;
 
@@ -44,13 +53,4 @@ input {
   &::placeholder {
     color: $text-color-secondary;
   }
-}
-
-button,
-a,
-body,
-div {
-  transition-property: background-color, color;
-  transition-duration: $transition-duration;
-  transition-timing-function: ease;
 }
