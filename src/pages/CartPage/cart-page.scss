@@ -1,0 +1,23 @@
+.cart {
+  @include pageGrid;
+
+  &__card {
+    grid-column: 1 / -1;
+    width: 100%;
+
+    @include onDesktop {
+      grid-column: 1 / 17;
+    }
+  }
+
+  &__billing {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 24px;
+    border: 1px solid $separator-color;
+
+    @include onDesktop {
+      grid-column: 17 / -1;
+    }
+  }
+}
