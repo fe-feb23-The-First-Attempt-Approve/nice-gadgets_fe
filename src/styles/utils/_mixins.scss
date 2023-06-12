@@ -10,6 +10,7 @@
   }
 }
 
+
 // navigation
 @mixin underlineActive {
   &::after {
@@ -23,3 +24,22 @@
     animation: slide-in-right $transition-duration ease forwards;
   }
 }
+
+@mixin pageGrid {
+  $columns: 4;
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: repeat($columns, 1fr);
+
+  @include onTablet {
+    $columns: 12;
+    grid-template-columns: repeat($columns, 1fr);
+  }
+
+  @include onDesktop() {
+    $columns: 24;
+    grid-template-columns: repeat($columns, 1fr);
+  }
+
+}
+
