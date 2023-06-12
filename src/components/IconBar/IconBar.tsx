@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
+import { useContext } from 'react';
 import { useTheme } from '../../providers/ThemeContext';
 import { useSearchPanel } from '../../providers/SearchContext';
 import { SearchingArea } from '../SearchingArea';
@@ -8,10 +9,15 @@ import { IconLikeEmpty } from '../Icons/IconLikeEmpty';
 import { IconCart } from '../Icons/IconCart';
 import { IconThemeLight } from '../Icons/IconThemeLight';
 import { IconThemeDark } from '../Icons/IconThemeDark';
+import { IconWithCounter } from '../Icons/IconWithCounter';
+import { CountFavoritesContext } from '../../providers/CountFavorites';
+import { CountCartItemsContext } from '../../providers/CountCartItems';
 
 export const IconBar = () => {
   const { closeSearch } = useSearchPanel();
   const { theme, toggleTheme } = useTheme();
+  const { countFavorites } = useContext(CountFavoritesContext);
+  const { countCartItems } = useContext(CountCartItemsContext);
 
   return (
     <ul className="icon-bar">
@@ -42,7 +48,7 @@ export const IconBar = () => {
             { 'icon-bar__link--active': isActive })}
           onClick={closeSearch}
         >
-          <IconLikeEmpty />
+          <IconWithCounter icon={<IconLikeEmpty />} count={countFavorites} />
         </NavLink>
       </li>
 
@@ -53,7 +59,7 @@ export const IconBar = () => {
             { 'icon-bar__link--active': isActive })}
           onClick={closeSearch}
         >
-          <IconCart />
+          <IconWithCounter icon={<IconCart />} count={countCartItems} />
         </NavLink>
       </li>
     </ul>
