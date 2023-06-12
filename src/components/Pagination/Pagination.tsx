@@ -5,18 +5,73 @@ import { Phone } from '../../types/Phone';
 import { ArrowButton } from '../ArrowButton';
 import { ProductCard } from '../ProductCard';
 import { getSearchWith } from '../../utils/searchHelper';
+import { GadgetsDisplayControl } from '../GadgetsDisplayControl';
+import { SortType } from '../../types/SortType';
 
 type Props = {
   items: Phone[];
 };
 
+export const getSortedItems = (items: Phone[], sortType: SortType): Phone[] => {
+  const sortedItems = [...items];
+
+  sortedItems.sort((currentItem, nextItem) => {
+    switch (sortType) {
+      case SortType.Name:
+        return currentItem.name.localeCompare(nextItem.name);
+
+      case SortType.New:
+        return nextItem.year - currentItem.year;
+
+      case SortType.Old:
+        return currentItem.year - nextItem.year;
+
+      case SortType.HightPrice:
+        return nextItem.price - currentItem.price;
+
+      case SortType.LowPrice:
+        return currentItem.price - nextItem.price;
+
+      default: throw new Error('Wrong sort type!');
+    }
+  });
+
+  return sortedItems;
+};
+
+export const getFilterItemsByPrice = (
+  items: Phone[], priceRange: number[] | number,
+) => {
+  const [min, max] = Array.isArray(priceRange) ? priceRange : [0, priceRange];
+
+  return items.filter(item => item.price >= min && item.price <= max);
+};
+
+export const getMinMaxPrice = (items: Phone[]) => {
+  const prices = items.map(item => item.price);
+  const min = Math.min(...prices);
+  const max = Math.max(...prices);
+
+  return [min, max];
+};
+
 export const Pagination: React.FC<Props> = ({ items }) => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [sortType, setSortType] = useState(SortType.New);
+  const [
+    priceRange,
+    setPriceRange,
+  ] = useState<number | number[]>(getMinMaxPrice(items));
   const currentPage = Number(searchParams.get('page') || 1);
 
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  const filteredItems = getFilterItemsByPrice(items, priceRange);
+
+  const pageCount = Math.ceil(filteredItems.length / itemsPerPage);
   const pages: number[] = Array.from(Array(pageCount), (_, i) => i + 1);
+
+  const sortedItems = getSortedItems(filteredItems, sortType);
 
   const firstVisibleItemIndex = (currentPage - 1) * itemsPerPage;
   const lastItemIndex = firstVisibleItemIndex + itemsPerPage;
@@ -24,42 +79,59 @@ export const Pagination: React.FC<Props> = ({ items }) => {
     ? items.length
     : lastItemIndex;
 
-  const visibleTtems = items.slice(firstVisibleItemIndex, lastVisibleItemIndex);
+  const visibleTtems = sortedItems
+    .slice(firstVisibleItemIndex, lastVisibleItemIndex);
 
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
   const isFirstPage = prevPage < 1;
   const isLastPage = nextPage > pageCount;
 
-  // const { category } = items[0];
+  const handlePageCountChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    const { value } = event.target;
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setItemsPerPage(Number(event.target.value));
-    setSearchParams(getSearchWith(searchParams, { page: null }));
+    setItemsPerPage(Number(value));
+    setSearchParams(getSearchWith(searchParams, {
+      page: null,
+      perPage: value,
+    }));
+  };
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { value } = event.target;
+
+    setSortType(value as SortType);
+    setSearchParams(getSearchWith(searchParams, { sort: value }));
+  };
+
+  const handlePriceChange = (
+    _event: Event,
+    value: number | number[],
+  ) => {
+    const [min, max] = Array.isArray(value) ? value.map(String) : [null, null];
+
+    setPriceRange(value);
+    setSearchParams(getSearchWith(searchParams, {
+      minPrice: min,
+      maxPrice: max,
+    }));
   };
 
   return (
     <div className="pagination">
+      <GadgetsDisplayControl
+        itemsPerPage={itemsPerPage}
+        sortType={sortType}
+        priceRange={priceRange}
+        onPriceChange={handlePriceChange}
+        onPageCountChange={handlePageCountChange}
+        onSortingChange={handleSortChange}
+      />
+
       <div className="pagination__items">
         {visibleTtems.map((item) => <ProductCard key={item.id} phone={item} />)}
-      </div>
-
-      <label htmlFor="perPageSelector" className="col-form-label col">
-        Items per page
-      </label>
-      <div className="form-group row">
-        <div className="col-3">
-          <select
-            className="form-control"
-            onChange={handleChange}
-            value={itemsPerPage}
-          >
-            <option value="8">8</option>
-            <option value="16">16</option>
-            <option value="32">32</option>
-            <option value="64">64</option>
-          </select>
-        </div>
       </div>
 
       <ul className="pagination__page-list">
@@ -74,7 +146,11 @@ export const Pagination: React.FC<Props> = ({ items }) => {
                 searchParams, { page: prevPage.toString() },
               ),
             }}
-            aria-disabled={isFirstPage}
+            onClick={(event) => {
+              if (isFirstPage) {
+                event.preventDefault();
+              }
+            }}
           >
             <ArrowButton arrowDirection="left" />
           </Link>
@@ -110,7 +186,6 @@ export const Pagination: React.FC<Props> = ({ items }) => {
                 searchParams, { page: nextPage.toString() },
               ),
             }}
-            aria-disabled={isLastPage}
           >
             <ArrowButton arrowDirection="right" />
           </Link>
