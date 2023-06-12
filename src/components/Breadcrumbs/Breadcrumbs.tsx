@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 import { IconHome } from '../Icons/IconHome';
 import { IconArrow } from '../Icons/IconArrow';
 
@@ -10,17 +11,17 @@ interface Props {
 export const Breadcrumbs: FC<Props> = ({ category, currentPage }) => {
   return (
     <div className="breadcrumbs">
-      <a href="/">
+      <NavLink to="/">
         <IconHome />
-      </a>
+      </NavLink>
 
       <IconArrow />
 
       {currentPage ? (
         <>
-          <a href={`#/${category}`} className="breadcrumbs__link">
+          <NavLink to={`#/${category}`} className="breadcrumbs__link">
             {category}
-          </a>
+          </NavLink>
 
           <IconArrow />
 
