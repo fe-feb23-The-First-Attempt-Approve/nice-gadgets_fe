@@ -1,6 +1,11 @@
 .pagination {
+  &__page-list {
+    display: flex;
+  }
+
   &__items {
     display: grid;
+    justify-items: center;
     row-gap: 40px;
     grid-template-columns: repeat(1, minmax(0, 1fr));
 

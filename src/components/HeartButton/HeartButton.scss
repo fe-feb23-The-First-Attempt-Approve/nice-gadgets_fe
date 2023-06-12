@@ -4,12 +4,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: $bg-color-controllers;
+  border-radius: 4px;
 
   &:hover {
-    background-color: #4a4d58;
+    background-color: $bg-color-controllers-hov;
   }
 
   &:active {
-    background-color: $bg-controllers;
+    background-color: $bg-color-controllers;
   }
 }

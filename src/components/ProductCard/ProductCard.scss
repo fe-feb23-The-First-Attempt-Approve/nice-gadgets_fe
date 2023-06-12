@@ -1,8 +1,10 @@
 .product-card {
   &__container {
-    background-color: $bg-products;
     padding: 32px;
     max-width: 272px;
+    background-color: $bg-color-products;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
     transition: box-shadow $transition-duration ease;
 
     &:hover {
@@ -16,27 +18,41 @@
     align-items: center;
   }
 
-  &__link:hover {
+  &__link {
+    transition: transform $transition-duration;
+
+    &:hover {
       transform: scale(1.03);
+    }
+  }
+
+  &__photo-container {
+    display: flex;
+    width: 208px;
+    height: 196px;
+    margin-bottom: 8px;
+
+    @include onTablet {
+      width: 212px;
+    }
+
+    @include onDesktop {
+      width: 237px;
+    }
   }
 
   &__image {
-    max-width: 208px;
-
-    @media (max-width: 1200px) {
-      max-width: 237px;
-    }
-
-    @media (max-width: 640px) {
-      max-width: 212px;
-    }
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    margin: auto;
   }
 
   &__device-link {
     padding-top: 16px;
   }
 
-  &__item-description {
+  &__item-deskription {
     margin-top: 8px;
   }
 
@@ -55,6 +71,11 @@
     font-weight: 800;
     font-size: 22px;
     line-height: 140%;
+    color: $text-color-main;
+
+    &_not-actual {
+      color: $text-color-secondary;
+    }
   }
 
   &__separator {
@@ -88,16 +109,13 @@
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
-    color: $theme-color-light;
+    color: $text-color-accent-btn;
     margin-right: 8px;
+    border-radius: 4px;
     transition: background-color 0.3s ease;
 
     &:hover {
       background-color: $accent-color-hov;
-    }
-
-    &:active {
-      background-color: $bg-controllers;
     }
   }
 
@@ -107,6 +125,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 4px;
     transition: background-color 0.3s ease;
 
     &:hover {
@@ -134,5 +153,6 @@
     font-size: 12px;
     line-height: 15px;
     text-align: right;
+    color: $text-color-main;
   }
 }

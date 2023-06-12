@@ -10,6 +10,21 @@
   }
 }
 
+
+// navigation
+@mixin underlineActive {
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    background-color: $text-color-main;
+    border-radius: 4px;
+    animation: slide-in-right $transition-duration ease forwards;
+  }
+}
+
 @mixin pageGrid {
   $columns: 4;
   display: grid;
@@ -27,3 +42,4 @@
   }
 
 }
+

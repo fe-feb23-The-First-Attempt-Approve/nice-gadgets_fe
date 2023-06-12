@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import { SearchContextProvider } from './SearchContext';
 import { ThemeProvider } from './ThemeContext';
+import { BurgerContextProvider } from './BurgerContext';
 
 const Provider: FC = ({ children }) => {
   return (
     <ThemeProvider>
-      <SearchContextProvider>
-        {children}
-      </SearchContextProvider>
+      <BurgerContextProvider>
+        <SearchContextProvider>
+          {children}
+        </SearchContextProvider>
+      </BurgerContextProvider>
     </ThemeProvider>
   );
 };

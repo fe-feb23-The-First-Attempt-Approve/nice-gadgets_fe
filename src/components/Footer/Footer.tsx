@@ -39,7 +39,7 @@ export const Footer = () => {
           className="footer__arrow-up"
         >
           Back to top
-          <ArrowButton />
+          <ArrowButton arrowDirection="top" />
         </button>
       </div>
     </footer>

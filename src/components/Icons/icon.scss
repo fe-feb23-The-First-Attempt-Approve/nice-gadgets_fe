@@ -1,4 +1,16 @@
 .icon {
   display: block;
   height: 16px;
+
+  @include onDesktop {
+    height: 18px;
+  }
+
+  &--secondary {
+    fill: $text-color-secondary;
+  }
+
+  &--selected {
+    fill: $selected-color;
+  }
 }

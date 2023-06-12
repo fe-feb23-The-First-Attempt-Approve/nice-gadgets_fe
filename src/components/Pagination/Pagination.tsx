@@ -76,7 +76,7 @@ export const Pagination: React.FC<Props> = ({ items }) => {
             }}
             aria-disabled={isFirstPage}
           >
-            <ArrowButton />
+            <ArrowButton arrowDirection="left" />
           </Link>
         </li>
 
@@ -112,7 +112,7 @@ export const Pagination: React.FC<Props> = ({ items }) => {
             }}
             aria-disabled={isLastPage}
           >
-            <ArrowButton />
+            <ArrowButton arrowDirection="right" />
           </Link>
         </li>
       </ul>

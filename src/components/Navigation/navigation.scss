@@ -1,16 +1,20 @@
 .nav {
   display: none;
 
-  @include onTablet {
+  @include onDesktop {
     display: flex;
-    justify-self:flex-start;
+    flex-direction: row;
   }
 
   &__list {
     display: flex;
+    flex-direction: column;
+    align-self: center;
     gap: 32px;
 
     @include onDesktop {
+      flex-direction: row;
+      align-self: auto;
       gap: 64px;
     }
   }
@@ -24,31 +28,14 @@
     position: relative;
     display: flex;
     align-items: center;
-
     text-transform: uppercase;
     font-weight: 800;
     font-size: 12px;
     letter-spacing: 4%;
 
     &--active {
-      &::after {
-        position: absolute;
-        bottom: -2px;
-        content: "";
-        height: 3px;
-        border-radius: 4px;
-
-        animation: underline $transition-duration ease forwards;
-      }
+      color: $text-color-main;
+      @include underlineActive;
     }
-  }
-}
-
-@keyframes underline {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
   }
 }

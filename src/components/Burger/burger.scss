@@ -1,0 +1,21 @@
+.burger {
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  margin-top: -150vh;
+  padding: 30%;
+  background-color: $bg-color-main;
+  transition-property: margin, padding;
+  transition-duration: $transition-duration*3;
+
+  &--active {
+    position: absolute;
+    z-index: 999;
+    margin-top: 0;
+    padding: 10% 10% 20% 10%;
+  }
+
+  @include onDesktop {
+    display: none;
+  }
+}

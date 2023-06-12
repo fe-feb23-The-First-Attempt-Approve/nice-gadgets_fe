@@ -1,10 +1,10 @@
-@import "src/styles/utils/vars";
-
 .footer {
+  position: fixed;
+  z-index: 0;
   width: 100%;
+  background-color: $bg-color-main;
   border-top: 1px solid $separator-color;
-  transition: background-color $transition-duration,
-    border $transition-duration;
+  bottom: 0;
 
   &__navigation {
     @include onTablet {
@@ -67,6 +67,7 @@
 
     &:hover {
       padding-bottom: 8px;
+      border-bottom: 2px solid $text-color-main;
     }
   }
 
@@ -77,13 +78,19 @@
     line-height: 15px;
     text-align: right;
     display: flex;
+    gap: 10px;
     align-items: center;
     justify-content: center;
     margin-bottom: 32px;
+    color: $text-color-secondary;
 
     @include onTablet {
       margin-bottom: 0;
       justify-content: flex-end;
+    }
+
+    &:hover {
+      color: $text-color-main;
     }
   }
 }
