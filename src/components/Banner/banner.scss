@@ -1,4 +1,3 @@
-
 .banner {
   position: relative;
   width: 100%;
@@ -11,29 +10,29 @@
   }
 }
 
-.swiper-container {
+.banner .swiper-container {
   overflow: auto;
 }
 
-.swiper-slide {
+.banner .swiper-slide {
   width: 100%;
 }
 
-.swiper-slide img {
+.banner .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.swiper-custom-pagination {
+.banner .swiper-custom-pagination {
   display: flex;
   justify-content: center;
   gap: 14px;
   width: 100%;
 }
 
-.swiper-custom-pagination .swiper-pagination-bullet {
+.banner .swiper-custom-pagination .swiper-pagination-bullet {
   position: relative;
   bottom: -18px;
   width: 14px;
@@ -42,7 +41,7 @@
   background-color: white;
 }
 
-.swiper {
+.banner .swiper {
   width: 100%;
   height: 100%;
   margin-left: auto;
@@ -50,12 +49,12 @@
   border-radius: 4px;
 }
 
-.button-prev {
+.banner .button-prev {
   @include arrowsForMainSlider;
   left: 0;
 }
 
-.button-next {
+.banner .button-next {
   @include arrowsForMainSlider;
   right: 0;
 }

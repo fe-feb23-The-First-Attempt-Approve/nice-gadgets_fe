@@ -1,1 +1,22 @@
-//
+.slider {
+  position: relative;
+}
+
+.swiper {
+  z-index: 0;
+}
+
+.slider-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.slider-button-prev {
+  width: 32px;
+}
+
+.slider-button-next {
+  width: 32px;
+}
