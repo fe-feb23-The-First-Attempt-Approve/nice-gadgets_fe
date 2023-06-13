@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   amount: number;
 };
 
-export const CategoryCard: React.FC<Props> = ({
+export const CategoryCard: FC<Props> = ({
   link,
   image,
   title,
