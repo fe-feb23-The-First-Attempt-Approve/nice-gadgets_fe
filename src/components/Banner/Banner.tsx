@@ -29,15 +29,15 @@ export const Banner = () => {
       >
         <SwiperSlide style={{ }}>
           {/* eslint-disable-next-line max-len */}
-          <img src="https://media.istockphoto.com/id/1354195128/photo/new-model-apple-iphone-lies-on-laptop-keyboard-closeup.jpg?s=612x612&w=0&k=20&c=qyvQM6SF-569W8THCtE00TkJai3vPu0vHAS-35CRXRM=" alt="" />
+          <img src="https://media.idownloadblog.com/wp-content/uploads/2021/09/Apple-iPhone-13-Pro-advertisement.jpg" alt="test-slide" />
         </SwiperSlide>
         <SwiperSlide>
           {/* eslint-disable-next-line max-len */}
-          <img src="https://media.istockphoto.com/id/1354195128/photo/new-model-apple-iphone-lies-on-laptop-keyboard-closeup.jpg?s=612x612&w=0&k=20&c=qyvQM6SF-569W8THCtE00TkJai3vPu0vHAS-35CRXRM=" alt="" />
+          <img src="https://media.idownloadblog.com/wp-content/uploads/2021/04/Apple-ad-Mission-Implausible-iPad-Pro-Mac-M1-chip-001.jpg" alt="test-slide" />
         </SwiperSlide>
         <SwiperSlide>
           {/* eslint-disable-next-line max-len */}
-          <img src="https://media.istockphoto.com/id/1354195128/photo/new-model-apple-iphone-lies-on-laptop-keyboard-closeup.jpg?s=612x612&w=0&k=20&c=qyvQM6SF-569W8THCtE00TkJai3vPu0vHAS-35CRXRM=" alt="" />
+          <img src="https://i.ytimg.com/vi/V8x3ais9nes/maxresdefault.jpg" alt="test-slide" />
         </SwiperSlide>
       </Swiper>
 

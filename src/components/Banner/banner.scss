@@ -30,39 +30,15 @@
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 4px
 }
 
 .button-prev {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  width: 32px;
-  height: 100%;
-  position: absolute;
-  left: 0px;
-  top: 0;
-  background-color: $bg-color-controllers;
-
-  @include onDesktop {
-    display: flex;
-  }
+  @include arrowsForMainSlider;
+  left: 0;
 }
 
 .button-next {
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background-color: $bg-color-controllers;
-  cursor: pointer;
-  width: 32px;
-  position: absolute;
-  top: 0;
+  @include arrowsForMainSlider;
   right: 0;
-  height: 100%;
-
-
-  @include onDesktop {
-    display: flex;
-  }
 }
