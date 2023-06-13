@@ -17,6 +17,15 @@ body {
   overflow: hidden;
 }
 
+button,
+a,
+body,
+div {
+  transition-property: background-color, color;
+  transition-duration: $transition-duration;
+  transition-timing-function: ease;
+}
+
 h3 {
   color: $text-color-main;
 }
@@ -28,15 +37,6 @@ svg {
 button,
 a {
   cursor: pointer;
-}
-
-button,
-a,
-body,
-div {
-  transition-property: background-color, color;
-  transition-duration: $transition-duration;
-  transition-timing-function: ease;
 }
 
 a {
@@ -53,4 +53,8 @@ input {
   &::placeholder {
     color: $text-color-secondary;
   }
+}
+
+hr {
+  border-color: $separator-color;
 }

@@ -48,7 +48,7 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
             <del>{fullPrice}</del>
           </p>
 
-          <div className="product-card__separator" />
+          <hr className="product-card__separator" />
 
           <div className="product-card__parameters parameters">
             <p className="parametrs__description parameters__description_key">

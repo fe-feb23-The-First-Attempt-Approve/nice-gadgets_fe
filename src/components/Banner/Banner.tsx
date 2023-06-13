@@ -27,7 +27,7 @@ export const Banner = () => {
         }}
         pagination={{ clickable: true }}
       >
-        <SwiperSlide style={{ }}>
+        <SwiperSlide>
           {/* eslint-disable-next-line max-len */}
           <img src="https://media.idownloadblog.com/wp-content/uploads/2021/09/Apple-iPhone-13-Pro-advertisement.jpg" alt="test-slide" />
         </SwiperSlide>
