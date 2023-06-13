@@ -24,7 +24,8 @@ export const HeartButton: FC<Props> = ({ gadget }) => {
   }, [favoriteIds, gadget.id]);
 
   const onHandleClick = () => {
-    const favorites = JSON.parse(localStorage.getItem('favorites') || '');
+    const favoritesString = localStorage.getItem('favorites');
+    const favorites = favoritesString ? JSON.parse(favoritesString) : [];
 
     setFavoriteIds((isLiked)
       ? favorites.filter(({ id }: Gadget) => gadget.id !== id)
