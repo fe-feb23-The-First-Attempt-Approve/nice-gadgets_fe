@@ -18,7 +18,6 @@ export const Banner = () => {
       <Swiper
         style={{ width: '100%' }}
         modules={[Navigation, Pagination, A11y]}
-        spaceBetween={50}
         slidesPerView={1}
         loop
         navigation={{
