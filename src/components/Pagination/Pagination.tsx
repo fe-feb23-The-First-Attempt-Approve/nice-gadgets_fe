@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { Phone } from '../../types/Phone';
 import { ArrowButton } from '../ArrowButton';
-import { ProductCard } from '../ProductCard';
 import { getSearchWith } from '../../utils/searchHelper';
+import { ProductList } from '../ProductList';
 
 type Props = {
   items: Phone[];
@@ -24,7 +24,7 @@ export const Pagination: React.FC<Props> = ({ items }) => {
     ? items.length
     : lastItemIndex;
 
-  const visibleTtems = items.slice(firstVisibleItemIndex, lastVisibleItemIndex);
+  const visibleItems = items.slice(firstVisibleItemIndex, lastVisibleItemIndex);
 
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
@@ -41,7 +41,7 @@ export const Pagination: React.FC<Props> = ({ items }) => {
   return (
     <div className="pagination">
       <div className="pagination__items">
-        {visibleTtems.map((item) => <ProductCard key={item.id} phone={item} />)}
+        <ProductList gadgets={visibleItems} />
       </div>
 
       <label htmlFor="perPageSelector" className="col-form-label col">
