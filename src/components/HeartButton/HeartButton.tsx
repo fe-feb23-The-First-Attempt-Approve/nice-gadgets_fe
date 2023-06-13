@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import {
+  FC, useContext, useEffect, useMemo,
+} from 'react';
 import { IconLikeEmpty } from '../Icons/IconLikeEmpty';
 import { IconLikeFull } from '../Icons/IconLikeFull';
+import { CountFavoritesContext } from '../../providers/CountFavorites';
+import { useLocalStorage } from '../../customHooks/useLocalStorage';
+import { Gadget } from '../../types/Gadget';
 
-export const HeartButton = () => {
-  const [isLiked, setIsLiked] = useState(false);
+interface Props {
+  gadget: Gadget;
+}
+
+export const HeartButton: FC<Props> = ({ gadget }) => {
+  const [favoriteIds, setFavoriteIds] = useLocalStorage('favorites', []);
+  const { updateCountFavorites } = useContext(CountFavoritesContext);
+  const isLiked = useMemo(() => (
+    favoriteIds.some(({ id }: Gadget) => (
+      id === gadget.id))),
+  [favoriteIds, gadget.id]);
+
+  useEffect(() => {
+    updateCountFavorites(favoriteIds.length);
+  }, [favoriteIds, gadget.id]);
 
   const onHandleClick = () => {
-    setIsLiked(!isLiked);
+    const favorites = JSON.parse(localStorage.getItem('favorites') || '');
+
+    setFavoriteIds((isLiked)
+      ? favorites.filter(({ id }: Gadget) => gadget.id !== id)
+      : [...favorites, gadget]);
   };
 
   return (
@@ -15,7 +37,7 @@ export const HeartButton = () => {
       className="like"
       onClick={onHandleClick}
     >
-      {isLiked ? <IconLikeEmpty /> : <IconLikeFull />}
+      {!isLiked ? <IconLikeEmpty /> : <IconLikeFull />}
     </button>
   );
 };

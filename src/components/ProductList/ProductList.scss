@@ -1,0 +1,21 @@
+.gadgets-list {
+  display: grid;
+  justify-items: center;
+  row-gap: 40px;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+
+  @include onTablet {
+    column-gap: 16px;
+    row-gap: 46px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  //should be +- width of card * 3 + 2 * column-gap
+  @media (min-width: 848px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include onDesktop {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+}

@@ -81,7 +81,7 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
               Add to cart
             </button>
             <button type="button" className="product-card__like">
-              <HeartButton />
+              <HeartButton gadget={phone} />
             </button>
           </div>
 
