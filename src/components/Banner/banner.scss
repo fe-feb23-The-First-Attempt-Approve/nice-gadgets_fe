@@ -1,9 +1,13 @@
 .banner {
   position: relative;
-
+  width: 100%;
   margin: 0 auto;
-  width: 90%;
+  padding: 0;
   height: 400px;
+
+  @include onDesktop {
+    padding: 0 50px;
+  }
 }
 
 .swiper-container {
@@ -29,7 +33,7 @@
 }
 
 .button-prev {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -37,21 +41,30 @@
   width: 32px;
   height: 100%;
   position: absolute;
-  left: -50px;
+  left: 0px;
   top: 0;
-  background-color: #323542;
+  background-color: $bg-color-controllers;
+
+  @include onDesktop {
+    display: flex;
+  }
 }
 
 .button-next {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
-  background-color: #323542;
+  background-color: $bg-color-controllers;
   cursor: pointer;
   z-index: 20000;
   width: 32px;
   position: absolute;
   top: 0;
-  right: -50px;
+  right: 0;
   height: 100%;
+
+
+  @include onDesktop {
+    display: flex;
+  }
 }

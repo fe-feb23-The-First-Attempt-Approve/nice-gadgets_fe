@@ -11,7 +11,6 @@ import {
 } from 'react-icons/md';
 
 import 'swiper/swiper-bundle.css';
-import './banner.scss';
 
 export const Banner = () => {
   return (
@@ -28,7 +27,7 @@ export const Banner = () => {
         }}
         pagination={{ clickable: true }}
       >
-        <SwiperSlide style={{ width: '100%' }}>
+        <SwiperSlide style={{ }}>
           {/* eslint-disable-next-line max-len */}
           <img src="https://media.istockphoto.com/id/1354195128/photo/new-model-apple-iphone-lies-on-laptop-keyboard-closeup.jpg?s=612x612&w=0&k=20&c=qyvQM6SF-569W8THCtE00TkJai3vPu0vHAS-35CRXRM=" alt="" />
         </SwiperSlide>
