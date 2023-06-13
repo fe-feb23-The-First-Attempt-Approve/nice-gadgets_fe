@@ -5,6 +5,7 @@
   background-color: $bg-color-main;
   border-top: 1px solid $separator-color;
   bottom: 0;
+  height: 100px; //delete
 
   &__navigation {
     @include onTablet {

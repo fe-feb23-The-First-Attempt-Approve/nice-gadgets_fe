@@ -1,7 +1,7 @@
 export const CartPage = () => {
   return (
-    <div className="container">
-      <h1 className="title">💵 Cart page</h1>
+    <div>
+      <h1>Cart</h1>
     </div>
   );
 };

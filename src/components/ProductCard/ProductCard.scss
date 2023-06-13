@@ -137,21 +137,17 @@
 .parameters {
   &__description {
     margin-top: 8px;
-  }
-
-  &__description_key {
     font-style: normal;
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
+  }
+
+  &__description_key {
     color: $text-color-secondary;
   }
 
   &__description_value {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 15px;
     text-align: right;
     color: $text-color-main;
   }
