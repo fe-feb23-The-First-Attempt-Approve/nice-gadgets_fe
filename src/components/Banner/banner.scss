@@ -1,9 +1,14 @@
+
 .banner {
   position: relative;
-
+  width: 100%;
   margin: 0 auto;
-  width: 90%;
+  padding: 0;
   height: 400px;
+
+  @include onDesktop {
+    padding: 0 50px;
+  }
 }
 
 .swiper-container {
@@ -11,7 +16,7 @@
 }
 
 .swiper-slide {
-  width: 100% !important;
+  width: 100%;
 }
 
 .swiper-slide img {
@@ -22,36 +27,19 @@
 }
 
 .swiper {
-  width: 90%;
+  width: 100%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 4px
 }
 
 .button-prev {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 20000;
-  width: 32px;
-  height: 100%;
-  position: absolute;
-  left: -50px;
-  top: 0;
-  background-color: #323542;
+  @include arrowsForMainSlider;
+  left: 0;
 }
 
 .button-next {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #323542;
-  cursor: pointer;
-  z-index: 20000;
-  width: 32px;
-  position: absolute;
-  top: 0;
-  right: -50px;
-  height: 100%;
+  @include arrowsForMainSlider;
+  right: 0;
 }

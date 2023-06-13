@@ -46,7 +46,12 @@
 @import "../components/Footer/Footer.scss";
 
 // loader
-//@import "../components//Loader/Loader.scss";
+@import "../components/Loader/Loader.scss";
+
+// cart
+@import "../pages/CartPage/cart-page.scss";
+
+@import '../components/Banner/banner.scss';
 
 // should be moved to other folder
 .content {
