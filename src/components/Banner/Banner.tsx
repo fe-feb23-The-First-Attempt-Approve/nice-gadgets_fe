@@ -3,6 +3,7 @@ import {
   Navigation,
   Pagination,
   A11y,
+  EffectCube,
 } from 'swiper';
 
 import {
@@ -16,15 +17,25 @@ export const Banner = () => {
   return (
     <div className="banner">
       <Swiper
+        effect="cube"
         style={{ width: '100%' }}
-        modules={[Navigation, Pagination, A11y]}
+        modules={[Navigation, Pagination, A11y, EffectCube]}
         slidesPerView={1}
         loop
         navigation={{
           nextEl: '.button-next',
           prevEl: '.button-prev',
         }}
-        pagination={{ clickable: true }}
+        cubeEffect={{
+          shadow: true,
+          slideShadows: true,
+          shadowOffset: 20,
+          shadowScale: 0.94,
+        }}
+        pagination={{
+          el: '.swiper-custom-pagination',
+          clickable: true,
+        }}
       >
         <SwiperSlide>
           {/* eslint-disable-next-line max-len */}
@@ -46,6 +57,12 @@ export const Banner = () => {
 
       <div className="button-next">
         <MdOutlineKeyboardArrowRight />
+      </div>
+
+      <div className="swiper-custom-pagination">
+        <div className="swiper-bullet" />
+        <div className="swiper-bullet" />
+        <div className="swiper-bullet" />
       </div>
     </div>
   );
