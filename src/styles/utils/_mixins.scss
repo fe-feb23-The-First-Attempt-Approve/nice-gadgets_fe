@@ -18,8 +18,9 @@
     left: 0;
     bottom: -2px;
     height: 3px;
-    background-color: $text-color-main;
+    background-color: $nav-color-line;
     border-radius: 4px;
+    box-shadow: $neon;
     animation: slide-in-right $transition-duration ease forwards;
   }
 }
@@ -49,8 +50,13 @@
   width: 32px;
   height: 100%;
   background-color: $bg-color-controllers;
+  border: 1px solid $bg-color-controllers;
   border-radius: 4px;
   cursor: pointer;
+
+  &:hover {
+    background-color: $bg-color-controllers-hov;
+  }
 
   @include onDesktop {
     display: flex;

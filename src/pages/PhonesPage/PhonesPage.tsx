@@ -8,13 +8,13 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { GadhetsFilters } from '../../components/GadhetsFilters';
 
 export const PhonesPage = () => {
-  const category = 'Phones';
-
   const [phones, setPhones] = useState<Phone[]>([]);
+  const [phonesCount, setPhonesCount] = useState(0);
   const loadPhones = useCallback(async () => {
     try {
-      const phonesFromServer = await getPhones();
+      const { allPhonesCount, phones: phonesFromServer } = await getPhones();
 
+      setPhonesCount(allPhonesCount);
       setPhones(phonesFromServer);
     } catch {
       // eslint-disable-next-line no-console
@@ -28,7 +28,7 @@ export const PhonesPage = () => {
 
   return (
     <div className="container gadgets-page">
-      <Breadcrumbs category={category} />
+      <Breadcrumbs category="Phones" />
 
       {/* <div className="page-links">
         <NavLink to="/" className="link-line__link">
@@ -50,7 +50,9 @@ export const PhonesPage = () => {
 
       <GadhetsFilters />
 
-      {!!phones.length && <Pagination items={phones} />}
+      {!!phones.length && (
+        <Pagination allItemsCount={phonesCount} items={phones} />
+      )}
     </div>
   );
 };

@@ -1,30 +1,23 @@
 import cn from 'classnames';
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Phone } from '../../types/Phone';
 import { ArrowButton } from '../ArrowButton';
 import { getSearchWith } from '../../utils/searchHelper';
 import { ProductList } from '../ProductList';
+import { Gadget } from '../../types/Gadget';
 
 type Props = {
-  items: Phone[];
+  allItemsCount: number,
+  items: Gadget[];
 };
 
-export const Pagination: React.FC<Props> = ({ items }) => {
+export const Pagination: React.FC<Props> = ({ allItemsCount, items }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get('page') || 1);
 
   const [itemsPerPage, setItemsPerPage] = useState(8);
-  const pageCount = Math.ceil(items.length / itemsPerPage);
+  const pageCount = Math.ceil(allItemsCount / itemsPerPage);
   const pages: number[] = Array.from(Array(pageCount), (_, i) => i + 1);
-
-  const firstVisibleItemIndex = (currentPage - 1) * itemsPerPage;
-  const lastItemIndex = firstVisibleItemIndex + itemsPerPage;
-  const lastVisibleItemIndex = lastItemIndex > items.length
-    ? items.length
-    : lastItemIndex;
-
-  const visibleItems = items.slice(firstVisibleItemIndex, lastVisibleItemIndex);
 
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
@@ -41,7 +34,7 @@ export const Pagination: React.FC<Props> = ({ items }) => {
   return (
     <div className="pagination">
       <div className="pagination__items">
-        <ProductList gadgets={visibleItems} />
+        <ProductList gadgets={items} />
       </div>
 
       <label htmlFor="perPageSelector" className="col-form-label col">

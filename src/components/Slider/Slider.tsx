@@ -17,7 +17,7 @@ export const Slider: React.FC<Props> = ({ title }) => {
   const [phones, setPhones] = useState<Phone[]>([]);
 
   const loadPhones = async () => {
-    const phonesFromServer = await getPhones();
+    const { phones: phonesFromServer } = await getPhones();
 
     setPhones(phonesFromServer);
   };
@@ -45,6 +45,7 @@ export const Slider: React.FC<Props> = ({ title }) => {
         slidesPerView={4}
         spaceBetween={30}
         modules={[Navigation]}
+        loop
         navigation={{
           prevEl: '.slider-button-prev',
           nextEl: '.slider-button-next',

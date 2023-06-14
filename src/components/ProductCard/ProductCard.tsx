@@ -27,7 +27,7 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
           <div className="product-card__photo-container">
             <img
               src={image}
-              alt="Apple iPhone Xs 64GB Silver (iMT9G2FS/A)"
+              alt={name}
               className="product-card__image"
             />
           </div>
