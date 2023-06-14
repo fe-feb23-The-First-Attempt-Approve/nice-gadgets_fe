@@ -1,59 +1,70 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
-import { useEffect, useState } from 'react';
-import { getPhones } from '../../api/phones';
-import { Phone } from '../../types/Phone';
 
 import 'swiper/swiper-bundle.css';
 import { ProductCard } from '../ProductCard';
 import './slider.scss';
 import { ArrowButton } from '../ArrowButton';
+import { Phone } from '../../types/Phone';
+import { SliderButtons } from '../../types/SliderNavButtons';
 
 interface Props {
   title: string;
+  gadgets: Phone[],
+  navButtons: SliderButtons,
 }
 
-export const Slider: React.FC<Props> = ({ title }) => {
-  const [phones, setPhones] = useState<Phone[]>([]);
-
-  const loadPhones = async () => {
-    const { phones: phonesFromServer } = await getPhones();
-
-    setPhones(phonesFromServer);
-  };
-
-  useEffect(() => {
-    loadPhones();
-  }, []);
-
+export const Slider: React.FC<Props> = ({
+  title,
+  gadgets,
+  navButtons,
+}) => {
   return (
     <div className="slider">
       <h2 className="slider__title">
         {title}
       </h2>
       <div className="slider-buttons">
-        <div className="slider-button-prev">
+        <div className={navButtons.prevEl.slice(1)}>
           <ArrowButton arrowDirection="left" />
         </div>
 
-        <div className="slider-button-next">
+        <div className={navButtons.nextEl.slice(1)}>
           <ArrowButton arrowDirection="right" />
         </div>
       </div>
 
       <Swiper
-        slidesPerView={4}
-        spaceBetween={30}
+        slidesPerView={1}
+        spaceBetween={50}
         modules={[Navigation]}
         loop
-        navigation={{
-          prevEl: '.slider-button-prev',
-          nextEl: '.slider-button-next',
+        navigation={navButtons}
+        breakpoints={{
+          1200: {
+            slidesPerView: 4,
+          },
+          1000: {
+            slidesPerView: 3,
+          },
+          800: {
+            slidesPerView: 2.5,
+          },
+          600: {
+            slidesPerView: 2,
+          },
+          450: {
+            slidesPerView: 1.5,
+          },
+          320: {
+            slidesPerView: 1,
+          },
+
         }}
       >
-        {phones.map(phone => (
-          <SwiperSlide key={phone.id}>
-            <ProductCard phone={phone} />
+        {gadgets.map(gadget => (
+          <SwiperSlide key={gadget.id}>
+            <ProductCard phone={gadget} />
           </SwiperSlide>
         ))}
       </Swiper>
