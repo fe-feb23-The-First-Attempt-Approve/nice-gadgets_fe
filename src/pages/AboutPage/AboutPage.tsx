@@ -162,7 +162,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_key"
               >
-                {Screen}
+                Screen
               </p>
 
               <p className="characteristic__description
