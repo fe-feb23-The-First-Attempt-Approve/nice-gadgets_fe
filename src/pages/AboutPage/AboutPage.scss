@@ -205,9 +205,13 @@ $maginBottom: 56px;
     border-radius: 50%;
     justify-content: center;
     position: relative;
-    border: 1px solid $accent-color;
     width: 32px;
     height: 32px;
+    transition: transform $transition-duration ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
   }
 
   &__color {
@@ -215,9 +219,13 @@ $maginBottom: 56px;
     border-radius: 50%;
     width: 30px;
     height: 30px;
+    transition: transform $transition-duration ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
 
     &_dynamic {
-      background: red;
       color: transparent;
     }
   }
@@ -246,10 +254,13 @@ $maginBottom: 56px;
     min-height: 32px;
     transition: background-color 1s ease;
 
-    &:hover {
+    &:hover,
+    &_active {
       color: $bg-color-main;
       background-color: $text-color-main;
     }
+
+
   }
 
   &__parameters {

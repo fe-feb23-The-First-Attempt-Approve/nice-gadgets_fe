@@ -22,14 +22,18 @@ const App = () => (
 
         <Route path="/phones">
           <Route index element={<PhonesPage />} />
+          <Route path=":deviceSlug" element={<AboutPage />} />
         </Route>
 
         <Route path="/tablets">
           <Route index element={<TabletsPage />} />
+          <Route path=":deviceSlug" element={<AboutPage />} />
+
         </Route>
 
         <Route path="/accessories">
           <Route index element={<AccessoriesPage />} />
+          <Route path=":deviceSlug" element={<AboutPage />} />
         </Route>
 
         <Route path="/favorites">

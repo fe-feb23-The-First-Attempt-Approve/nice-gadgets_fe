@@ -1,4 +1,5 @@
 import { Gadget } from '../types/Gadget';
+import { PhoneItem } from '../types/PhoneItem';
 import { Phone } from '../types/Phone';
 import { SortType } from '../types/SortType';
 import { client } from '../utils/fetchClient';
@@ -47,9 +48,14 @@ export const getPhones = async (
     productType.forEach((category) => queryParams.push(`productType=${category}`));
   }
 
-  const path = `/phones${
-    queryParams.length ? `?${queryParams.join('&')}` : ''
-  }`;
+  const path = `/phones${queryParams.length ? `?${queryParams.join('&')}` : ''
+    }`; // eslint-disable-line
 
   return client.get<RequestWithParamsResult>(path);
+};
+
+export const getOnePhone = async (phoneId: string): Promise<PhoneItem> => {
+  const path = phoneId.trim();
+
+  return client.get<PhoneItem>(path);
 };

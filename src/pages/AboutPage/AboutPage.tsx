@@ -1,7 +1,9 @@
+import { Link, useLocation } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
+import cn from 'classnames';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
 
-// Import Swiper styles
 import 'swiper/swiper.min.css';
 import 'swiper/modules/pagination/pagination.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
@@ -9,28 +11,48 @@ import 'swiper/modules/navigation/navigation.min.css';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 // import { HeartButton } from '../../components/HeartButton';
 import { Slider } from '../../components/Slider/Slider';
+import { PhoneItem } from '../../types/PhoneItem';
+import { getOnePhone } from '../../api/phones';
 
-import {
-  i02,
-  i01,
-  i00,
-} from '../../img/images';
-
-const arr = [i01, i02, i00];
+// import {
+//   i02,
+//   i01,
+//   i00,
+// } from '../../img/images';
+// const arr = [i01, i02, i00];
 
 SwiperCore.use([Pagination]);
 
 export const AboutPage: React.FC = () => {
+  const { pathname } = useLocation();
+
+  const [device, setDevice] = useState<PhoneItem>();
   const category = 'Cart page';
+  const currentPage = device?.name.split(' ').slice(1, 4).join(' ');
+
+  const loadPhones = useCallback(async () => {
+    try {
+      const deviceFromServer = await getOnePhone(pathname);
+
+      setDevice(deviceFromServer);
+    } catch {
+      // eslint-disable-next-line no-console
+      console.log('failed to load phones');
+    }
+  }, []);
+
+  useEffect(() => {
+    loadPhones();
+  }, []);
 
   return (
     <main className="main-page-card">
       <div className="container">
-        <Breadcrumbs category={category} />
+        <Breadcrumbs category={category} currentPage={currentPage} />
 
         <div className="card-page__grid">
           <h1 className="card-page__title card-page__title_grid">
-            Apple iPhone 11 Pro Max 64GB Gold (iMT9G2FS/A)
+            {device?.name}
           </h1>
 
           <section className="card-page__slider">
@@ -45,14 +67,14 @@ export const AboutPage: React.FC = () => {
                   clickable: true,
                   renderBullet: (index, className) => {
                     return `<div class="${className}">
-                         <img class="bullet-image" src=${arr[index]} alt="icon" />
+                         <img class="bullet-image" src=${device?.images[index]} alt="icon" />
                     </div>`;
                   },
                 }}
                 modules={[Pagination]}
                 className="mySwiper"
               >
-                {arr.map(image => {
+                {device?.images.map(image => {
                   return (
                     <SwiperSlide key={image}>
                       <div className="imgSwipe">
@@ -76,59 +98,56 @@ export const AboutPage: React.FC = () => {
             </div>
 
             <div className="settings__colors">
-              <a href="/" className="settings__button-color">
-                <a
-                  title="color"
-                  href="/"
-                  className="settings__color settings__color_dynamic"
+              {device?.colorsAvailable.map(color => (
+                <Link
+                  to="/"
+                  className="settings__button-color"
+                  key={color}
+                  style={{ border: `1px solid ${color}` }}
                 >
-                  .
-                </a>
-              </a>
-
-              <a href="/" className="settings__button-color">
-                <a
-                  title="color"
-                  href="/"
-                  className="settings__color settings__color_dynamic"
-                >
-                  .
-                </a>
-              </a>
-
-              <a href="/" className="settings__button-color">
-                <a
-                  title="color"
-                  href="/"
-                  className="settings__color settings__color_dynamic"
-                >
-                  .
-                </a>
-              </a>
+                  <span
+                    title={color}
+                    className="settings__color settings__color_dynamic"
+                    style={{ backgroundColor: color }}
+                  >
+                    { }
+                  </span>
+                </Link>
+              ))}
             </div>
 
             <p className="settings__title">Select capacity</p>
 
             <div className="settings__capacities">
-              <a href="/" className="settings__button-capacity">
-                64 GB
-              </a>
-              <a href="/" className="settings__button-capacity">
-                128 GB
-              </a>
-              <a href="/" className="settings__button-capacity">
-                256 GB
-              </a>
+              {device?.capacityAvailable.map(capacity => (
+                <Link
+                  to="/"
+                  className={cn(
+                    'settings__button-capacity',
+                    // eslint-disable-next-line
+                    { 'settings__button-capacity_active': device.capacity === capacity },
+                  )}
+                >
+                  {capacity}
+                </Link>
+              ))}
             </div>
 
             <div className="settings__price-container">
               <p className="settings__price">
-                &#x24;899
+                &#x24;
+                {device?.priceRegular || device?.priceDiscount}
               </p>
 
-              <p className="settings__price settings__price_not-actual">
-                <del>&#x24;1029</del>
-              </p>
+              {device?.priceRegular && (
+                <p className="settings__price settings__price_not-actual">
+                  <del>
+                    &#x24;
+                    {device?.priceRegular}
+                  </del>
+                </p>
+              )}
+
               <div className="settings__buttons-container">
                 <button type="button" className="settings__button">
                   Add to cart
@@ -143,13 +162,13 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_key"
               >
-                Screen
+                {Screen}
               </p>
 
               <p className="characteristic__description
               characteristic__description_value"
               >
-                6.5” OLED
+                {device?.screen}
               </p>
 
               <p className="characteristic__description
@@ -161,7 +180,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_value"
               >
-                2688x1242
+                {device?.resolution}
               </p>
 
               <p className="characteristic__description
@@ -173,7 +192,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_value"
               >
-                Apple A12 Bionic
+                {device?.processor}
               </p>
 
               <p className="characteristic__description
@@ -185,7 +204,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_value"
               >
-                3 GB
+                {device?.ram}
               </p>
             </div>
           </section>
@@ -197,46 +216,31 @@ export const AboutPage: React.FC = () => {
 
             <div className="about__description">
               <h3 className="about__subtitle">
-                And then there was Pro
+                {device?.description[0].title}
               </h3>
               <p className="about__text">
-                A transformative triple‑camera
-                system that adds tons of capability without complexity.
-                An unprecedented leap in battery life.
-                And a mind‑blowing chip that doubles
-                down on machine learning and pushes the boundaries of what
-                a smartphone can do. Welcome
-                to the first iPhone powerful enough to be called Pro.
+                {device?.description[0].text[0]}
+              </p>
+              <p className="about__text">
+                {device?.description[0].text[1]}
               </p>
             </div>
 
             <div className="about__description">
               <h3 className="about__subtitle">
-                Camera
+                {device?.description[1].title}
               </h3>
               <p className="about__text">
-                Meet the first triple‑camera system to combine cutting‑edge
-                technology with the legendary simplicity of iPhone.
-                Capture up to four times more scene. Get beautiful
-                images in drastically lower light. Shoot the highest‑quality
-                video in a smartphone — then edit with the same
-                tools you love for photos. You’ve never shot
-                with anything like it.
+                {device?.description[1].text[0]}
               </p>
             </div>
 
             <div className="about__description">
               <h3 className="about__subtitle">
-                Shoot it. Flip it. Zoom it. Crop it. Cut it.
-                Light it. Tweak it. Love it.
+                {device?.description[2].title}
               </h3>
               <p className="about__text">
-                iPhone 11 Pro lets you capture videos that are beautifully
-                true to life, with greater detail and smoother motion.
-                Epic processing power means it can shoot 4K video with extended
-                dynamic range and cinematic video stabilization
-                — all at 60 fps. You get more creative control, too, with four
-                times more scene and powerful new editing tools to play with.
+                {device?.description[2].text[0]}
               </p>
             </div>
           </section>
