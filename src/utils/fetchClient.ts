@@ -1,11 +1,5 @@
 const BASE_URL = 'https://the-first-attempt-approve.onrender.com';
 
-function wait(delay: number) {
-  return new Promise(resolve => {
-    setTimeout(resolve, delay);
-  });
-}
-
 type RequestMethod = 'GET';
 
 function request<T>(
@@ -22,8 +16,7 @@ function request<T>(
     };
   }
 
-  return wait(300)
-    .then(() => fetch(BASE_URL + url, options))
+  return fetch(BASE_URL + url, options)
     .then(response => {
       if (!response.ok) {
         throw new Error();

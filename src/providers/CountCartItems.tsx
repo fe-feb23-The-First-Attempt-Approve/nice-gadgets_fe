@@ -11,7 +11,7 @@ const CountCartItemsContext = createContext<CountCartItemsContextProps>({
 });
 
 const CountCartItemsProvider: FC = ({ children }) => {
-  const [countCartItems, setCountCartItems] = useState(1);
+  const [countCartItems, setCountCartItems] = useState(0);
 
   const updateCountCartItems = (newCount: number) => {
     setCountCartItems(newCount);

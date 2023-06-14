@@ -1,0 +1,33 @@
+.buy-button {
+  text-decoration: none;
+  width: 160px;
+  height: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $accent-color;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 21px;
+  color: $text-color-accent-btn;
+  margin-right: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+
+  &--added {
+    background-color: $bg-color-controllers-hov;
+    color: $text-color-main;
+  }
+
+  &:hover {
+    background-color: $accent-color-hov;
+  }
+
+  &:active {
+    background-color: $bg-color-controllers-hov;
+    color: $text-color-main;
+  }
+}
