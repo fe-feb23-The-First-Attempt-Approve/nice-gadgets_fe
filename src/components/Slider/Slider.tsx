@@ -17,7 +17,7 @@ export const Slider: React.FC<Props> = ({ title }) => {
   const [phones, setPhones] = useState<Phone[]>([]);
 
   const loadPhones = async () => {
-    const phonesFromServer = await getPhones();
+    const { phones: phonesFromServer } = await getPhones();
 
     setPhones(phonesFromServer);
   };
