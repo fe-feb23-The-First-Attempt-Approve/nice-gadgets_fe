@@ -22,7 +22,7 @@ export const HeartButton: FC<Props> = ({ gadget }) => {
   [favoriteIds, gadget.id]);
 
   const notifyFavorite = () => toast.success(
-    `❤️ ${gadget.name} Phone has been added to favorites`,
+    `❤️ ${gadget.name} has been added to favorites`,
     {
       position: 'bottom-left',
       autoClose: 3000,
