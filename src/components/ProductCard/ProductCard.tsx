@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { HeartButton } from '../HeartButton/HeartButton';
 import { Phone } from '../../types/Phone';
+import { BuyButton } from '../BuyButton';
 
 interface Props {
   phone: Phone,
@@ -77,9 +78,8 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
           </div>
 
           <div className="product-card__footer">
-            <button type="button" className="product-card__button">
-              Add to cart
-            </button>
+            <BuyButton gadget={phone} />
+
             <button type="button" className="product-card__like">
               <HeartButton gadget={phone} />
             </button>

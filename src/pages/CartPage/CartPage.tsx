@@ -1,63 +1,68 @@
-import { IconClose } from '../../components/Icons/IconClose';
+import { useEffect, useState, useCallback } from 'react';
+import { CartCard } from '../../components/CartCard';
+import { getPhones } from '../../api/phones';
+import { Phone } from '../../types/Phone';
 
 export const CartPage = () => {
+  const [cartItems, setCartItems] = useState<Phone[]>([]);
+  const [phones, setPhones] = useState<Phone[]>([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const loadPhones = useCallback(async () => {
+    try {
+      const { phones: phonesFromServer } = await getPhones();
+
+      setPhones(phonesFromServer);
+    } catch {
+      /* eslint-disable-next-line */
+      console.log('Failed to load phones');
+    }
+  }, []);
+
+  useEffect(() => {
+    loadPhones();
+  }, []);
+
+  useEffect(() => {
+    const storedCartItemIds = localStorage.getItem('cartItemIds');
+
+    if (storedCartItemIds) {
+      const cartItemIds: string[] = JSON.parse(storedCartItemIds);
+      const cartItemsData = phones
+        .filter((phone) => cartItemIds.includes(phone.itemId));
+
+      setCartItems(cartItemsData);
+
+      const totalAmount = cartItemsData.reduce(
+        (total, item) => total + item.price,
+        0,
+      );
+
+      setTotalPrice(totalAmount);
+    }
+  }, [phones]);
+
   return (
     <div className="container gadgets-page">
       <h1 className="gadgets-page__title cart-title">Cart</h1>
 
       <div className="cart">
-        <div className="cart__card">
-          <button type="button" className="cart__delete">
-            <IconClose />
-          </button>
-
-          <div className="cart__item">
-            <div className="cart__image-container">
-              <img
-                // eslint-disable-next-line max-len
-                src="https://media.bite.lt/@bite-lt/sites/default/files/products/2021-04/iphone_12_purple-3_1.png"
-                alt="phone"
-                className="cart__image"
-              />
-            </div>
-
-            <p className="cart__product-name">
-              Apple iPhone 14 Pro 128GB Silver (MQ023)
-            </p>
-
-            <div className="cart__choose-amount">
-              <button
-                type="button"
-                className="cart__amount-button"
-              >
-                -
-              </button>
-
-              <p className="cart__amount-of-item">
-                1
-              </p>
-
-              <button
-                type="button"
-                className="cart__amount-button cart__amount-button--filled"
-              >
-                +
-              </button>
-            </div>
-
-            <p className="cart__price">
-              $799
-            </p>
-          </div>
-        </div>
+        {cartItems.map((item) => (
+          <CartCard
+            key={item.itemId}
+            name={item.name}
+            price={item.price}
+            image={item.image}
+          />
+        ))}
 
         <div className="cart__billing">
           <p className="cart__total-price">
-            $2657
+            {totalPrice}
           </p>
 
           <p className="cart__total-amount">
-            Total for 3 items
+            {`Total for ${cartItems.length} item(s)`}
           </p>
 
           <hr className="cart__separator" />
