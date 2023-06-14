@@ -1,13 +1,13 @@
 import cn from 'classnames';
 import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { Phone } from '../../types/Phone';
 import { ArrowButton } from '../ArrowButton';
 import { getSearchWith } from '../../utils/searchHelper';
 import { ProductList } from '../ProductList';
+import { Gadget } from '../../types/Gadget';
 
 type Props = {
-  items: Phone[];
+  items: Gadget[];
 };
 
 export const Pagination: React.FC<Props> = ({ items }) => {
