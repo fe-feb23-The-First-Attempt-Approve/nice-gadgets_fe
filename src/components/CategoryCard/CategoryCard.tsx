@@ -16,11 +16,13 @@ export const CategoryCard: FC<Props> = ({
 }) => (
   <div className="category-card">
     <Link to={link} className="category-card__link">
-      <img
-        className="category-card__image"
-        src={image}
-        alt={title}
-      />
+      <div className="category-card__img-container">
+        <img
+          className="category-card__image"
+          src={image}
+          alt={title}
+        />
+      </div>
 
       <h4 className="category-card__title">
         {title}

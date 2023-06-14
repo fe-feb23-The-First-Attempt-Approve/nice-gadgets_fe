@@ -45,6 +45,7 @@ export const Slider: React.FC<Props> = ({ title }) => {
         slidesPerView={4}
         spaceBetween={30}
         modules={[Navigation]}
+        loop
         navigation={{
           prevEl: '.slider-button-prev',
           nextEl: '.slider-button-next',

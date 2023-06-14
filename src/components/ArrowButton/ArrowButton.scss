@@ -9,9 +9,13 @@
 
   &--fill {
     background-color: $bg-color-controllers;
+  }
 
-    &:hover {
-      background-color: $bg-color-controllers-hov;
+  &:hover {
+    background-color: $accent-color-hov;
+
+    & svg {
+      fill: $text-color-accent-btn;
     }
   }
 
@@ -32,6 +36,6 @@
   }
 }
 
-// button:hover .arrow-container {
-//   background-color: $bg-color-controllers-hov;
-// }
+button:hover .arrow-container {
+  background-color: $bg-color-controllers-hov;
+}
