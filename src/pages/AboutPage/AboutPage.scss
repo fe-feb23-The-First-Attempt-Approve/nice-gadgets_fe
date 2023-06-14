@@ -1,6 +1,5 @@
 $maginBottom: 56px;
 
-
 .card-page {
   &__grid {
     margin-top: 16px;
@@ -188,7 +187,7 @@ $maginBottom: 56px;
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
-    color: $text-color-secondary
+    color: $text-color-secondary;
   }
 
   &__colors {
@@ -259,8 +258,6 @@ $maginBottom: 56px;
       color: $bg-color-main;
       background-color: $text-color-main;
     }
-
-
   }
 
   &__parameters {
@@ -408,8 +405,4 @@ $maginBottom: 56px;
     text-align: right;
     color: $text-color-main;
   }
-}
-
-.bottom-slider {
-  &__container {}
 }
