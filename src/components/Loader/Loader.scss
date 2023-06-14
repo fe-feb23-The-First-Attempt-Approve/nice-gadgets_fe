@@ -1,0 +1,76 @@
+$colors: #2172b8
+  #18a39b
+  #82c545
+  #f8b739
+  #f06045
+  #ed2861
+  #c12680
+  #5d3191;
+
+$inner: 30px;
+$border: 6px;
+$spacing: 1px;
+
+.wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 100%;
+  background-color: rgba($color: #000, $alpha: 0.3);
+}
+
+.spinner {
+  position: absolute;
+  display: block;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  $size: $inner + length($colors) * ($border + $spacing) * 2;
+
+  width: $size;
+  height: $size;
+
+  i {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    border: solid $border transparent;
+    border-bottom: none;
+
+    @each $current in $colors {
+      $i: index($colors, $current);
+
+      &:nth-child(#{$i}) {
+        $size: $inner + $i * ($border + $spacing) * 2;
+
+        animation: rotate-#{$i} 3s infinite cubic-bezier(
+          0.09, 0.3 * $i, 0.12 * $i, 0.03,
+        );
+        transform-origin: 50% 100% 0;
+
+        width: $size;
+        height: $size / 2;
+
+        margin-top: -$size / 2;
+        margin-left: -$size / 2;
+
+        border-color: $current;
+
+        border-top-left-radius: $inner + $i * $border;
+        border-top-right-radius: $inner + $i * $border;
+      }
+    }
+  }
+}
+
+@for $i from 1 through length($colors) {
+  @keyframes rotate-#{$i} {
+    to {
+      transform: rotateZ(360deg);
+    }
+  }
+}

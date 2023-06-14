@@ -33,6 +33,7 @@
 // gadgets page
 @import "../components/GadgetsPage/gadgets-page.scss";
 @import "../components/GadhetsFilters/gadhets-filters.scss";
+@import "../components/ProductList/ProductList.scss";
 
 // product card
 @import "../components/ProductCard/ProductCard.scss";
@@ -48,12 +49,21 @@
 // footer
 @import "../components/Footer/Footer.scss";
 
+// loader
+@import "../components/Loader/Loader.scss";
+
+// cart
+@import "../pages/CartPage/cart-page.scss";
+
+@import "../components/Banner/banner.scss";
+
+@import "../components/Slider/slider.scss";
+
 // should be moved to other folder
 .content {
   background-color: $bg-color-main;
 }
 
-// just for preview
 .banner {
   text-align: center;
   margin: auto;

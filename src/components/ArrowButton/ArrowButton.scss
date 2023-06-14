@@ -1,7 +1,12 @@
 .arrow-container {
-  padding: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: $bg-color-controllers;
   border-radius: 2px;
+  cursor: pointer;
 
   &--right {
     transform: rotate(0);

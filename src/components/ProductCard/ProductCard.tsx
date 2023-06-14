@@ -31,15 +31,13 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
               className="product-card__image"
             />
           </div>
+
+          <h3 className="product-card__title">
+            {name}
+          </h3>
         </Link>
 
         <div className="product-card__item-description">
-          <Link to="/" className="product-card__device-link">
-            <h3 className="product-card__title">
-              {name}
-            </h3>
-          </Link>
-
           <p className="product-card__price">
             &#x24;
             {price}
@@ -50,7 +48,7 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
             <del>{fullPrice}</del>
           </p>
 
-          <div className="product-card__separator" />
+          <hr className="product-card__separator" />
 
           <div className="product-card__parameters parameters">
             <p className="parametrs__description parameters__description_key">
@@ -83,7 +81,7 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
               Add to cart
             </button>
             <button type="button" className="product-card__like">
-              <HeartButton />
+              <HeartButton gadget={phone} />
             </button>
           </div>
 

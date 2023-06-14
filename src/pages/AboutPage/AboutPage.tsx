@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Pagination, Navigation } from 'swiper';
+import SwiperCore, { Pagination } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/swiper.min.css';
@@ -7,7 +7,9 @@ import 'swiper/modules/pagination/pagination.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
 
 import { Breadcrumbs } from '../../components/Breadcrumbs';
-import { HeartButton } from '../../components/HeartButton';
+// import { HeartButton } from '../../components/HeartButton';
+import { Slider } from '../../components/Slider/Slider';
+
 import {
   i02,
   i01,
@@ -132,7 +134,7 @@ export const AboutPage: React.FC = () => {
                   Add to cart
                 </button>
                 <button type="button" className="settings__like">
-                  <HeartButton />
+                  {/* <HeartButton /> */}
                 </button>
               </div>
             </div>
@@ -344,30 +346,11 @@ export const AboutPage: React.FC = () => {
           </section>
 
           <section className="card-page__bottom-slider bottom-slider">
-            <h2 className="bottom-slider__title">
-              You may also like
-            </h2>
-
             <div className="bottom-slider__container">
-              <Swiper
-                navigation
-                modules={[Navigation]}
-                className="mySwiper"
-              >
-                <SwiperSlide>Slide 1</SwiperSlide>
-                <SwiperSlide>Slide 2</SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
-              </Swiper>
+              <Slider title="You may also like" />
             </div>
           </section>
         </div>
-
       </div>
     </main>
   );

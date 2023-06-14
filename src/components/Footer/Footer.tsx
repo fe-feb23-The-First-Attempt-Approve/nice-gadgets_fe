@@ -4,6 +4,13 @@ import { Logo } from '../Logo';
 import { ArrowButton } from '../ArrowButton';
 
 export const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
     <footer className="footer">
       <div className="footer__container">
@@ -37,6 +44,7 @@ export const Footer = () => {
         <button
           type="button"
           className="footer__arrow-up"
+          onClick={scrollToTop}
         >
           Back to top
           <ArrowButton arrowDirection="top" />

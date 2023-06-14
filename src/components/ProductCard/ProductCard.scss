@@ -1,6 +1,7 @@
 .product-card {
   &__container {
-    padding: 32px;
+    display: flex;
+    justify-content: center;
     max-width: 272px;
     background-color: $bg-color-products;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -15,30 +16,35 @@
   &__item {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
   }
 
-  &__link {
-    transition: transform $transition-duration;
+  &__item-description {
+    padding: 0 32px 32px;
+  }
 
-    &:hover {
+  &__link {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+    padding: 32px 32px 0;
+
+    &:hover .product-card__photo-container {
       transform: scale(1.03);
     }
   }
 
   &__photo-container {
+    transition: transform $transition-duration;
+  }
+
+  &__photo-container {
     display: flex;
-    width: 208px;
+    width: 100%;
     height: 196px;
-    margin-bottom: 8px;
-
-    @include onTablet {
-      width: 212px;
-    }
-
-    @include onDesktop {
-      width: 237px;
-    }
+    margin-bottom: 24px;
   }
 
   &__image {
@@ -52,11 +58,8 @@
     padding-top: 16px;
   }
 
-  &__item-deskription {
-    margin-top: 8px;
-  }
-
   &__title {
+    margin-bottom: 8px;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -64,7 +67,7 @@
   }
 
   &__price {
-    margin-top: 8px;
+    margin-bottom: 8px;
     margin-right: 8px;
     display: inline-block;
     font-style: normal;
@@ -79,19 +82,18 @@
   }
 
   &__separator {
-    margin-top: 8px;
-    max-width: 208px;
-    border: 1px solid $separator-color;
+    margin-bottom: 16px;
   }
 
   &__parameters {
-    margin-top: 8px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    align-content: space-around;
+    grid-gap: 8px;
+    margin-bottom: 16px;
   }
 
   &__footer {
-    margin-top: 8px;
     display: flex;
   }
 

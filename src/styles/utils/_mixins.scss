@@ -39,4 +39,22 @@
     $columns: 24;
     grid-template-columns: repeat($columns, 1fr);
   }
+
+}
+
+@mixin arrowsForMainSlider {
+  position: absolute;
+  top: 0;
+  display: none;
+  width: 32px;
+  height: 100%;
+  background-color: $bg-color-controllers;
+  border-radius: 4px;
+  cursor: pointer;
+
+  @include onDesktop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }
