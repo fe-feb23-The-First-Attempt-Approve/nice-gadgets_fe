@@ -39,12 +39,7 @@ $maginBottom: 56px;
 
   &__slider-container {
     width: 100%;
-    border: 1px solid rgb(223, 223, 223);
-    // display: grid;
-    // grid-template-columns: 1fr 80px;
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
+    height: 100%;
   }
 
   &__settings {
@@ -57,7 +52,7 @@ $maginBottom: 56px;
     }
 
     @include onDesktop {
-      margin-bottom: 80px;
+      margin-bottom: 109px;
       grid-column: 14 / 21;
     }
   }
@@ -89,7 +84,100 @@ $maginBottom: 56px;
       grid-column: 14 / 24;
     }
   }
+
+  &__bottom-slider {
+    margin: 56px 0;
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      margin: 64px 0;
+    }
+
+    @include onDesktop {
+      margin: 80px 0;
+    }
+  }
 }
+
+// Swiper styles -- start
+
+.imgSwipe {
+  max-width: 287px;
+  height: 287px;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+
+  @media (min-width: 815px) {
+    max-width: 464px;
+    height: 464px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+#swiper-1 .swiper-pagination-bullets {
+  padding-top: 16px;
+  position: static;
+
+  @include onTablet {
+    text-align: left;
+  }
+}
+
+#swiper-1 .swiper-pagination {
+  @include onTablet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 35px;
+
+    @include onTablet {
+      width: 80px;
+    }
+  }
+}
+
+#swiper-1 .swiper-pagination-bullet {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  position: relative;
+  opacity: 1;
+  border-radius: 0;
+
+  @include onTablet {
+    margin: 8px 0;
+  }
+
+  @include onDesktop {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+#swiper-1 .swiper-pagination-bullet .bullet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+// Swiper styles -- end
 
 .settings {
   &__color-container {
@@ -315,63 +403,17 @@ $maginBottom: 56px;
   }
 }
 
-#swiper-1 {
-  margin: 0;
-}
+.bottom-slider {
 
-#swiper-2 .swiper-wrapper {
-  flex-direction: column;
-}
-
-.imgSwipe {
-  max-width: 287px;
-  height: 287px;
-  overflow: hidden;
-  position: relative;
-
-  @include onTablet {
-    max-width: 464px;
-    height: 464px;
+  &__title {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+    color: $text-color-main;
+    margin-bottom: 24px;
   }
 
-  &__item {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-}
-
-.mySwipper_min-container {
-  margin-top: 16px;
-  width: 287px;
-
-  @include onTablet {
-    width: 80px;
-    height: 287px;
-    margin-top: 0;
-  }
-}
-
-.imgSwipe-min {
-  width: 35px;
-  height: 35px;
-  overflow: hidden;
-  position: relative;
-
-  @include onDesktop {
-    width: 80px;
-    height: 80px;
-  }
-
-  &__item {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+  &__container {}
 }

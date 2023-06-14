@@ -1,28 +1,25 @@
-import React, { useState } from 'react';
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode, Thumbs } from 'swiper';
-// import { FreeMode, Navigation, Thumbs } from 'swiper';
+import SwiperCore, { Pagination, Navigation } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/swiper.min.css';
-import 'swiper/modules/free-mode/free-mode-element.min.css';
-import 'swiper/modules/thumbs/thumbs-element.min.css';
+import 'swiper/modules/pagination/pagination.min.css';
+import 'swiper/modules/navigation/navigation.min.css';
 
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { HeartButton } from '../../components/HeartButton';
 import {
   i02,
   i01,
-  i03,
   i00,
 } from '../../img/images';
 
-const arr = [i00, i01, i02, i03];
+const arr = [i01, i02, i00];
+
+SwiperCore.use([Pagination]);
 
 export const AboutPage: React.FC = () => {
   const category = 'Cart page';
-  const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
 
   return (
     <main className="main-page-card">
@@ -37,11 +34,20 @@ export const AboutPage: React.FC = () => {
           <section className="card-page__slider">
             <div className="card-page__slider-container">
               <Swiper
+                direction="horizontal"
                 id="swiper-1"
+                slidesPerView={1}
+                spaceBetween={30}
                 loop
-                spaceBetween={10}
-                thumbs={{ swiper: thumbsSwiper }}
-                modules={[FreeMode, Thumbs]}
+                pagination={{
+                  clickable: true,
+                  renderBullet: (index, className) => {
+                    return `<div class="${className}">
+                         <img class="bullet-image" src=${arr[index]} alt="icon" />
+                    </div>`;
+                  },
+                }}
+                modules={[Pagination]}
                 className="mySwiper"
               >
                 {arr.map(image => {
@@ -50,34 +56,8 @@ export const AboutPage: React.FC = () => {
                       <div className="imgSwipe">
                         <img
                           src={image}
-                          alt="phone"
-                          className="imgSwipe__item"
-                        />
-                      </div>
-                    </SwiperSlide>
-                  );
-                })}
-
-              </Swiper>
-              <Swiper
-                onSwiper={setThumbsSwiper}
-                loop
-                id="swiper-2"
-                spaceBetween={8}
-                slidesPerView={4}
-                freeMode
-                watchSlidesProgress
-                modules={[FreeMode, Thumbs]}
-                className="mySwiper mySwipper_min-container"
-              >
-                {arr.map(image => {
-                  return (
-                    <SwiperSlide key={image}>
-                      <div className="imgSwipe-min">
-                        <img
-                          src={image}
-                          alt="phone"
-                          className="imgSwipe-min__item"
+                          alt="sfasdf"
+                          className="imgSwipe__image"
                         />
                       </div>
                     </SwiperSlide>
@@ -360,6 +340,30 @@ export const AboutPage: React.FC = () => {
               >
                 GSM, LTE, UMTS
               </p>
+            </div>
+          </section>
+
+          <section className="card-page__bottom-slider bottom-slider">
+            <h2 className="bottom-slider__title">
+              You may also like
+            </h2>
+
+            <div className="bottom-slider__container">
+              <Swiper
+                navigation
+                modules={[Navigation]}
+                className="mySwiper"
+              >
+                <SwiperSlide>Slide 1</SwiperSlide>
+                <SwiperSlide>Slide 2</SwiperSlide>
+                <SwiperSlide>Slide 3</SwiperSlide>
+                <SwiperSlide>Slide 4</SwiperSlide>
+                <SwiperSlide>Slide 5</SwiperSlide>
+                <SwiperSlide>Slide 6</SwiperSlide>
+                <SwiperSlide>Slide 7</SwiperSlide>
+                <SwiperSlide>Slide 8</SwiperSlide>
+                <SwiperSlide>Slide 9</SwiperSlide>
+              </Swiper>
             </div>
           </section>
         </div>
