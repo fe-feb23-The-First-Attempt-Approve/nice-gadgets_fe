@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import { Header } from './components/Header';
 import { HomePage } from './pages/HomePage';
 import { PhonesPage } from './pages/PhonesPage';
@@ -42,7 +43,7 @@ const App = () => (
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
-
+    <ToastContainer />
     <Footer />
   </>
 );
