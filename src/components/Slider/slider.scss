@@ -1,1 +1,18 @@
-//
+.slider {
+  position: relative;
+
+  & .product-card__item {
+    min-height: 530px;
+  }
+}
+
+.swiper {
+  z-index: 0;
+}
+
+.slider-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-bottom: 28px;
+}

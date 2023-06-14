@@ -1,6 +1,7 @@
 .icon {
   display: block;
   height: 16px;
+  transition: fill $transition-duration;
 
   @include onDesktop {
     height: 18px;

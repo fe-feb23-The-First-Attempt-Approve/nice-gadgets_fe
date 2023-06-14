@@ -3,20 +3,25 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+  width: 100%;
 
   &__query {
-    width: 80%;
+    flex-grow: 1;
     padding: 10px;
     border-bottom: 1px solid $text-color-secondary;
-    text-align: center;
+    font-family: Mont, sans-serif;
 
     @include onDesktop {
       width: auto;
-      text-align: left;
     }
 
     &:focus {
       border-bottom: 1px solid $accent-color-hov;
     }
+  }
+
+  &__button {
+    flex-shrink: 0;
+    border-radius: 4px;
   }
 }

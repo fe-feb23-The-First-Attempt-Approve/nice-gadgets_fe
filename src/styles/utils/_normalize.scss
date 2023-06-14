@@ -3,7 +3,7 @@
 }
 
 html {
-  font-family: "Mont";
+  font-family: "Mont", sans-serif;
 }
 
 body {
@@ -15,6 +15,15 @@ body {
 
 .scrolling-blocked {
   overflow: hidden;
+}
+
+button,
+a,
+body,
+div {
+  transition-property: background-color, color;
+  transition-duration: $transition-duration;
+  transition-timing-function: ease;
 }
 
 h3 {
@@ -46,11 +55,6 @@ input {
   }
 }
 
-button,
-a,
-body,
-div {
-  transition-property: background-color, color;
-  transition-duration: $transition-duration;
-  transition-timing-function: ease;
+hr {
+  border-color: $separator-color;
 }

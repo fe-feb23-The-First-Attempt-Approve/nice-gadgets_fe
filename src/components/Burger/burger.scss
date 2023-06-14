@@ -1,8 +1,7 @@
 .burger {
-  display: grid;
   width: 100%;
   height: 100vh;
-  margin-top: -150vh;
+  margin-top: -250vh;
   padding: 30%;
   background-color: $bg-color-main;
   transition-property: margin, padding;
@@ -10,12 +9,43 @@
 
   &--active {
     position: absolute;
+    display: grid;
     z-index: 999;
     margin-top: 0;
-    padding: 10% 10% 20% 10%;
+    padding: 10% 10% 20%;
   }
 
   @include onDesktop {
     display: none;
+  }
+}
+
+// landscape version
+@media (orientation: landscape) {
+  .burger {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+  }
+
+  .nav__list {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    padding-left: 10px;
+
+    & .nav__item {
+      justify-content: left;
+    }
+  }
+
+  .searching-field {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+  }
+
+  .icon-set {
+    grid-column: 2 / span 2;
+    grid-row: 1 / span 1;
+    padding-right: 20px;
   }
 }

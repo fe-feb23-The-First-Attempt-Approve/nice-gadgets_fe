@@ -23,7 +23,7 @@ export const HomePage = () => {
         </section>
 
         <section className="home-page__section">
-          <Slider title="Hot prices" />
+          {/* <Slider title="Hot prices" /> */}
         </section>
       </div>
     </div>

@@ -1,1 +1,60 @@
-//
+.banner {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  height: 400px;
+
+  @include onDesktop {
+    padding: 0 50px;
+  }
+
+  & .swiper-container {
+    overflow: auto;
+  }
+
+  & .swiper-slide {
+    width: 100%;
+
+    & img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  & .swiper-custom-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+
+    & .swiper-pagination-bullet {
+      position: relative;
+      bottom: -18px;
+      width: 14px;
+      height: 4px;
+      border-radius: 0;
+      background-color: $text-color-main;
+    }
+  }
+
+  & .swiper {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
+  }
+
+  & .button-prev {
+    @include arrowsForMainSlider;
+    left: 0;
+  }
+
+  & .button-next {
+    @include arrowsForMainSlider;
+    right: 0;
+  }
+}
