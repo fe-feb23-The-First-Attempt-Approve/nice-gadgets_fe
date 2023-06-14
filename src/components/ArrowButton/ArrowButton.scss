@@ -1,12 +1,23 @@
 .arrow-container {
-  width: 32px;
-  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: $bg-color-controllers;
-  border-radius: 2px;
-  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border: 1px solid $bg-color-controllers;
+  border-radius: 4px;
+
+  &--fill {
+    background-color: $bg-color-controllers;
+  }
+
+  &:hover {
+    background-color: $accent-color-hov;
+
+    & svg {
+      fill: $text-color-accent-btn;
+    }
+  }
 
   &--right {
     transform: rotate(0);
