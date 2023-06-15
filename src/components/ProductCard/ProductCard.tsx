@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { HeartButton } from '../HeartButton/HeartButton';
-import { Phone } from '../../types/Phone';
+import { Gadget } from '../../types/Gadget';
 import { BuyButton } from '../BuyButton';
 
 interface Props {
-  phone: Phone,
+  phone: Gadget,
 }
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {

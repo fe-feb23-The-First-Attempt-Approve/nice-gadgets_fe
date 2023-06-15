@@ -78,7 +78,7 @@ export const AboutPage: React.FC = () => {
                   clickable: true,
                   renderBullet: (index, className) => {
                     return `<div class="${className}">
-                         <img class="bullet-image" src=${device?.images[index]} alt="icon" />
+                      <img class="bullet-image" src=${device?.images[index]} alt="icon" />
                     </div>`;
                   },
                 }}

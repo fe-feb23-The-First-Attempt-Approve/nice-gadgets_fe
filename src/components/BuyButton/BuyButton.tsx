@@ -2,8 +2,8 @@ import {
   FC, useEffect, useState, useContext,
 } from 'react';
 import cn from 'classnames';
+import { CartItemsContext } from '../../providers/CartItemsContext';
 import { Gadget } from '../../types/Gadget';
-import { CountCartItemsContext } from '../../providers/CountCartItems';
 
 interface Props {
   gadget: Gadget;
@@ -11,37 +11,18 @@ interface Props {
 
 export const BuyButton: FC<Props> = ({ gadget }) => {
   const [isAdded, setIsAdded] = useState(false);
-  const { updateCountCartItems } = useContext(CountCartItemsContext);
+  const { addToCart, removeFromCart, cartItems } = useContext(CartItemsContext);
 
   useEffect(() => {
-    const storedCartItemIds = localStorage.getItem('cartItemIds');
-
-    if (storedCartItemIds) {
-      const cartItemIds = JSON.parse(storedCartItemIds);
-
-      setIsAdded(cartItemIds.includes(gadget.itemId));
-      updateCountCartItems(cartItemIds.length);
-    }
-  }, [gadget.itemId, updateCountCartItems]);
+    setIsAdded(cartItems.some(item => item.id === gadget.id));
+  }, [cartItems, gadget.id]);
 
   const handleAddToCart = () => {
-    const storedCartItemIds = localStorage.getItem('cartItemIds');
-    let cartItemIds = storedCartItemIds ? JSON.parse(storedCartItemIds) : [];
-
-    const { itemId } = gadget;
-    const updatedIds = cartItemIds
-      .filter((cartId: string) => cartId !== itemId);
-
-    if (cartItemIds.length === updatedIds.length) {
-      cartItemIds.push(itemId);
-      setIsAdded(true);
+    if (isAdded) {
+      removeFromCart(gadget.id);
     } else {
-      cartItemIds = updatedIds;
-      setIsAdded(false);
+      addToCart(gadget);
     }
-
-    updateCountCartItems(cartItemIds.length);
-    localStorage.setItem('cartItemIds', JSON.stringify(cartItemIds));
   };
 
   const buttonClasses = cn('buy-button', {
