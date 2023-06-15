@@ -11,19 +11,19 @@ import 'swiper/modules/navigation/navigation.min.css';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { HeartButton } from '../../components/HeartButton';
 import { Slider } from '../../components/Slider/Slider';
-import { PhoneItem } from '../../types/PhoneItem';
+import { GadgetItem } from '../../types/GadgetItem';
 import { getOnePhone, getPhones } from '../../api/phones';
-import { Phone } from '../../types/Phone';
 import { phoneTemplate } from '../../utils/phoneTemplate';
+import { Gadget } from '../../types/Gadget';
 
 SwiperCore.use([Pagination]);
 
 export const AboutPage: React.FC = () => {
   const { pathname } = useLocation();
-
-  const [phones, setPhones] = useState<Phone[]>([]);
-  const [device, setDevice] = useState<PhoneItem>(phoneTemplate);
+  const [phones, setPhones] = useState<Gadget[]>([]);
+  const [device, setDevice] = useState<GadgetItem>(phoneTemplate);
   const [newPath, setNewPath] = useState<string>('');
+
   const category = 'Cart page';
   const currentPage = device.name.split(' ').slice(1, 4).join(' ');
 
@@ -44,8 +44,8 @@ export const AboutPage: React.FC = () => {
     setPhones(phonesFromServer);
   };
 
-  const heartGaget = phones.find(({ phoneId }) => {
-    return phoneId === device.id;
+  const heartGaget = phones.find(({ itemId }) => {
+    return itemId === device.id;
   });
 
   const onCapacityHandler = (

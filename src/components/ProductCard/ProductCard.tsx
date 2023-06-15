@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { HeartButton } from '../HeartButton/HeartButton';
-import { Phone } from '../../types/Phone';
 import { BuyButton } from '../BuyButton';
+import { Gadget } from '../../types/Gadget';
 
 interface Props {
-  phone: Phone,
+  phone: Gadget,
 }
 
 export const ProductCard: React.FC<Props> = ({ phone }) => {
@@ -16,7 +16,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
     capacity,
     ram,
     image,
-    phoneId,
+    itemId,
     category,
   } = phone;
 
@@ -25,7 +25,7 @@ export const ProductCard: React.FC<Props> = ({ phone }) => {
       <div className="product-card__item">
         <Link
           className="product-card__link"
-          to={`/${category}/${phoneId}`}
+          to={`/${category}/${itemId}`}
         >
           <div className="product-card__photo-container">
             <img

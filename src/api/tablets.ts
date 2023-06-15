@@ -1,15 +1,15 @@
-import { Phone } from '../types/Phone';
-import { PhoneItem } from '../types/PhoneItem';
+import { Gadget } from '../types/Gadget';
+import { GadgetItem } from '../types/GadgetItem';
 import { SortType } from '../types/SortType';
 import { client } from '../utils/fetchClient';
 
 type RequestWithParamsResult = {
-  allPhonesCount: number;
+  allTabletsCount: number;
   filteredCount: number,
-  visiblePhones: Phone[];
+  visibleTablets: Gadget[];
 };
 
-export const getPhones = async (
+export const getTablets = async (
   perPage?: number,
   page?: number,
   sort?: SortType,
@@ -38,14 +38,15 @@ export const getPhones = async (
     queryParams.push(`maxPrice=${priceMax}`);
   }
 
-  const path = `/phones${queryParams.length ? `?${queryParams.join('&')}` : ''
-    }`; // eslint-disable-line
+  const path = `/tablets${
+    queryParams.length ? `?${queryParams.join('&')}` : ''
+  }`;
 
   return client.get<RequestWithParamsResult>(path);
 };
 
-export const getOnePhone = async (phoneId: string): Promise<PhoneItem> => {
-  const path = phoneId.trim();
+export const getOnePhone = async (tabletId: string): Promise<GadgetItem> => {
+  const path = tabletId.trim();
 
-  return client.get<PhoneItem>(path);
+  return client.get<GadgetItem>(path);
 };
