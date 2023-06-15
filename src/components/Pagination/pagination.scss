@@ -1,5 +1,13 @@
 .pagination {
+  margin: 40px 84px;
   &__page-list {
     display: flex;
+    justify-content: center;
+  }
+}
+
+.page-button {
+  &--active{
+    color: $text-color-accent-btn;
   }
 }
