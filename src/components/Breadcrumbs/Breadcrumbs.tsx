@@ -4,7 +4,7 @@ import { IconHome } from '../Icons/IconHome';
 import { IconArrow } from '../Icons/IconArrow';
 
 interface Props {
-  category: 'Phones' | 'Tablets' | 'Accessories' | 'Favorites' | 'Cart page';
+  category: 'Phones' | 'Tablets' | 'Accessories' | 'Favorites';
   currentPage?: string;
 }
 
@@ -19,7 +19,7 @@ export const Breadcrumbs: FC<Props> = ({ category, currentPage }) => {
 
       {currentPage ? (
         <>
-          <NavLink to={`#/${category}`} className="breadcrumbs__link">
+          <NavLink to={`/${category}`} className="breadcrumbs__link">
             {category}
           </NavLink>
 

@@ -23,8 +23,8 @@ export const AboutPage: React.FC = () => {
 
   const [phones, setPhones] = useState<Phone[]>([]);
   const [device, setDevice] = useState<PhoneItem>(phoneTemplate);
-  const category = 'Cart page';
-  const currentPage = device?.name.split(' ').slice(1, 4).join(' ');
+  const category = 'Phones';
+  const currentPage = device?.name;
 
   const loadPhone = useCallback(async () => {
     try {
