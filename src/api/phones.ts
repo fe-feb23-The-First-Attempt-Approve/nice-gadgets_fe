@@ -38,9 +38,8 @@ export const getPhones = async (
     queryParams.push(`maxPrice=${priceMax}`);
   }
 
-  const path = `/phones${
-    queryParams.length ? `?${queryParams.join('&')}` : ''
-  }`;
+  const path = `/phones${queryParams.length ? `?${queryParams.join('&')}` : ''
+    }`; // eslint-disable-line
 
   return client.get<RequestWithParamsResult>(path);
 };

@@ -152,6 +152,14 @@ $maginBottom: 56px;
   position: relative;
   opacity: 1;
   border-radius: 0;
+  background: transparent;
+  border: 1px solid $separator-color;
+  transition: background-color $transition-duration, scale $transition-duration;
+  
+  &:hover {
+    background: $bg-color-controllers;
+    transform: scale(1.1);
+  }
 
   @include onTablet {
     margin: 8px 0;
@@ -161,6 +169,10 @@ $maginBottom: 56px;
     width: 80px;
     height: 80px;
   }
+}
+
+#swiper-1 .swiper-pagination-bullet-active {
+    background: $bg-color-controllers;
 }
 
 #swiper-1 .swiper-pagination-bullet .bullet-image {
