@@ -9,7 +9,7 @@ export const HomePage = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
 
   const loadPhones = async () => {
-    const { phones: phonesFromServer } = await getPhones();
+    const { visiblePhones: phonesFromServer } = await getPhones();
 
     setPhones(phonesFromServer);
   };
