@@ -9,12 +9,12 @@ import 'swiper/modules/pagination/pagination.min.css';
 import 'swiper/modules/navigation/navigation.min.css';
 
 import { Breadcrumbs } from '../../components/Breadcrumbs';
-// import { HeartButton } from '../../components/HeartButton';
+import { HeartButton } from '../../components/HeartButton';
 import { Slider } from '../../components/Slider/Slider';
 import { PhoneItem } from '../../types/PhoneItem';
 import { getOnePhone, getPhones } from '../../api/phones';
 import { Phone } from '../../types/Phone';
-import { phoneTemplate } from '../../utils/phoheTemplate';
+import { phoneTemplate } from '../../utils/phoneTemplate';
 
 SwiperCore.use([Pagination]);
 
@@ -24,7 +24,7 @@ export const AboutPage: React.FC = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
   const [device, setDevice] = useState<PhoneItem>(phoneTemplate);
   const category = 'Cart page';
-  const currentPage = device?.name.split(' ').slice(1, 4).join(' ');
+  const currentPage = device.name.split(' ').slice(1, 4).join(' ');
 
   const loadPhone = useCallback(async () => {
     try {
@@ -43,9 +43,9 @@ export const AboutPage: React.FC = () => {
     setPhones(phonesFromServer);
   };
 
-  // const heartGaget = phones.find(({ phoneId }) => {
-  //   return phoneId === device.id;
-  // });
+  const heartGaget = phones.find(({ phoneId }) => {
+    return phoneId === device.id;
+  });
 
   useEffect(() => {
     loadPhones();
@@ -63,7 +63,7 @@ export const AboutPage: React.FC = () => {
 
         <div className="card-page__grid">
           <h1 className="card-page__title card-page__title_grid">
-            {device?.name}
+            {device.name}
           </h1>
 
           <section className="card-page__slider">
@@ -78,14 +78,14 @@ export const AboutPage: React.FC = () => {
                   clickable: true,
                   renderBullet: (index, className) => {
                     return `<div class="${className}">
-                         <img class="bullet-image" src=${device?.images[index]} alt="icon" />
+                         <img class="bullet-image" src=${device.images[index]} alt="icon" />
                     </div>`;
                   },
                 }}
                 modules={[Pagination]}
                 className="mySwiper"
               >
-                {device?.images.map(image => {
+                {device.images.map(image => {
                   return (
                     <SwiperSlide key={image}>
                       <div className="imgSwipe">
@@ -105,11 +105,13 @@ export const AboutPage: React.FC = () => {
           <section className="card-page__settings settings">
             <div className="settings__color-container">
               <p className="settings__title">Available colors</p>
-              <p className="settings__title">ID: 145</p>
+              <p className="settings__title">
+                {heartGaget && heartGaget.id}
+              </p>
             </div>
 
             <div className="settings__colors">
-              {device?.colorsAvailable.map(color => (
+              {device.colorsAvailable.map(color => (
                 <Link
                   to="/"
                   className="settings__button-color"
@@ -130,7 +132,7 @@ export const AboutPage: React.FC = () => {
             <p className="settings__title">Select capacity</p>
 
             <div className="settings__capacities">
-              {device?.capacityAvailable.map(capacity => (
+              {device.capacityAvailable.map(capacity => (
                 <Link
                   to="/"
                   key={capacity}
@@ -148,14 +150,14 @@ export const AboutPage: React.FC = () => {
             <div className="settings__price-container">
               <p className="settings__price">
                 &#x24;
-                {device?.priceRegular || device?.priceDiscount}
+                {device.priceRegular || device.priceDiscount}
               </p>
 
-              {device?.priceRegular && (
+              {device.priceRegular && (
                 <p className="settings__price settings__price_not-actual">
                   <del>
                     &#x24;
-                    {device?.priceRegular}
+                    {device.priceRegular}
                   </del>
                 </p>
               )}
@@ -165,7 +167,7 @@ export const AboutPage: React.FC = () => {
                   Add to cart
                 </button>
                 <button type="button" className="settings__like">
-                  {/* <HeartButton gadget={heartGaget} /> */}
+                  {heartGaget && <HeartButton gadget={heartGaget} />}
                 </button>
               </div>
             </div>
@@ -180,7 +182,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_value"
               >
-                {device?.screen}
+                {device.screen}
               </p>
 
               <p className="characteristic__description
@@ -192,7 +194,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_value"
               >
-                {device?.resolution}
+                {device.resolution}
               </p>
 
               <p className="characteristic__description
@@ -204,7 +206,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_value"
               >
-                {device?.processor}
+                {device.processor}
               </p>
 
               <p className="characteristic__description
@@ -216,7 +218,7 @@ export const AboutPage: React.FC = () => {
               <p className="characteristic__description
               characteristic__description_value"
               >
-                {device?.ram}
+                {device.ram}
               </p>
             </div>
           </section>
@@ -228,31 +230,31 @@ export const AboutPage: React.FC = () => {
 
             <div className="about__description">
               <h3 className="about__subtitle">
-                {device?.description[0].title}
+                {device.description[0].title}
               </h3>
               <p className="about__text">
-                {device?.description[0].text[0]}
+                {device.description[0].text[0]}
               </p>
               <p className="about__text">
-                {device?.description[0].text[1]}
-              </p>
-            </div>
-
-            <div className="about__description">
-              <h3 className="about__subtitle">
-                {device?.description[1].title}
-              </h3>
-              <p className="about__text">
-                {device?.description[1].text[0]}
+                {device.description[0].text[1]}
               </p>
             </div>
 
             <div className="about__description">
               <h3 className="about__subtitle">
-                {device?.description[2].title}
+                {device.description[1].title}
               </h3>
               <p className="about__text">
-                {device?.description[2].text[0]}
+                {device.description[1].text[0]}
+              </p>
+            </div>
+
+            <div className="about__description">
+              <h3 className="about__subtitle">
+                {device.description[2].title}
+              </h3>
+              <p className="about__text">
+                {device.description[2].text[0]}
               </p>
             </div>
           </section>
@@ -272,7 +274,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                6.5” OLED
+                {device.screen}
               </p>
 
               <p className="tech-specs-parameters__description
@@ -284,7 +286,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                2688x1242
+                {device.resolution}
               </p>
 
               <p className="tech-specs-parameters__description
@@ -296,7 +298,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                Apple A12 Bionic
+                {device.processor}
               </p>
 
               <p className="tech-specs-parameters__description
@@ -308,7 +310,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                3 GB
+                {device.ram}
               </p>
 
               <p className="tech-specs-parameters__description
@@ -320,7 +322,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                64 GB
+                {device.capacityAvailable}
               </p>
 
               <p className="tech-specs-parameters__description
@@ -332,7 +334,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                12 Mp + 12 Mp + 12 Mp (Triple)
+                {device.camera}
               </p>
 
               <p className="tech-specs-parameters__description
@@ -344,7 +346,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                Optical, 2x
+                {device.zoom}
               </p>
 
               <p className="tech-specs-parameters__description
@@ -356,7 +358,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                GSM, LTE, UMTS
+                {device.cell}
               </p>
             </div>
           </section>
