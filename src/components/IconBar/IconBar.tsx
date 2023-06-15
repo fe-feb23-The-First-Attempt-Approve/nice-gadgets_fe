@@ -12,6 +12,7 @@ import { IconThemeDark } from '../Icons/IconThemeDark';
 import { IconWithCounter } from '../Icons/IconWithCounter';
 import { CountFavoritesContext } from '../../providers/CountFavorites';
 import { CountCartItemsContext } from '../../providers/CountCartItems';
+import { IconAuthorization } from '../Icons/IconAuthorization';
 
 export const IconBar = () => {
   const { closeSearch } = useSearchPanel();
@@ -61,6 +62,12 @@ export const IconBar = () => {
         >
           <IconWithCounter icon={<IconCart />} count={countCartItems} />
         </NavLink>
+      </li>
+
+      <li className="icon-bar__item">
+        <button type="button" className="icon-bar__link">
+          <IconAuthorization />
+        </button>
       </li>
     </ul>
   );
