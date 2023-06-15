@@ -33,7 +33,7 @@ export const BuyButton: FC<Props> = ({ gadget }) => {
       .filter((cartId: string) => cartId !== itemId);
 
     if (cartItemIds.length === updatedIds.length) {
-      cartItemIds.push(itemId);
+      cartItemIds.push({ itemId, quantity: 1 });
       setIsAdded(true);
     } else {
       cartItemIds = updatedIds;

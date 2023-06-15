@@ -12,4 +12,5 @@ export interface Gadget {
   'ram': string;
   'year': number;
   'image': string;
+  'quantity': number;
 }

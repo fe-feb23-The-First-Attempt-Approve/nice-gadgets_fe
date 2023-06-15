@@ -1,4 +1,6 @@
-import { FC, createContext, useState } from 'react';
+import {
+  FC, createContext, useState, useEffect,
+} from 'react';
 
 interface CountCartItemsContextProps {
   countCartItems: number;
@@ -16,6 +18,18 @@ const CountCartItemsProvider: FC = ({ children }) => {
   const updateCountCartItems = (newCount: number) => {
     setCountCartItems(newCount);
   };
+
+  useEffect(() => {
+    const storedCount = localStorage.getItem('countCartItems');
+
+    if (storedCount) {
+      setCountCartItems(parseInt(storedCount, 10));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('countCartItems', countCartItems.toString());
+  }, [countCartItems]);
 
   const contextValue: CountCartItemsContextProps = {
     countCartItems,
