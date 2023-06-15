@@ -42,7 +42,7 @@ export const getPhones = async (
 export const getOnePhone = async (phoneId: string): Promise<GadgetItem> => {
   const path = phoneId.trim();
 
-  return client.get<PhoneItem>(path);
+  return client.get<GadgetItem>(path);
 };
 
 export const getPhoneMinMaxPrices = async (): Promise<PriceRange> => {
