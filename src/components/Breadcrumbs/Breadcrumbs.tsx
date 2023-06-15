@@ -4,7 +4,7 @@ import { IconHome } from '../Icons/IconHome';
 import { IconArrow } from '../Icons/IconArrow';
 
 interface Props {
-  category: 'Phones' | 'Tablets' | 'Accessories' | 'Favorites';
+  category: 'Phones' | 'Tablets' | 'Accessories' | 'Favorites' | 'Cart page';
   currentPage?: string;
 }
 

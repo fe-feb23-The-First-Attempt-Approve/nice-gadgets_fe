@@ -8,6 +8,7 @@ import { AccessoriesPage } from './pages/AccessoriesPage';
 import { FavoritesPage } from './pages/FavoritesPage';
 import { CartPage } from './pages/CartPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import { AboutPage } from './pages/AboutPage';
 import { Footer } from './components/Footer';
 
 const App = () => (
@@ -22,14 +23,18 @@ const App = () => (
 
         <Route path="/phones">
           <Route index element={<PhonesPage />} />
+          <Route path=":deviceSlug" element={<AboutPage />} />
         </Route>
 
         <Route path="/tablets">
           <Route index element={<TabletsPage />} />
+          <Route path=":deviceSlug" element={<AboutPage />} />
+
         </Route>
 
         <Route path="/accessories">
           <Route index element={<AccessoriesPage />} />
+          <Route path=":deviceSlug" element={<AboutPage />} />
         </Route>
 
         <Route path="/favorites">
@@ -38,6 +43,10 @@ const App = () => (
 
         <Route path="/cart">
           <Route index element={<CartPage />} />
+        </Route>
+
+        <Route path="/one">
+          <Route index element={<AboutPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />

@@ -1,0 +1,408 @@
+$maginBottom: 56px;
+
+.card-page {
+  &__grid {
+    margin-top: 16px;
+    @include pageGrid;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 22px;
+    line-height: 140%;
+    color: $text-color-main;
+    margin-bottom: 32px;
+
+    @include onTablet {
+      margin-bottom: 40px;
+    }
+
+    &_grid {
+      grid-column: 1 / -1;
+    }
+  }
+
+  &__slider {
+    margin-bottom: 16px;
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      grid-column: 1 / 8;
+    }
+
+    @include onDesktop {
+      grid-column: 1 / 14;
+    }
+  }
+
+  &__slider-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__settings {
+    margin-bottom: $maginBottom;
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      margin-bottom: 64px;
+      grid-column: 8 / -1;
+    }
+
+    @include onDesktop {
+      margin-bottom: 109px;
+      grid-column: 14 / 21;
+    }
+  }
+
+  &__about {
+    margin-bottom: $maginBottom;
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      margin-bottom: 64px;
+    }
+
+    @include onDesktop {
+      margin-bottom: 80px;
+      grid-column: 1 / 13;
+    }
+  }
+
+  &__tech-specs {
+    margin-bottom: $maginBottom;
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      margin-bottom: 64px;
+    }
+
+    @include onDesktop {
+      margin-bottom: 80px;
+      grid-column: 14 / 24;
+    }
+  }
+
+  &__bottom-slider {
+    margin: 56px 0;
+    grid-column: 1 / -1;
+
+    @include onTablet {
+      margin: 64px 0;
+    }
+  }
+}
+
+// Swiper styles -- start
+
+.imgSwipe {
+  max-width: 287px;
+  height: 287px;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+
+  @media (min-width: 815px) {
+    max-width: 464px;
+    height: 464px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+#swiper-1 .swiper-pagination-bullets {
+  padding-top: 16px;
+  position: static;
+
+  @include onTablet {
+    text-align: left;
+  }
+}
+
+#swiper-1 .swiper-pagination {
+  @include onTablet {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 35px;
+
+    @include onTablet {
+      width: 80px;
+    }
+  }
+}
+
+#swiper-1 .swiper-pagination-bullet {
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  position: relative;
+  opacity: 1;
+  border-radius: 0;
+
+  @include onTablet {
+    margin: 8px 0;
+  }
+
+  @include onDesktop {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+#swiper-1 .swiper-pagination-bullet .bullet-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+// Swiper styles -- end
+
+.settings {
+  &__color-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  &__title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    color: $text-color-secondary;
+  }
+
+  &__colors {
+    border-bottom: 1px solid $separator-color;
+    display: flex;
+    gap: 9px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+  }
+
+  &__button-color {
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    justify-content: center;
+    position: relative;
+    width: 32px;
+    height: 32px;
+    transition: transform $transition-duration ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+
+  &__color {
+    border: 2px solid $bg-color-main;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    transition: transform $transition-duration ease;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    &_dynamic {
+      color: transparent;
+    }
+  }
+
+  &__capacities {
+    border-bottom: 1px solid $separator-color;
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+  }
+
+  &__button-capacity {
+    align-items: center;
+    border: 1px solid #4a4d58;
+    color: $text-color-main;
+    display: flex;
+    font-size: 13px;
+    line-height: 21px;
+    font-style: normal;
+    font-weight: 600;
+    justify-content: center;
+    padding: 7px 8px 4px;
+    min-width: 63px;
+    min-height: 32px;
+    transition: background-color 1s ease;
+
+    &:hover,
+    &_active {
+      color: $bg-color-main;
+      background-color: $text-color-main;
+    }
+  }
+
+  &__parameters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  &__price {
+    margin-right: 8px;
+    margin-bottom: 16px;
+    display: inline-block;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 32px;
+    line-height: 41px;
+    color: $text-color-main;
+
+    &_not-actual {
+      color: $text-color-secondary;
+      font-size: 22px;
+      line-height: 28px;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    margin-bottom: 32px;
+  }
+
+  &__button {
+    text-decoration: none;
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $accent-color;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    color: $text-color-accent-btn;
+    margin-right: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $accent-color-hov;
+    }
+  }
+
+  &__like {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      transition: background-color 0.3s ease;
+    }
+  }
+}
+
+.characteristic {
+  &__description {
+    margin-top: 8px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  &__description_key {
+    color: $text-color-secondary;
+  }
+
+  &__description_value {
+    text-align: right;
+    color: $text-color-main;
+  }
+}
+
+.about {
+  &__title {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 26px;
+    color: $text-color-main;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    position: relative;
+
+    &::after {
+      background-color: $separator-color;
+      content: "";
+      display: block;
+      height: 1px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  &__description {
+    margin-bottom: 32px;
+  }
+
+  &__subtitle {
+    margin-bottom: 16px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    color: $text-color-main;
+  }
+
+  &__text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 21px;
+    color: $text-color-secondary;
+  }
+}
+
+.tech-specs-parameters {
+  &__description {
+    margin-top: 8px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+  }
+
+  &__description_key {
+    color: $text-color-secondary;
+  }
+
+  &__description_value {
+    text-align: right;
+    color: $text-color-main;
+  }
+}

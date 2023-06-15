@@ -7,7 +7,7 @@ interface Props {
   phone: Phone,
 }
 
-export const ProductCard:React.FC<Props> = ({ phone }) => {
+export const ProductCard: React.FC<Props> = ({ phone }) => {
   const {
     name,
     fullPrice,
@@ -16,6 +16,8 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
     capacity,
     ram,
     image,
+    phoneId,
+    category,
   } = phone;
 
   return (
@@ -23,7 +25,7 @@ export const ProductCard:React.FC<Props> = ({ phone }) => {
       <div className="product-card__item">
         <Link
           className="product-card__link"
-          to="/"
+          to={`/${category}/${phoneId}`}
         >
           <div className="product-card__photo-container">
             <img
