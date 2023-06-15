@@ -5,12 +5,12 @@ import 'swiper/swiper-bundle.css';
 import { ProductCard } from '../ProductCard';
 import './slider.scss';
 import { ArrowButton } from '../ArrowButton';
-import { Phone } from '../../types/Phone';
 import { SliderButtons } from '../../types/SliderNavButtons';
+import { Gadget } from '../../types/Gadget';
 
 interface Props {
   title: string;
-  gadgets: Phone[],
+  gadgets: Gadget[],
   navButtons: SliderButtons,
 }
 

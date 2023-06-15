@@ -4,14 +4,15 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination';
 import { getPhones } from '../../api/phones';
-import { Phone } from '../../types/Phone';
+import { Gadget } from '../../types/Gadget';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { GadgetsDisplayControl } from '../../components/GadgetsDisplayControl';
 import { SortType } from '../../types/SortType';
 import { getSearchWith } from '../../utils/searchHelper';
 import { ProductList } from '../../components/ProductList';
+import { Loader } from '../../components/Loader';
 
-export const getMinMaxPrice = (items: Phone[]) => {
+export const getMinMaxPrice = (items: Gadget[]) => {
   const prices = items.map(item => item.price);
   const min = Math.min(...prices);
   const max = Math.max(...prices);
@@ -20,7 +21,7 @@ export const getMinMaxPrice = (items: Phone[]) => {
 };
 
 export const PhonesPage = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
+  const [phones, setPhones] = useState<Gadget[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredPhonesCount, setFilteredPhonesCount] = useState(0);
   const [phonesCount, setPhonesCount] = useState(0);
@@ -94,29 +95,35 @@ export const PhonesPage = () => {
   };
 
   return (
-    <div className="container gadgets-page">
-      <Breadcrumbs category="Phones" />
+    <>
+      {!phones.length
+        ? <Loader />
+        : (
+          <div className="container gadgets-page">
+            <Breadcrumbs category="Phones" />
 
-      <h1 className="gadgets-page__title">Mobile phones</h1>
+            <h1 className="gadgets-page__title">Mobile phones</h1>
 
-      <p className="gadgets-page__description">
-        {`${phonesCount} models`}
-      </p>
+            <p className="gadgets-page__description">
+              {`${phonesCount} models`}
+            </p>
 
-      <GadgetsDisplayControl
-        itemsPerPage={itemsPerPage}
-        sortType={sortType as SortType}
-        priceRange={priceRange}
-        onPriceChange={handlePriceChange}
-        onPageCountChange={handlePageCountChange}
-        onSortingChange={handleSortChange}
-      />
+            <GadgetsDisplayControl
+              itemsPerPage={itemsPerPage}
+              sortType={sortType as SortType}
+              priceRange={priceRange}
+              onPriceChange={handlePriceChange}
+              onPageCountChange={handlePageCountChange}
+              onSortingChange={handleSortChange}
+            />
 
-      <div className="pagination__items">
-        <ProductList gadgets={phones} />
-      </div>
+            <div className="pagination__items">
+              <ProductList gadgets={phones} />
+            </div>
 
-      <Pagination pageCount={pageCount} currentPage={currentPage} />
-    </div>
+            <Pagination pageCount={pageCount} currentPage={currentPage} />
+          </div>
+        )}
+    </>
   );
 };
