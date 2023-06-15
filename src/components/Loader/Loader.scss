@@ -17,7 +17,7 @@ $spacing: 1px;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 100%;
-  background-color: rgba($color: #000, $alpha: 0.3);
+  background-color: $bg-color-main;
 }
 
 .spinner {
