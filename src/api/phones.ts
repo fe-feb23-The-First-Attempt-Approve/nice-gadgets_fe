@@ -1,12 +1,12 @@
-import { Phone } from '../types/Phone';
-import { PhoneItem } from '../types/PhoneItem';
+import { Gadget } from '../types/Gadget';
+import { GadgetItem } from '../types/GadgetItem';
 import { SortType } from '../types/SortType';
 import { client } from '../utils/fetchClient';
 
 type RequestWithParamsResult = {
   allPhonesCount: number;
   filteredCount: number,
-  visiblePhones: Phone[];
+  visiblePhones: Gadget[];
 };
 
 export const getPhones = async (
@@ -44,8 +44,8 @@ export const getPhones = async (
   return client.get<RequestWithParamsResult>(path);
 };
 
-export const getOnePhone = async (phoneId: string): Promise<PhoneItem> => {
+export const getOnePhone = async (phoneId: string): Promise<GadgetItem> => {
   const path = phoneId.trim();
 
-  return client.get<PhoneItem>(path);
+  return client.get<GadgetItem>(path);
 };

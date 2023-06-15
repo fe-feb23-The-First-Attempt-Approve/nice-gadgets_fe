@@ -8,6 +8,7 @@ import { Gadget } from '../../types/Gadget';
 import { getSearchWith } from '../../utils/searchHelper';
 import { getTablets } from '../../api/tablets';
 import { Pagination } from '../../components/Pagination';
+import { Loader } from '../../components/Loader';
 
 export const TabletsPage = () => {
   const [tablets, setTablets] = useState<Gadget[]>([]);
@@ -84,29 +85,35 @@ export const TabletsPage = () => {
   };
 
   return (
-    <div className="container">
-      <Breadcrumbs category="Tablets" />
+    <>
+      {!tablets.length
+        ? <Loader />
+        : (
+          <div className="container">
+            <Breadcrumbs category="Tablets" />
 
-      <h1 className="gadgets-page__title">Tablets page</h1>
+            <h1 className="gadgets-page__title">Tablets page</h1>
 
-      <p className="gadgets-page__description">
-        {`${tabletsCount} models`}
-      </p>
+            <p className="gadgets-page__description">
+              {`${tabletsCount} models`}
+            </p>
 
-      <GadgetsDisplayControl
-        itemsPerPage={itemsPerPage}
-        sortType={sortType as SortType}
-        priceRange={priceRange}
-        onPriceChange={handlePriceChange}
-        onPageCountChange={handlePageCountChange}
-        onSortingChange={handleSortChange}
-      />
+            <GadgetsDisplayControl
+              itemsPerPage={itemsPerPage}
+              sortType={sortType as SortType}
+              priceRange={priceRange}
+              onPriceChange={handlePriceChange}
+              onPageCountChange={handlePageCountChange}
+              onSortingChange={handleSortChange}
+            />
 
-      <div className="pagination__items">
-        <ProductList gadgets={tablets} />
-      </div>
+            <div className="pagination__items">
+              <ProductList gadgets={tablets} />
+            </div>
 
-      <Pagination pageCount={pageCount} currentPage={currentPage} />
-    </div>
+            <Pagination pageCount={pageCount} currentPage={currentPage} />
+          </div>
+        )}
+    </>
   );
 };

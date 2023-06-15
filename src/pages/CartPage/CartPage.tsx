@@ -1,18 +1,18 @@
 import { useEffect, useState, useCallback } from 'react';
 import { CartCard } from '../../components/CartCard';
 import { getPhones } from '../../api/phones';
-import { Phone } from '../../types/Phone';
+import { Gadget } from '../../types/Gadget';
 
 export const CartPage = () => {
-  const [cartItems, setCartItems] = useState<Phone[]>([]);
-  const [phones, setPhones] = useState<Phone[]>([]);
+  const [cartItems, setCartItems] = useState<Gadget[]>([]);
+  const [gadgets, setGadgets] = useState<Gadget[]>([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
   const loadPhones = useCallback(async () => {
     try {
       const { visiblePhones: phonesFromServer } = await getPhones();
 
-      setPhones(phonesFromServer);
+      setGadgets(phonesFromServer);
     } catch {
       /* eslint-disable-next-line */
       console.log('Failed to load phones');
@@ -28,8 +28,8 @@ export const CartPage = () => {
 
     if (storedCartItemIds) {
       const cartItemIds: string[] = JSON.parse(storedCartItemIds);
-      const cartItemsData = phones
-        .filter((phone) => cartItemIds.includes(phone.itemId));
+      const cartItemsData = gadgets
+        .filter((gadget) => cartItemIds.includes(gadget.itemId));
 
       setCartItems(cartItemsData);
 
@@ -40,7 +40,7 @@ export const CartPage = () => {
 
       setTotalPrice(totalAmount);
     }
-  }, [phones]);
+  }, [gadgets]);
 
   return (
     <div className="container gadgets-page">
