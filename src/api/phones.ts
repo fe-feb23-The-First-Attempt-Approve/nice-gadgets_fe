@@ -1,22 +1,20 @@
 import { Gadget } from '../types/Gadget';
 import { PhoneItem } from '../types/PhoneItem';
-import { Phone } from '../types/Phone';
 import { SortType } from '../types/SortType';
 import { client } from '../utils/fetchClient';
 
 type RequestWithParamsResult = {
   allPhonesCount: number;
-  phones: Gadget[];
+  filteredCount: number,
+  visiblePhones: Gadget[];
 };
 
 export const getPhones = async (
   perPage?: number,
   page?: number,
-  productType?: Phone[],
-  sortBy?: SortType,
+  sort?: SortType,
   priceMin?: number,
   priceMax?: number,
-  query?: string,
 ): Promise<RequestWithParamsResult> => {
   const queryParams = [];
 
@@ -28,24 +26,16 @@ export const getPhones = async (
     queryParams.push(`page=${page}`);
   }
 
-  if (sortBy) {
-    queryParams.push(`sortBy=${sortBy}`);
+  if (sort) {
+    queryParams.push(`sort=${sort}`);
   }
 
   if (priceMin) {
-    queryParams.push(`priceMin=${priceMin}`);
+    queryParams.push(`minPrice=${priceMin}`);
   }
 
   if (priceMax) {
-    queryParams.push(`priceMax=${priceMax}`);
-  }
-
-  if (query) {
-    queryParams.push(`query=${query}`);
-  }
-
-  if (productType) {
-    productType.forEach((category) => queryParams.push(`productType=${category}`));
+    queryParams.push(`maxPrice=${priceMax}`);
   }
 
   const path = `/phones${queryParams.length ? `?${queryParams.join('&')}` : ''

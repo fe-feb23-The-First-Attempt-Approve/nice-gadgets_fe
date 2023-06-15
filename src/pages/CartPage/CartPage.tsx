@@ -10,7 +10,7 @@ export const CartPage = () => {
 
   const loadPhones = useCallback(async () => {
     try {
-      const { phones: phonesFromServer } = await getPhones();
+      const { visiblePhones: phonesFromServer } = await getPhones();
 
       setPhones(phonesFromServer);
     } catch {

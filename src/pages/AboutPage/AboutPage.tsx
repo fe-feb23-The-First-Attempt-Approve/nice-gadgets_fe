@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination } from 'swiper';
@@ -23,10 +23,11 @@ export const AboutPage: React.FC = () => {
 
   const [phones, setPhones] = useState<Phone[]>([]);
   const [device, setDevice] = useState<PhoneItem>(phoneTemplate);
+  const [newPath, setNewPath] = useState<string>('');
   const category = 'Cart page';
   const currentPage = device.name.split(' ').slice(1, 4).join(' ');
 
-  const loadPhone = useCallback(async () => {
+  const loadPhone = async () => {
     try {
       const deviceFromServer = await getOnePhone(pathname);
 
@@ -35,10 +36,10 @@ export const AboutPage: React.FC = () => {
       // eslint-disable-next-line no-console
       console.log('failed to load phone');
     }
-  }, [pathname]);
+  };
 
   const loadPhones = async () => {
-    const { phones: phonesFromServer } = await getPhones();
+    const { visiblePhones: phonesFromServer } = await getPhones();
 
     setPhones(phonesFromServer);
   };
@@ -47,6 +48,29 @@ export const AboutPage: React.FC = () => {
     return phoneId === device.id;
   });
 
+  const onCapacityHandler = (
+    capacity?: string,
+    color?: string,
+  ) => {
+    let newPathName = '';
+
+    if (capacity) {
+      const deviceCapacity = device.capacity.toLowerCase();
+      const avalibleCapacity = capacity.toLowerCase();
+
+      newPathName = pathname.replace(deviceCapacity, avalibleCapacity);
+    }
+
+    if (color) {
+      const deviceColor = device.color.toLowerCase();
+      const avalibleColor = color.toLowerCase();
+
+      newPathName = pathname.replace(deviceColor, avalibleColor);
+    }
+
+    setNewPath(() => newPathName);
+  };
+
   useEffect(() => {
     loadPhones();
   }, []);
@@ -54,7 +78,7 @@ export const AboutPage: React.FC = () => {
   useEffect(() => {
     loadPhone();
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, newPath]);
 
   return (
     <main className="main-page-card">
@@ -106,17 +130,18 @@ export const AboutPage: React.FC = () => {
             <div className="settings__color-container">
               <p className="settings__title">Available colors</p>
               <p className="settings__title">
-                {heartGaget && heartGaget.id}
+                {heartGaget && `ID: ${heartGaget.id}`}
               </p>
             </div>
 
             <div className="settings__colors">
               {device.colorsAvailable.map(color => (
                 <Link
-                  to="/"
+                  to={newPath}
                   className="settings__button-color"
                   key={color}
                   style={{ border: `1px solid ${color}` }}
+                  onClick={() => onCapacityHandler('', color)}
                 >
                   <span
                     title={color}
@@ -132,19 +157,22 @@ export const AboutPage: React.FC = () => {
             <p className="settings__title">Select capacity</p>
 
             <div className="settings__capacities">
-              {device.capacityAvailable.map(capacity => (
-                <Link
-                  to="/"
-                  key={capacity}
-                  className={cn(
-                    'settings__button-capacity',
-                    // eslint-disable-next-line
-                    { 'settings__button-capacity_active': device.capacity === capacity },
-                  )}
-                >
-                  {capacity}
-                </Link>
-              ))}
+              {device.capacityAvailable.map(capacity => {
+                return (
+                  <Link
+                    to={newPath}
+                    key={capacity}
+                    className={cn(
+                      'settings__button-capacity',
+                      // eslint-disable-next-line
+                      { 'settings__button-capacity_active': device.capacity === capacity },
+                    )}
+                    onClick={() => onCapacityHandler(capacity)}
+                  >
+                    {capacity}
+                  </Link>
+                );
+              })}
             </div>
 
             <div className="settings__price-container">
@@ -358,7 +386,7 @@ export const AboutPage: React.FC = () => {
               <p className="tech-specs-parameters__description
               tech-specs-parameters__description_value"
               >
-                {device.cell}
+                {device.cell.join(', ')}
               </p>
             </div>
           </section>
