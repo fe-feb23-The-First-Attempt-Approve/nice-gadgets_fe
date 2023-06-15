@@ -12,12 +12,14 @@ export const CartPage = () => {
       <h1 className="gadgets-page__title cart-title">Cart</h1>
 
       <div className="cart">
-        {cartItems.map((item) => (
-          <CartCard
-            key={item.itemId}
-            product={item}
-          />
-        ))}
+        <div className="cart__list">
+          {cartItems.map((item) => (
+            <CartCard
+              key={item.itemId}
+              item={item}
+            />
+          ))}
+        </div>
 
         <div className="cart__billing">
           <p className="cart__total-price">

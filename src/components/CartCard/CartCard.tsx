@@ -4,32 +4,32 @@ import { IconClose } from '../Icons/IconClose';
 import { Gadget } from '../../types/Gadget';
 
 interface CartCardProps {
-  product: Gadget;
+  item: Gadget;
 }
 
-export const CartCard = ({ product }: CartCardProps) => {
+export const CartCard = ({ item }: CartCardProps) => {
   const { addToCart, removeFromCart, cartItems } = useContext(CartItemsContext);
 
   const updateLocalStorage = (updatedProduct: Gadget) => {
-    const updatedCartItems = cartItems.map((item) => {
-      if (item.id === updatedProduct.id) {
+    const updatedCartItems = cartItems.map((product) => {
+      if (product.id === updatedProduct.id) {
         return updatedProduct;
       }
 
-      return item;
+      return product;
     });
 
     localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
   };
 
   const decrementQuantity = () => {
-    if (product.quantity > 1) {
+    if (item.quantity > 1) {
       const updatedProduct = {
-        ...product,
-        quantity: product.quantity - 1,
+        ...item,
+        quantity: item.quantity - 1,
       };
 
-      removeFromCart(product.id);
+      removeFromCart(item.id);
       addToCart(updatedProduct);
       updateLocalStorage(updatedProduct);
     }
@@ -37,17 +37,17 @@ export const CartCard = ({ product }: CartCardProps) => {
 
   const incrementQuantity = () => {
     const updatedProduct = {
-      ...product,
-      quantity: product.quantity + 1,
+      ...item,
+      quantity: item.quantity + 1,
     };
 
-    removeFromCart(product.id);
+    removeFromCart(item.id);
     addToCart(updatedProduct);
     updateLocalStorage(updatedProduct);
   };
 
   const handleDelete = () => {
-    removeFromCart(product.id);
+    removeFromCart(item.id);
   };
 
   return (
@@ -58,10 +58,10 @@ export const CartCard = ({ product }: CartCardProps) => {
 
       <div className="cart__item">
         <div className="cart__image-container">
-          <img src={product.image} alt="phone" className="cart__image" />
+          <img src={item.image} alt="phone" className="cart__image" />
         </div>
 
-        <p className="cart__product-name">{product.name}</p>
+        <p className="cart__product-name">{item.name}</p>
 
         <div className="cart__choose-amount">
           <button
@@ -72,7 +72,7 @@ export const CartCard = ({ product }: CartCardProps) => {
             -
           </button>
 
-          <p className="cart__amount-of-item">{product.quantity}</p>
+          <p className="cart__amount-of-item">{item.quantity}</p>
 
           <button
             type="button"
@@ -83,7 +83,7 @@ export const CartCard = ({ product }: CartCardProps) => {
           </button>
         </div>
 
-        <p className="cart__price">{product.price * product.quantity}</p>
+        <p className="cart__price">{item.price * item.quantity}</p>
       </div>
     </div>
   );
