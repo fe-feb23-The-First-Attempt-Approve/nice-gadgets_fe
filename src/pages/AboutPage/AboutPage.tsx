@@ -12,38 +12,49 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 // import { HeartButton } from '../../components/HeartButton';
 import { Slider } from '../../components/Slider/Slider';
 import { PhoneItem } from '../../types/PhoneItem';
-import { getOnePhone } from '../../api/phones';
-
-// import {
-//   i02,
-//   i01,
-//   i00,
-// } from '../../img/images';
-// const arr = [i01, i02, i00];
+import { getOnePhone, getPhones } from '../../api/phones';
+import { Phone } from '../../types/Phone';
+import { phoneTemplate } from '../../utils/phoheTemplate';
 
 SwiperCore.use([Pagination]);
 
 export const AboutPage: React.FC = () => {
   const { pathname } = useLocation();
 
-  const [device, setDevice] = useState<PhoneItem>();
+  const [phones, setPhones] = useState<Phone[]>([]);
+  const [device, setDevice] = useState<PhoneItem>(phoneTemplate);
   const category = 'Cart page';
   const currentPage = device?.name.split(' ').slice(1, 4).join(' ');
 
-  const loadPhones = useCallback(async () => {
+  const loadPhone = useCallback(async () => {
     try {
       const deviceFromServer = await getOnePhone(pathname);
 
       setDevice(deviceFromServer);
     } catch {
       // eslint-disable-next-line no-console
-      console.log('failed to load phones');
+      console.log('failed to load phone');
     }
-  }, []);
+  }, [pathname]);
+
+  const loadPhones = async () => {
+    const { phones: phonesFromServer } = await getPhones();
+
+    setPhones(phonesFromServer);
+  };
+
+  // const heartGaget = phones.find(({ phoneId }) => {
+  //   return phoneId === device.id;
+  // });
 
   useEffect(() => {
     loadPhones();
   }, []);
+
+  useEffect(() => {
+    loadPhone();
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <main className="main-page-card">
@@ -122,6 +133,7 @@ export const AboutPage: React.FC = () => {
               {device?.capacityAvailable.map(capacity => (
                 <Link
                   to="/"
+                  key={capacity}
                   className={cn(
                     'settings__button-capacity',
                     // eslint-disable-next-line
@@ -153,7 +165,7 @@ export const AboutPage: React.FC = () => {
                   Add to cart
                 </button>
                 <button type="button" className="settings__like">
-                  {/* <HeartButton /> */}
+                  {/* <HeartButton gadget={heartGaget} /> */}
                 </button>
               </div>
             </div>
@@ -351,7 +363,14 @@ export const AboutPage: React.FC = () => {
 
           <section className="card-page__bottom-slider bottom-slider">
             <div className="bottom-slider__container">
-              <Slider title="You may also like" />
+              <Slider
+                title="You may also like"
+                gadgets={phones}
+                navButtons={{
+                  prevEl: '.models-slider-button-prev',
+                  nextEl: '.models-slider-button-next',
+                }}
+              />
             </div>
           </section>
         </div>
