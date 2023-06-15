@@ -38,7 +38,7 @@ export const AboutPage: React.FC = () => {
   }, [pathname]);
 
   const loadPhones = async () => {
-    const { phones: phonesFromServer } = await getPhones();
+    const { visiblePhones: phonesFromServer } = await getPhones();
 
     setPhones(phonesFromServer);
   };
