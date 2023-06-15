@@ -1,3 +1,4 @@
+import { AutorizationForm } from '../../components/AutorizationForm';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 
 export const AccessoriesPage = () => {
@@ -5,6 +6,8 @@ export const AccessoriesPage = () => {
 
   return (
     <div className="container">
+      <AutorizationForm />
+
       <Breadcrumbs category={category} />
 
       <h1 className="gadgets-page__title">Accessories page</h1>

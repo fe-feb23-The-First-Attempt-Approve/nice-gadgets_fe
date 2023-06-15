@@ -24,9 +24,8 @@ export const AboutPage: React.FC = () => {
   const navigate = useNavigate();
   const [phones, setPhones] = useState<Gadget[]>([]);
   const [device, setDevice] = useState<GadgetItem>(phoneTemplate);
-
-  const category = 'Cart page';
-  const currentPage = device.name.split(' ').slice(1, 4).join(' ');
+  const category = 'Phones';
+  const currentPage = device?.name;
 
   const loadPhone = async () => {
     try {

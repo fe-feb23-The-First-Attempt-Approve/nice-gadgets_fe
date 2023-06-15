@@ -7,6 +7,7 @@ html {
 }
 
 body {
+  display: grid;
   min-height: 100vh;
   min-width: fit-content;
   background-color: $bg-color-main;
@@ -18,10 +19,14 @@ body {
   overflow: hidden;
 }
 
+#root {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
 button,
 a,
-body,
-div {
+body {
   transition-property: background-color, color;
   transition-duration: $transition-duration;
   transition-timing-function: ease;

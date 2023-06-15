@@ -137,11 +137,8 @@ $maginBottom: 56px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 35px;
-
-    @include onTablet {
-      width: 80px;
-    }
+    width: fit-content;
+    background-color: $bg-color-main;
   }
 }
 

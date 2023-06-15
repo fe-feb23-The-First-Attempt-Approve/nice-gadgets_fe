@@ -4,6 +4,7 @@ import { ThemeProvider } from './ThemeContext';
 import { BurgerContextProvider } from './BurgerContext';
 import { CountFavoritesProvider } from './CountFavorites';
 import { CountCartItemsProvider } from './CountCartItems';
+import { CartItemsProvider } from './CartItemsContext';
 
 const Provider: FC = ({ children }) => {
   return (
@@ -11,9 +12,11 @@ const Provider: FC = ({ children }) => {
       <BurgerContextProvider>
         <SearchContextProvider>
           <CountFavoritesProvider>
-            <CountCartItemsProvider>
-              {children}
-            </CountCartItemsProvider>
+            <CartItemsProvider>
+              <CountCartItemsProvider>
+                {children}
+              </CountCartItemsProvider>
+            </CartItemsProvider>
           </CountFavoritesProvider>
         </SearchContextProvider>
       </BurgerContextProvider>
