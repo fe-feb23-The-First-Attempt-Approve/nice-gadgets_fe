@@ -22,6 +22,7 @@ export const getMinMaxPrice = (items: Phone[]) => {
 export const PhonesPage = () => {
   const [phones, setPhones] = useState<Phone[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [filteredPhonesCount, setFilteredPhonesCount] = useState(0);
   const [phonesCount, setPhonesCount] = useState(0);
 
   const currentPage = Number(searchParams.get('page') || 1);
@@ -32,7 +33,7 @@ export const PhonesPage = () => {
     Number(searchParams.get('maxPrice')) || 5000,
   ];
 
-  const pageCount = Math.ceil(phonesCount / itemsPerPage);
+  const pageCount = Math.ceil(filteredPhonesCount / itemsPerPage);
 
   const loadPhones = async () => {
     try {
@@ -40,7 +41,8 @@ export const PhonesPage = () => {
 
       const {
         allPhonesCount,
-        phones: phonesFromServer,
+        filteredCount,
+        visiblePhones: phonesFromServer,
       } = await getPhones(
         itemsPerPage,
         currentPage,
@@ -49,6 +51,7 @@ export const PhonesPage = () => {
         max,
       );
 
+      setFilteredPhonesCount(filteredCount);
       setPhonesCount(allPhonesCount);
       setPhones(phonesFromServer);
     } catch {
@@ -97,7 +100,7 @@ export const PhonesPage = () => {
       <h1 className="gadgets-page__title">Mobile phones</h1>
 
       <p className="gadgets-page__description">
-        {`${phones.length} models`}
+        {`${phonesCount} models`}
       </p>
 
       <GadgetsDisplayControl

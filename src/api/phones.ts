@@ -5,7 +5,8 @@ import { client } from '../utils/fetchClient';
 
 type RequestWithParamsResult = {
   allPhonesCount: number;
-  phones: Gadget[];
+  filteredCount: number,
+  visiblePhones: Gadget[];
 };
 
 export const getPhones = async (
