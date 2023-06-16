@@ -1,4 +1,5 @@
 import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartCard } from '../../components/CartCard';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import PaymentSuccessModal from '../../components/Modals/PaymentSuccessModal';
@@ -9,6 +10,7 @@ export const CartPage = () => {
   const { cartItems, updateCartItems } = useContext(CartItemContext);
   const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
   const [redirectToHome, setRedirectToHome] = useState(false);
+  const nav = useNavigate();
 
   const { productsAmount } = useProducts();
 
@@ -29,7 +31,7 @@ export const CartPage = () => {
   };
 
   if (redirectToHome) {
-    window.location.href = '/';
+    nav('/');
   }
 
   return (
