@@ -16,6 +16,7 @@
   --text-color-main: #f1f2f9;
   --text-color-secondary: #75767f;
   --text-color-accent-btn: #f1f2f9;
+  --text-selection: rgba(75, 0, 130, 0.5);
 }
 
 [data-theme="light"] {
@@ -35,4 +36,5 @@
   --text-color-main: #0f0f11;
   --text-color-secondary: #89939a;
   --text-color-accent-btn: #f1f2f9;
+  --text-selection: rgba(249, 136, 55, 0.4);
 }

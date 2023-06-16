@@ -1,45 +1,86 @@
-import { FC, createContext, useState } from 'react';
+import {
+  FC, createContext, useState, useContext, useEffect,
+} from 'react';
+import { Gadget } from '../types/Gadget';
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
+interface CountCartItemsContextProps {
+  countCartItems: number;
+  updateCountCartItems: (newCount: number) => void;
 }
 
-interface CartItemsContextProps {
-  cartItems: Product[];
-  addToCart: (product: Product) => void;
-  removeFromCart: (productId: number) => void;
-}
-
-const CartItemsContext = createContext<CartItemsContextProps>({
-  cartItems: [],
-  addToCart: () => {},
-  removeFromCart: () => {},
+const CountCartItemsContext = createContext<CountCartItemsContextProps>({
+  countCartItems: 0,
+  updateCountCartItems: () => {},
 });
 
-const CartItemsProvider: FC = ({ children }) => {
-  const [cartItems, setCartItems] = useState<Product[]>([]);
+const CountCartItemsProvider: FC = ({ children }) => {
+  const [countCartItems, setCountCartItems] = useState(0);
 
-  const addToCart = (product: Product) => {
-    setCartItems([...cartItems, product]);
-  };
-
-  const removeFromCart = (productId: number) => {
-    setCartItems(cartItems.filter((item) => item.id !== productId));
-  };
-
-  const contextValue: CartItemsContextProps = {
-    cartItems,
-    addToCart,
-    removeFromCart,
+  const updateCountCartItems = (newCount: number) => {
+    setCountCartItems(newCount);
   };
 
   return (
-    <CartItemsContext.Provider value={contextValue}>
+    <CountCartItemsContext.Provider value={{
+      countCartItems, updateCountCartItems,
+    }}
+    >
       {children}
-    </CartItemsContext.Provider>
+    </CountCartItemsContext.Provider>
   );
 };
 
-export { CartItemsProvider, CartItemsContext };
+interface CartItemContextValue {
+  cartItems: Gadget[];
+  cartItemCount: number;
+  updateCartItems: (items: Gadget[]) => void;
+}
+
+const CartItemContext = createContext<CartItemContextValue>({
+  cartItems: [],
+  cartItemCount: 0,
+  updateCartItems: () => {},
+});
+
+const CartItemProvider: FC = ({ children }) => {
+  const [cartItems, setCartItems] = useState<Gadget[]>([]);
+
+  useEffect(() => {
+    const storedCartItems = localStorage.getItem('cartItems');
+
+    if (storedCartItems) {
+      const parsedCartItems: Gadget[] = JSON.parse(storedCartItems);
+
+      setCartItems(parsedCartItems);
+    }
+  }, []);
+
+  const updateCartItems = (items: Gadget[]) => {
+    setCartItems(items);
+    localStorage.setItem('cartItems', JSON.stringify(items));
+  };
+
+  const cartItemCount = cartItems.length;
+
+  const { updateCountCartItems } = useContext(CountCartItemsContext);
+
+  useEffect(() => {
+    updateCountCartItems(cartItemCount);
+  }, [cartItemCount]);
+
+  return (
+    <CartItemContext.Provider value={{
+      cartItems, cartItemCount, updateCartItems,
+    }}
+    >
+      {children}
+    </CartItemContext.Provider>
+  );
+};
+
+export {
+  CountCartItemsProvider,
+  CountCartItemsContext,
+  CartItemProvider,
+  CartItemContext,
+};
