@@ -21,5 +21,6 @@ export interface GadgetItem {
   'ram': string;
   'camera': string;
   'zoom': string;
-  'cell': string[]
+  'cell': string[];
+  'quantity'?: number;
 }

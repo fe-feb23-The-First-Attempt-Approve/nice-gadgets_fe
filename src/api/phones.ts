@@ -1,13 +1,8 @@
-import { Gadget } from '../types/Gadget';
 import { GadgetItem } from '../types/GadgetItem';
+import { RequestWithParamsResult } from '../types/RequestWithParams';
 import { SortType } from '../types/SortType';
+import { PriceRange } from '../types/priceRange';
 import { client } from '../utils/fetchClient';
-
-type RequestWithParamsResult = {
-  allPhonesCount: number;
-  filteredCount: number,
-  visiblePhones: Gadget[];
-};
 
 export const getPhones = async (
   perPage?: number,
@@ -48,4 +43,8 @@ export const getOnePhone = async (phoneId: string): Promise<GadgetItem> => {
   const path = phoneId.trim();
 
   return client.get<GadgetItem>(path);
+};
+
+export const getPhoneMinMaxPrices = async (): Promise<PriceRange> => {
+  return client.get<PriceRange>('/phones/prices');
 };
