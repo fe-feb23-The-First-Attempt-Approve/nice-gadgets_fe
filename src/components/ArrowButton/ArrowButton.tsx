@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { IconArrow } from '../Icons/IconArrow';
+import { IconArrow } from '../Icons/_IconKit';
 
 interface Props {
   arrowDirection: 'top' | 'down' | 'right' | 'left';

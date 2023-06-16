@@ -1,0 +1,27 @@
+.modal-notification {
+  position: absolute;
+  inset: 0;
+  height: 100vh;
+  // background-color: rgba(0, 0, 0, 0.7);
+  background: url(https://i.pinimg.com/originals/2e/73/92/2e7392bd69172cb64fb648d6a5abb830.gif);
+
+  &__payment-success {
+    position: relative;
+    margin: 8% 24%;
+    padding: 8%;
+    background-color: $bg-color-main;
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: 30px;
+  }
+
+  &__thanks {
+    margin-bottom: 10px;
+  }
+
+  &__additional {
+    color: $text-color-secondary;
+  }
+}
