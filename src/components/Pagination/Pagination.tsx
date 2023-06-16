@@ -30,10 +30,13 @@ export const Pagination: React.FC<Props> = ({
             className="page-link"
             to={{
               search: getSearchWith(
-                searchParams, { page: prevPage.toString() },
+                searchParams, {
+                  page: isFirstPage
+                    ? currentPage.toString()
+                    : prevPage.toString(),
+                },
               ),
             }}
-            aria-disabled={isFirstPage}
           >
             <ArrowButton arrowDirection="left" />
           </Link>
@@ -54,7 +57,14 @@ export const Pagination: React.FC<Props> = ({
                 ),
               }}
             >
-              {pageNum}
+              <div className={cn(
+                'page-button',
+                'arrow-container',
+                { 'page-button--active': currentPage === pageNum },
+              )}
+              >
+                {pageNum}
+              </div>
             </Link>
           </li>
         ))}
@@ -66,10 +76,13 @@ export const Pagination: React.FC<Props> = ({
           <Link
             to={{
               search: getSearchWith(
-                searchParams, { page: nextPage.toString() },
+                searchParams, {
+                  page: isLastPage
+                    ? currentPage.toString()
+                    : nextPage.toString(),
+                },
               ),
             }}
-            aria-disabled={isLastPage}
           >
             <ArrowButton arrowDirection="right" />
           </Link>
