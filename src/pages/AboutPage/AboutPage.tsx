@@ -39,7 +39,7 @@ export const AboutPage: React.FC = () => {
   };
 
   const loadPhones = async () => {
-    const { visiblePhones: phonesFromServer } = await getPhones();
+    const { visibleProducts: phonesFromServer } = await getPhones();
 
     setPhones(phonesFromServer);
   };
@@ -198,7 +198,7 @@ export const AboutPage: React.FC = () => {
                       Add to cart
                     </button>
                     <button type="button" className="settings__like">
-                      {heartGaget && <HeartButton gadget={heartGaget} />}
+                      {heartGaget && <HeartButton itemId={phoneTemplate.id} />}
                     </button>
                   </div>
                 </div>

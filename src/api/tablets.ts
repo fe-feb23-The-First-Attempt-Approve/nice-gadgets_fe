@@ -1,13 +1,7 @@
-import { Gadget } from '../types/Gadget';
 import { GadgetItem } from '../types/GadgetItem';
+import { RequestWithParamsResult } from '../types/RequestWithParams';
 import { SortType } from '../types/SortType';
 import { client } from '../utils/fetchClient';
-
-type RequestWithParamsResult = {
-  allTabletsCount: number;
-  filteredCount: number,
-  visibleTablets: Gadget[];
-};
 
 export const getTablets = async (
   perPage?: number,

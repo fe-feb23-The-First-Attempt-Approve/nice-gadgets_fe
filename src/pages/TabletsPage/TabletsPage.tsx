@@ -31,9 +31,9 @@ export const TabletsPage = () => {
       const [min, max] = priceRange;
 
       const {
-        allTabletsCount,
+        allProductsCount,
         filteredCount,
-        visibleTablets: tabletsFromServer,
+        visibleProducts: tabletsFromServer,
       } = await getTablets(
         itemsPerPage,
         currentPage,
@@ -43,7 +43,7 @@ export const TabletsPage = () => {
       );
 
       setFilteredTabletsCount(filteredCount);
-      setTabletsCount(allTabletsCount);
+      setTabletsCount(allProductsCount);
       setTablets(tabletsFromServer);
     } catch {
       // eslint-disable-next-line no-console
