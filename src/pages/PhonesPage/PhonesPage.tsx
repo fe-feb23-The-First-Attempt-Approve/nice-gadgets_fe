@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 // import { home, arrow } from '../../img/images';
 import { useSearchParams } from 'react-router-dom';
+import { SelectChangeEvent } from '@mui/material';
 import { Pagination } from '../../components/Pagination';
 import { getPhones } from '../../api/phones';
 import { Gadget } from '../../types/Gadget';
@@ -63,20 +64,20 @@ export const PhonesPage = () => {
   };
 
   const handlePageCountChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: SelectChangeEvent<number>,
   ) => {
     const { value } = event.target;
 
     setSearchParams(getSearchWith(searchParams, {
       page: null,
-      perPage: value,
+      perPage: value.toString(),
     }));
   };
 
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSortChange = (event: SelectChangeEvent<SortType>) => {
     const { value } = event.target;
 
-    setSearchParams(getSearchWith(searchParams, { sort: value }));
+    setSearchParams(getSearchWith(searchParams, { sort: value, page: null }));
   };
 
   const handlePriceChange = (
