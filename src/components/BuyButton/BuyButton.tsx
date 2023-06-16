@@ -59,6 +59,7 @@ export const BuyButton: FC<Props> = ({ gadget }) => {
       }
     } else {
       setIsAdded(false);
+      updateCountCartItems(0);
     }
   }, [itemId]);
 

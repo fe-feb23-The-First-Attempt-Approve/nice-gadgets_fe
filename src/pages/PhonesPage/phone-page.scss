@@ -1,0 +1,14 @@
+.catalog__filter-sort-by {
+  background-color: $bg-color-controllers;
+  margin-top: 4px;
+  height: 40px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 0 8px;
+  color: $bg-color-controllers;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}

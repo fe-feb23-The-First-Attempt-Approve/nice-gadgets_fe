@@ -29,16 +29,18 @@ export const PhonesPage = () => {
   const currentPage = Number(searchParams.get('page') || 1);
   const sortType = searchParams.get('sort') || SortType.New;
   const itemsPerPage = Number(searchParams.get('perPage') || 8);
-  const priceRange = [
-    Number(searchParams.get('minPrice')) || 0,
-    Number(searchParams.get('maxPrice')) || 5000,
+  const priceRangeSP = [
+    Number(searchParams.get('minPrice')),
+    Number(searchParams.get('maxPrice')),
   ];
+
+  const [priceRange, setPriceRange] = useState<number | number[]>([]);
 
   const pageCount = Math.ceil(filteredPhonesCount / itemsPerPage);
 
   const loadPhones = async () => {
     try {
-      const [min, max] = priceRange;
+      const [min, max] = priceRangeSP;
 
       const {
         allPhonesCount,
@@ -56,14 +58,9 @@ export const PhonesPage = () => {
       setPhonesCount(allPhonesCount);
       setPhones(phonesFromServer);
     } catch {
-      // eslint-disable-next-line no-console
-      console.log('failed to load phones');
+      throw new Error('failed to load phones');
     }
   };
-
-  useEffect(() => {
-    loadPhones();
-  }, [searchParams]);
 
   const handlePageCountChange = (
     event: React.ChangeEvent<HTMLSelectElement>,
@@ -86,13 +83,30 @@ export const PhonesPage = () => {
     _event: Event,
     value: number | number[],
   ) => {
-    const [min, max] = Array.isArray(value) ? value.map(String) : [null, null];
-
-    setSearchParams(getSearchWith(searchParams, {
-      minPrice: min,
-      maxPrice: max,
-    }));
+    setPriceRange(value);
   };
+
+  useEffect(() => {
+    loadPhones();
+  }, [searchParams]);
+
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      const [min, max] = Array.isArray(priceRange) ? priceRange : [null, null];
+
+      if ((min !== priceRangeSP[0] || max !== priceRangeSP[1])
+      && (min && max)) {
+        setSearchParams(getSearchWith(searchParams, {
+          minPrice: min.toString(),
+          maxPrice: max.toString(),
+        }));
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
+  }, [priceRange]);
 
   return (
     <>
