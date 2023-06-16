@@ -43,6 +43,23 @@ export const AboutPage: React.FC = () => {
     return itemId === device.id;
   });
 
+  const getCorectedColor = (color: string): string => {
+    switch (color) {
+      case 'rosegold':
+        return 'orangered';
+      case 'spacegray':
+        return 'lightslategray';
+      case 'midnightgreen':
+        return 'darkseagreen';
+      case 'gold':
+        return 'peachpuff';
+      case 'green':
+        return 'mediumaquamarine';
+      default:
+        return color;
+    }
+  };
+
   const onCapacityHandler = (
     capacity?: string,
     color?: string,
@@ -72,7 +89,11 @@ export const AboutPage: React.FC = () => {
 
   useEffect(() => {
     loadPhone();
-    window.scrollTo(0, 0);
+    window.scrollTo({
+      top: 100,
+      left: 0,
+      behavior: 'smooth',
+    });
   }, [pathname]);
 
   return (
@@ -98,23 +119,27 @@ export const AboutPage: React.FC = () => {
                 </div>
 
                 <div className="settings__colors">
-                  {device.colorsAvailable.map(color => (
-                    <button
-                      type="button"
-                      className="settings__button-color"
-                      key={color}
-                      style={{ border: `1px solid ${color}` }}
-                      onClick={() => onCapacityHandler('', color)}
-                    >
-                      <span
-                        title={color}
-                        className="settings__color settings__color_dynamic"
-                        style={{ backgroundColor: color }}
+                  {device.colorsAvailable.map(color => {
+                    const correctedColor = getCorectedColor(color);
+
+                    return (
+                      <button
+                        type="button"
+                        className="settings__button-color"
+                        key={color}
+                        style={{ border: `1px solid ${correctedColor}` }}
+                        onClick={() => onCapacityHandler('', color)}
                       >
-                        { }
-                      </span>
-                    </button>
-                  ))}
+                        <span
+                          title={color}
+                          className="settings__color settings__color_dynamic"
+                          style={{ backgroundColor: correctedColor }}
+                        >
+                          { }
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
 
                 <p className="settings__title">Select capacity</p>
