@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../providers/ThemeContext';
 
 interface Props {
@@ -8,13 +9,14 @@ interface Props {
 }
 
 const NotificationMessage = ({ message, redirection }: Props) => {
+  const nav = useNavigate();
   const { theme } = useTheme();
   const themeForNotification = theme === 'dark' || theme === 'light'
     ? theme
     : 'dark';
 
   const handleClick = () => {
-    window.location.href = `#/${redirection}`;
+    nav(`/${redirection}`);
     window.scrollTo(0, 0);
   };
 
