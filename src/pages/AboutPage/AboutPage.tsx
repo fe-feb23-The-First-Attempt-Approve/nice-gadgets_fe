@@ -1,12 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Pagination } from 'swiper';
-
-import 'swiper/swiper.min.css';
-import 'swiper/modules/pagination/pagination.min.css';
-import 'swiper/modules/navigation/navigation.min.css';
 
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { HeartButton } from '../../components/HeartButton';
@@ -16,8 +10,9 @@ import { getOnePhone, getPhones } from '../../api/phones';
 import { phoneTemplate } from '../../utils/phoneTemplate';
 import { Gadget } from '../../types/Gadget';
 import { Loader } from '../../components/Loader';
-
-SwiperCore.use([Pagination]);
+import { AboutSlider } from '../../components/AboutSlider';
+import { DeviceDescription } from '../../components/DeviceDescription';
+import { DeviceCharacteristic } from '../../components/DeviceCharacteristic';
 
 export const AboutPage: React.FC = () => {
   const { pathname } = useLocation();
@@ -25,7 +20,7 @@ export const AboutPage: React.FC = () => {
   const [phones, setPhones] = useState<Gadget[]>([]);
   const [device, setDevice] = useState<GadgetItem>(phoneTemplate);
   const category = 'Phones';
-  const currentPage = device?.name;
+  const currentPage = device.name;
 
   const loadPhone = async () => {
     try {
@@ -87,47 +82,12 @@ export const AboutPage: React.FC = () => {
         : (
           <div className="container">
             <Breadcrumbs category={category} currentPage={currentPage} />
-
             <div className="card-page__grid">
               <h1 className="card-page__title card-page__title_grid">
                 {device.name}
               </h1>
 
-              <section className="card-page__slider">
-                <div className="card-page__slider-container">
-                  <Swiper
-                    direction="horizontal"
-                    id="swiper-1"
-                    slidesPerView={1}
-                    spaceBetween={30}
-                    loop
-                    pagination={{
-                      clickable: true,
-                      renderBullet: (index, className) => {
-                        return `<div class="${className}">
-                          <img class="bullet-image" src=${device.images[index]} alt="icon" />
-                      </div>`;
-                      },
-                    }}
-                    modules={[Pagination]}
-                    className="mySwiper"
-                  >
-                    {device.images.map(image => {
-                      return (
-                        <SwiperSlide key={image}>
-                          <div className="imgSwipe">
-                            <img
-                              src={image}
-                              alt="sfasdf"
-                              className="imgSwipe__image"
-                            />
-                          </div>
-                        </SwiperSlide>
-                      );
-                    })}
-                  </Swiper>
-                </div>
-              </section>
+              <AboutSlider device={device} />
 
               <section className="card-page__settings settings">
                 <div className="settings__color-container">
@@ -181,7 +141,11 @@ export const AboutPage: React.FC = () => {
                 <div className="settings__price-container">
                   <p className="settings__price">
                     &#x24;
-                    {device.priceRegular || device.priceDiscount}
+                    {
+                      device.priceRegular === device.priceDiscount
+                        ? device.priceRegular
+                        : device.priceDiscount
+                    }
                   </p>
 
                   {device.priceRegular && (
@@ -254,145 +218,9 @@ export const AboutPage: React.FC = () => {
                 </div>
               </section>
 
-              <section className="card-page__about about">
-                <h2 className="about__title">
-                  About
-                </h2>
+              <DeviceDescription device={device} />
 
-                <div className="about__description">
-                  <h3 className="about__subtitle">
-                    {device.description[0].title}
-                  </h3>
-                  <p className="about__text">
-                    {device.description[0].text[0]}
-                  </p>
-                  <p className="about__text">
-                    {device.description[0].text[1]}
-                  </p>
-                </div>
-
-                <div className="about__description">
-                  <h3 className="about__subtitle">
-                    {device.description[1].title}
-                  </h3>
-                  <p className="about__text">
-                    {device.description[1].text[0]}
-                  </p>
-                </div>
-
-                <div className="about__description">
-                  <h3 className="about__subtitle">
-                    {device.description[2].title}
-                  </h3>
-                  <p className="about__text">
-                    {device.description[2].text[0]}
-                  </p>
-                </div>
-              </section>
-
-              <section className="card-page__tech-specs tech-specs">
-                <h2 className="about__title">
-                  Tech specs
-                </h2>
-
-                <div className="settings__parameters tech-specs-parameters">
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    Screen
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.screen}
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    Resolution
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.resolution}
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    Processor
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.processor}
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    RAM
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.ram}
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    Built in memory
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.capacityAvailable}
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    Camera
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.camera}
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    Zoom
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.zoom}
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_key"
-                  >
-                    Cell
-                  </p>
-
-                  <p className="tech-specs-parameters__description
-                tech-specs-parameters__description_value"
-                  >
-                    {device.cell.join(', ')}
-                  </p>
-                </div>
-              </section>
+              <DeviceCharacteristic device={device} />
 
               <section className="card-page__bottom-slider bottom-slider">
                 <div className="bottom-slider__container">
