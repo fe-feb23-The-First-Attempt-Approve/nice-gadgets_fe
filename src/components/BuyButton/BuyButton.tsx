@@ -13,36 +13,45 @@ export const BuyButton: FC<Props> = ({ gadget }) => {
   const [isAdded, setIsAdded] = useState(false);
   const { updateCountCartItems } = useContext(CountCartItemsContext);
 
+  const handleAddToCart = () => {
+    const storedCartItems = localStorage.getItem('cartItems');
+    const cartItems = storedCartItems ? JSON.parse(storedCartItems) : [];
+
+    const existingItemIndex = cartItems
+      .findIndex((item: Gadget) => item.itemId === gadget.itemId);
+
+    if (existingItemIndex !== -1) {
+      cartItems.splice(existingItemIndex, 1);
+      setIsAdded(false);
+    } else {
+      cartItems.push({ ...gadget, quantity: 1 });
+      setIsAdded(true);
+    }
+
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  };
+
   useEffect(() => {
-    const storedCartItemIds = localStorage.getItem('cartItemIds');
+    const storedCartItems = localStorage.getItem('cartItems');
 
-    if (storedCartItemIds) {
-      const cartItemIds = JSON.parse(storedCartItemIds);
+    if (storedCartItems) {
+      const cartItems = JSON.parse(storedCartItems);
 
-      setIsAdded(cartItemIds.includes(gadget.itemId));
-      updateCountCartItems(cartItemIds.length);
+      const existingItemIndex = cartItems
+        .findIndex((item: Gadget) => item.itemId === gadget.itemId);
+
+      if (existingItemIndex !== -1) {
+        setIsAdded(true);
+      } else {
+        setIsAdded(false);
+      }
+
+      updateCountCartItems(cartItems.length);
+    } else {
+      setIsAdded(false);
+      updateCountCartItems(0);
     }
   }, [gadget.itemId, updateCountCartItems]);
-
-  const handleAddToCart = () => {
-    const storedCartItemIds = localStorage.getItem('cartItemIds');
-    let cartItemIds = storedCartItemIds ? JSON.parse(storedCartItemIds) : [];
-
-    const { itemId } = gadget;
-    const updatedIds = cartItemIds
-      .filter((cartId: string) => cartId !== itemId);
-
-    if (cartItemIds.length === updatedIds.length) {
-      cartItemIds.push(itemId);
-      setIsAdded(true);
-    } else {
-      cartItemIds = updatedIds;
-      setIsAdded(false);
-    }
-
-    updateCountCartItems(cartItemIds.length);
-    localStorage.setItem('cartItemIds', JSON.stringify(cartItemIds));
-  };
 
   const buttonClasses = cn('buy-button', {
     'buy-button--added': isAdded,
