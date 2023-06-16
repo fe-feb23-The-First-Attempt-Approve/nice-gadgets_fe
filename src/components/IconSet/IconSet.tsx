@@ -1,24 +1,22 @@
 import { NavLink } from 'react-router-dom';
-import cn from 'classnames';
 import { useContext } from 'react';
+import cn from 'classnames';
 import { useTheme } from '../../providers/ThemeContext';
 import { useSearchPanel } from '../../providers/SearchContext';
 import { useBurger } from '../../providers/BurgerContext';
+import { CartItemContext } from '../../providers/CartItemsContext';
 import { CountFavoritesContext } from '../../providers/CountFavorites';
-import { CountCartItemsContext } from '../../providers/CountCartItems';
-import { IconCart } from '../Icons/IconCart';
-import { IconLikeEmpty } from '../Icons/IconLikeEmpty';
-import { IconThemeDark } from '../Icons/IconThemeDark';
-import { IconThemeLight } from '../Icons/IconThemeLight';
-import { IconTranslate } from '../Icons/IconTranslate';
-import { IconWithCounter } from '../Icons/IconWithCounter';
+import {
+  IconLikeEmpty, IconThemeDark, IconThemeLight,
+  IconTranslate, IconCart, IconWithCounter,
+} from '../Icons/_IconKit';
 
 export const IconSet = () => {
   const { theme, toggleTheme } = useTheme();
   const { closeSearch } = useSearchPanel();
   const { setIsOpenBurger } = useBurger();
   const { countFavorites } = useContext(CountFavoritesContext);
-  const { countCartItems } = useContext(CountCartItemsContext);
+  const { cartItemCount } = useContext(CartItemContext);
 
   const handleClick = () => {
     closeSearch();
@@ -45,7 +43,7 @@ export const IconSet = () => {
             { 'icon-bar__link--active': isActive })}
           onClick={handleClick}
         >
-          <IconWithCounter icon={<IconCart />} count={countCartItems} />
+          <IconWithCounter icon={<IconCart />} count={cartItemCount} />
         </NavLink>
       </li>
 

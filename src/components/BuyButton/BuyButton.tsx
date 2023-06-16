@@ -2,23 +2,30 @@ import {
   FC, useEffect, useState, useContext,
 } from 'react';
 import cn from 'classnames';
+import { CartItemContext } from '../../providers/CartItemsContext';
 import { Gadget } from '../../types/Gadget';
-import { CountCartItemsContext } from '../../providers/CountCartItems';
+import NotificationMessage from '../Notification/NotificationSuccess';
 
 interface Props {
   gadget: Gadget;
 }
 
 export const BuyButton: FC<Props> = ({ gadget }) => {
+  const { itemId } = gadget;
   const [isAdded, setIsAdded] = useState(false);
-  const { updateCountCartItems } = useContext(CountCartItemsContext);
+  const { updateCartItems } = useContext(CartItemContext);
+
+  const notifyCart = NotificationMessage({
+    message: `🛍️ ${gadget.name} has been added to cart`,
+    redirection: 'cart',
+  });
 
   const handleAddToCart = () => {
     const storedCartItems = localStorage.getItem('cartItems');
     const cartItems = storedCartItems ? JSON.parse(storedCartItems) : [];
 
     const existingItemIndex = cartItems
-      .findIndex((item: Gadget) => item.itemId === gadget.itemId);
+      .findIndex((item: Gadget) => item.itemId === itemId);
 
     if (existingItemIndex !== -1) {
       cartItems.splice(existingItemIndex, 1);
@@ -28,30 +35,32 @@ export const BuyButton: FC<Props> = ({ gadget }) => {
       setIsAdded(true);
     }
 
+    if (!isAdded) {
+      notifyCart();
+    }
+
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    updateCartItems(cartItems);
   };
 
   useEffect(() => {
     const storedCartItems = localStorage.getItem('cartItems');
 
     if (storedCartItems) {
-      const cartItems = JSON.parse(storedCartItems);
+      const cartItemsNew = JSON.parse(storedCartItems);
 
-      const existingItemIndex = cartItems
-        .findIndex((item: Gadget) => item.itemId === gadget.itemId);
+      const existingItemIndex = cartItemsNew
+        .findIndex((item: Gadget) => item.itemId === itemId);
 
       if (existingItemIndex !== -1) {
         setIsAdded(true);
       } else {
         setIsAdded(false);
       }
-
-      updateCountCartItems(cartItems.length);
     } else {
       setIsAdded(false);
-      updateCountCartItems(0);
     }
-  }, [gadget.itemId, updateCountCartItems]);
+  }, [itemId]);
 
   const buttonClasses = cn('buy-button', {
     'buy-button--added': isAdded,
