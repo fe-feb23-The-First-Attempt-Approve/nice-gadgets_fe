@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { SearchContextProvider } from './SearchContext';
 import { ThemeProvider } from './ThemeContext';
 import { BurgerContextProvider } from './BurgerContext';
-import { CountFavoritesProvider } from './CountFavorites';
+import { FavoriteItemProvider } from './FavoriteItemContext';
 import { CartItemProvider } from './CartItemsContext';
 
 const Provider: FC = ({ children }) => {
@@ -10,11 +10,11 @@ const Provider: FC = ({ children }) => {
     <ThemeProvider>
       <BurgerContextProvider>
         <SearchContextProvider>
-          <CountFavoritesProvider>
+          <FavoriteItemProvider>
             <CartItemProvider>
               {children}
             </CartItemProvider>
-          </CountFavoritesProvider>
+          </FavoriteItemProvider>
         </SearchContextProvider>
       </BurgerContextProvider>
     </ThemeProvider>

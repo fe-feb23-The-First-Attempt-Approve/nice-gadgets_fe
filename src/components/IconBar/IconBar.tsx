@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useTheme } from '../../providers/ThemeContext';
 import { useSearchPanel } from '../../providers/SearchContext';
-import { CountFavoritesContext } from '../../providers/CountFavorites';
+import { CountFavoritesContext } from '../../providers/FavoriteItemContext';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import { SearchingArea } from '../SearchingArea';
 import {

@@ -1,44 +1,71 @@
 /* eslint-disable no-console */
-import { useEffect, useState } from 'react';
+import {
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { ProductList } from '../../components/ProductList';
 import { getProducts } from '../../api/products';
 import { Gadget } from '../../types/Gadget';
-import { useLocalStorage } from '../../customHooks/useLocalStorage';
+import { FavoriteItemContext } from '../../providers/FavoriteItemContext';
+import { Categories } from '../../components/Categories';
+import { Loader } from '../../components/Loader';
 
 export const FavoritesPage = () => {
   const [favorites, setFavorites] = useState<Gadget[]>([]);
-  const [favoriteIds] = useLocalStorage('favorites', []);
+  const { favoriteItems } = useContext(FavoriteItemContext);
+
+  const loadProducts = async () => {
+    try {
+      const products = await getProducts();
+
+      setFavorites(products);
+    } catch (error) {
+      console.error('Error fetching favorites:', error);
+    }
+  };
 
   useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const fetchedFavorites = await getProducts();
-
-        setFavorites(fetchedFavorites);
-      } catch (error) {
-        console.error('Error fetching favorites:', error);
-      }
-    };
-
     loadProducts();
-  }, [favoriteIds]);
+  }, [favoriteItems]);
 
-  const filterFavorits = favorites.filter(({ itemId }) => (
-    favoriteIds.includes(itemId)
-  ));
+  const filterFavorits = useMemo(() => favorites.filter(({ itemId }) => (
+    favoriteItems.includes(itemId)
+  )), [favorites]);
 
   return (
     <div className="container">
-      <Breadcrumbs category="Favorites" />
+      {!favorites.length && !favoriteItems && <Loader />}
 
-      <h1 className="gadgets-page__title">Favorites</h1>
+      {favoriteItems.length
+        ? (
+          <>
+            <Breadcrumbs category="Favorites" />
 
-      <p className="gadgets-page__description">
-        {`${filterFavorits.length} items`}
-      </p>
+            <h1 className="gadgets-page__title">Favorites</h1>
 
-      <ProductList gadgets={filterFavorits} />
+            <p className="gadgets-page__description">
+              {`${filterFavorits.length} items`}
+            </p>
+
+            <ProductList gadgets={filterFavorits} />
+          </>
+        )
+        : (
+          <div className="empty-cart">
+            <h2 className="empty-cart__main-text">
+              Oops! Looks like your Favorite is empty at the moment...
+            </h2>
+
+            <p className="empty-cart__additional-text">
+              {'Let\'s explore some of these fantastic categories?'}
+            </p>
+
+            <Categories />
+          </div>
+        )}
     </div>
   );
 };
