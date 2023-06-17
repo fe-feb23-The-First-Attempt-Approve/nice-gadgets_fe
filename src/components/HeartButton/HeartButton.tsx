@@ -4,7 +4,6 @@ import {
 import { IconLikeEmpty, IconLikeFull } from '../Icons/_IconKit';
 import { CountFavoritesContext } from '../../providers/CountFavorites';
 import { useLocalStorage } from '../../customHooks/useLocalStorage';
-import { Gadget } from '../../types/Gadget';
 import NotificationMessage from '../Notification/NotificationSuccess';
 
 interface Props {
