@@ -42,7 +42,7 @@ export const AboutPage: React.FC = () => {
   const getCorectedColor = (color: string): string => {
     switch (color) {
       case 'rosegold':
-        return 'orangered';
+        return '#e5abab';
       case 'spacegray':
         return 'lightslategray';
       case 'midnightgreen':
@@ -51,6 +51,16 @@ export const AboutPage: React.FC = () => {
         return 'peachpuff';
       case 'green':
         return 'mediumaquamarine';
+      case 'yellow':
+        return '#ffd02e';
+      case 'red':
+        return '#d11b2d';
+      case 'purple':
+        return '#d6d3de';
+      case 'black':
+        return '#1e1e1e';
+      case 'white':
+        return '#fffaf7';
       default:
         return color;
     }
@@ -123,7 +133,6 @@ export const AboutPage: React.FC = () => {
                         type="button"
                         className="settings__button-color"
                         key={color}
-                        style={{ border: `1px solid ${correctedColor}` }}
                         onClick={() => onCapacityHandler('', color)}
                       >
                         <span

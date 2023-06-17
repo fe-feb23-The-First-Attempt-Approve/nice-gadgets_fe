@@ -215,6 +215,7 @@ $maginBottom: 56px;
     position: relative;
     width: 32px;
     height: 32px;
+    border: 1px solid $text-color-main;
     transition: transform $transition-duration ease;
 
     &:hover {
