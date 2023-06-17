@@ -6,23 +6,21 @@ import { IconLikeEmpty } from '../Icons/IconLikeEmpty';
 import { IconLikeFull } from '../Icons/IconLikeFull';
 import { CountFavoritesContext } from '../../providers/CountFavorites';
 import { useLocalStorage } from '../../customHooks/useLocalStorage';
-import { Gadget } from '../../types/Gadget';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
-  gadget: Gadget;
+  itemId: string;
 }
 
-export const HeartButton: FC<Props> = ({ gadget }) => {
+export const HeartButton: FC<Props> = ({ itemId }) => {
   const [favoriteIds, setFavoriteIds] = useLocalStorage('favorites', []);
   const { updateCountFavorites } = useContext(CountFavoritesContext);
   const isLiked = useMemo(() => (
-    favoriteIds.some(({ id }: Gadget) => (
-      id === gadget.id))),
-  [favoriteIds, gadget.id]);
+    favoriteIds.includes(itemId)),
+  [favoriteIds, itemId]);
 
   const notifyFavorite = () => toast.success(
-    `❤️ ${gadget.name} has been added to favorites`,
+    `❤️ ${itemId} has been added to favorites`,
     {
       position: 'bottom-left',
       autoClose: 3000,
@@ -37,15 +35,15 @@ export const HeartButton: FC<Props> = ({ gadget }) => {
 
   useEffect(() => {
     updateCountFavorites(favoriteIds.length);
-  }, [favoriteIds, gadget.id]);
+  }, [favoriteIds, itemId]);
 
   const onHandleClick = () => {
     const favoritesString = localStorage.getItem('favorites');
     const favorites = favoritesString ? JSON.parse(favoritesString) : [];
 
     setFavoriteIds((isLiked)
-      ? favorites.filter(({ id }: Gadget) => gadget.id !== id)
-      : [...favorites, gadget]);
+      ? favorites.filter((id: string) => itemId !== id)
+      : [...favorites, itemId]);
 
     if (!isLiked) {
       notifyFavorite();

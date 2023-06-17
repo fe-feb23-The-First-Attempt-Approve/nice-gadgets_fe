@@ -43,9 +43,9 @@ export const PhonesPage = () => {
       const [min, max] = priceRangeSP;
 
       const {
-        allPhonesCount,
+        allProductsCount,
         filteredCount,
-        visiblePhones: phonesFromServer,
+        visibleProducts: phonesFromServer,
       } = await getPhones(
         itemsPerPage,
         currentPage,
@@ -55,7 +55,7 @@ export const PhonesPage = () => {
       );
 
       setFilteredPhonesCount(filteredCount);
-      setPhonesCount(allPhonesCount);
+      setPhonesCount(allProductsCount);
       setPhones(phonesFromServer);
     } catch {
       throw new Error('failed to load phones');
