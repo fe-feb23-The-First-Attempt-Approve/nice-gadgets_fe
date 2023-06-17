@@ -1,9 +1,14 @@
 .gadgets-display-control {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 24px;
   color: $text-color-secondary;
   font-size: 12px;
+
+  @include onTablet {
+    flex-wrap: nowrap;
+  }
 }
 
 .css-53tbrc-MuiSlider-root {
