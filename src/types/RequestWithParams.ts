@@ -1,7 +1,7 @@
 import { Gadget } from './Gadget';
 
 export type RequestWithParamsResult = {
-  allPhonesCount: number;
+  allProductsCount: number;
   filteredCount: number,
-  visiblePhones: Gadget[];
+  visibleProducts: Gadget[];
 };

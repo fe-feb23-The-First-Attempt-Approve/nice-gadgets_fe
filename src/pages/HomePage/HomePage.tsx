@@ -10,7 +10,7 @@ export const HomePage = () => {
   const [gadgets, setPhones] = useState<Gadget[]>([]);
 
   const loadPhones = async () => {
-    const { visiblePhones: phonesFromServer } = await getPhones();
+    const { visibleProducts: phonesFromServer } = await getPhones();
 
     setPhones(phonesFromServer);
   };

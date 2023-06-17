@@ -3,5 +3,5 @@ export enum SortType {
   New = 'newest',
   Old = 'oldest',
   LowPrice = 'low-price',
-  HightPrice = 'high-price',
+  HighPrice = 'high-price',
 }

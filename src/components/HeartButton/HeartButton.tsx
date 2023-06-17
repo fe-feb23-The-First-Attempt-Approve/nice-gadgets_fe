@@ -8,33 +8,32 @@ import { Gadget } from '../../types/Gadget';
 import NotificationMessage from '../Notification/NotificationSuccess';
 
 interface Props {
-  gadget: Gadget;
+  itemId: string;
 }
 
-export const HeartButton: FC<Props> = ({ gadget }) => {
+export const HeartButton: FC<Props> = ({ itemId }) => {
   const [favoriteIds, setFavoriteIds] = useLocalStorage('favorites', []);
   const { updateCountFavorites } = useContext(CountFavoritesContext);
   const isLiked = useMemo(() => (
-    favoriteIds.some(({ id }: Gadget) => (
-      id === gadget.id))),
-  [favoriteIds, gadget.id]);
+    favoriteIds.includes(itemId)),
+  [favoriteIds, itemId]);
 
   const notifyFavorite = NotificationMessage({
-    message: `❤️ ${gadget.name} has been added to favorites`,
+    message: `❤️ ${itemId} has been added to favorites`,
     redirection: 'favorites',
   });
 
   useEffect(() => {
     updateCountFavorites(favoriteIds.length);
-  }, [favoriteIds, gadget.id]);
+  }, [favoriteIds, itemId]);
 
   const onHandleClick = () => {
     const favoritesString = localStorage.getItem('favorites');
     const favorites = favoritesString ? JSON.parse(favoritesString) : [];
 
     setFavoriteIds((isLiked)
-      ? favorites.filter(({ id }: Gadget) => gadget.id !== id)
-      : [...favorites, gadget]);
+      ? favorites.filter((id: string) => itemId !== id)
+      : [...favorites, itemId]);
 
     if (!isLiked) {
       notifyFavorite();

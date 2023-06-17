@@ -37,6 +37,7 @@ export const Pagination: React.FC<Props> = ({
                 },
               ),
             }}
+            onClick={() => window.scrollTo(0, 0)}
           >
             <ArrowButton arrowDirection="left" />
           </Link>
@@ -56,6 +57,7 @@ export const Pagination: React.FC<Props> = ({
                   searchParams, { page: pageNum.toString() },
                 ),
               }}
+              onClick={() => window.scrollTo(0, 0)}
             >
               <div className={cn(
                 'page-button',
@@ -83,6 +85,7 @@ export const Pagination: React.FC<Props> = ({
                 },
               ),
             }}
+            onClick={() => window.scrollTo(0, 0)}
           >
             <ArrowButton arrowDirection="right" />
           </Link>
