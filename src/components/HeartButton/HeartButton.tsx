@@ -8,9 +8,10 @@ import NotificationMessage from '../Notification/NotificationSuccess';
 
 interface Props {
   itemId: string;
+  name: string;
 }
 
-export const HeartButton: FC<Props> = ({ itemId }) => {
+export const HeartButton: FC<Props> = ({ itemId, name }) => {
   const [favoriteIds, setFavoriteIds] = useLocalStorage('favorites', []);
   const { updateCountFavorites } = useContext(CountFavoritesContext);
   const isLiked = useMemo(() => (
@@ -18,7 +19,7 @@ export const HeartButton: FC<Props> = ({ itemId }) => {
   [favoriteIds, itemId]);
 
   const notifyFavorite = NotificationMessage({
-    message: `❤️ ${itemId} has been added to favorites`,
+    message: `❤️ ${name} has been added to favorites`,
     redirection: 'favorites',
   });
 
