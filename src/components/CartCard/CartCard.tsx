@@ -1,19 +1,20 @@
 import { FC, useContext, useState } from 'react';
-import { IconClose } from '../Icons/IconClose';
-import { Gadget } from '../../types/Gadget';
 import { CartItemContext } from '../../providers/CartItemsContext';
+import { Gadget } from '../../types/Gadget';
+import { IconClose } from '../Icons/_IconKit';
 
 type CartCardProps = {
-  item: Gadget;
+  gadget: Gadget;
 };
 
-export const CartCard: FC<CartCardProps> = ({ item }) => {
+export const CartCard: FC<CartCardProps> = ({ gadget }) => {
   const { cartItems, updateCartItems } = useContext(CartItemContext);
-  const [quantity, setQuantity] = useState<number>(item.quantity || 0);
+  const [quantity, setQuantity] = useState<number>(gadget.quantity || 0);
 
   const updateQuantityInCartItems = (newQuantity: number) => {
     const updatedCartItems = cartItems.map((cartItem) => {
-      if (cartItem.id === item.id) {
+      if (cartItem.id === gadget.id) {
+
         return { ...cartItem, quantity: newQuantity };
       }
 
@@ -41,7 +42,7 @@ export const CartCard: FC<CartCardProps> = ({ item }) => {
 
   const handleDelete = () => {
     const updatedCartItems = cartItems
-      .filter((cartItem) => cartItem.id !== item.id);
+      .filter((cartItem) => cartItem.id !== gadget.id);
 
     updateCartItems(updatedCartItems);
   };
@@ -58,32 +59,34 @@ export const CartCard: FC<CartCardProps> = ({ item }) => {
 
       <div className="cart__item">
         <div className="cart__image-container">
-          <img src={item.image} alt="phone" className="cart__image" />
+          <img src={gadget.image} alt="phone" className="cart__image" />
         </div>
 
-        <p className="cart__product-name">{item.name}</p>
+        <p className="cart__product-name">{gadget.name}</p>
 
-        <div className="cart__choose-amount">
-          <button
-            type="button"
-            className="cart__amount-button"
-            onClick={decrementQuantity}
-          >
-            -
-          </button>
+        <div className="cart__calculated-field">
+          <div className="cart__choose-amount">
+            <button
+              type="button"
+              className="cart__amount-button"
+              onClick={decrementQuantity}
+            >
+              -
+            </button>
 
-          <p className="cart__amount-of-item">{quantity}</p>
+            <p className="cart__amount-of-item">{quantity}</p>
 
-          <button
-            type="button"
-            className="cart__amount-button cart__amount-button--filled"
-            onClick={incrementQuantity}
-          >
-            +
-          </button>
+            <button
+              type="button"
+              className="cart__amount-button cart__amount-button--filled"
+              onClick={incrementQuantity}
+            >
+              +
+            </button>
+          </div>
+
+          <p className="cart__price">{gadget.price * quantity}</p>
         </div>
-
-        <p className="cart__price">{item.price * quantity}</p>
       </div>
     </div>
   );

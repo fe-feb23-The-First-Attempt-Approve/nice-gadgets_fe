@@ -8,10 +8,11 @@
     grid-template-columns: 1fr;
     grid-column: 1 / -1;
     width: 100%;
-    margin-right: 16px;
+    margin-right: 0;
 
-    @include onTablet {
+    @include onDesktop {
       grid-column: 1 / 17;
+      margin-right: 16px;
     }
   }
 
@@ -23,7 +24,7 @@
     border-radius: 4px;
     background-color: $bg-color-products;
 
-    @include onTablet {
+    @include onDesktop {
       margin-bottom: 16px;
     }
   }
@@ -51,7 +52,7 @@
 
   &__item {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-content: center;
     grid-gap: 16px;
     width: 100%;
@@ -68,8 +69,6 @@
     grid-row: 1 / span 2;
     display: flex;
     grid-template-columns: auto;
-    // justify-items: left;
-    // justify-self: center;
     width: 100%;
     width: 80px;
     height: 80px;
@@ -87,7 +86,7 @@
   }
 
   &__product-name {
-    grid-column: 2 / span 2;
+    grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     align-self: center;
     font-size: 14px;
@@ -99,15 +98,32 @@
     }
   }
 
+  &__calculated-field {
+    display: flex;
+    gap: 16px;
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    align-self: center;
+    min-width: 210px;
+    font-size: 14px;
+    line-height: 21px;
+
+    @include onDesktop {
+      gap: 24px;
+      grid-column: 3 / span 1;
+      grid-row: 1 / span 1;
+    }
+  }
+
   &__choose-amount {
-    grid-column: 3 / span 1;
+    grid-column: 2 / span 1;
     grid-row: 2 / span 1;
     display: flex;
     align-self: center;
     font-size: 14px;
 
     @include onDesktop {
-      grid-column: 4 / span 1;
+      grid-column: 3 / span 1;
       grid-row: 1 / span 1;
     }
   }
@@ -135,7 +151,7 @@
   }
 
   &__price {
-    grid-column: 2 / span 1;
+    grid-column: 3 / span 1;
     grid-row: 2 / span 1;
     align-self: center;
     text-align: left;
@@ -143,9 +159,13 @@
     font-size: 22px;
 
     @include onDesktop {
-      grid-column: 3 / span 1;
+      grid-column: 4 / span 1;
       grid-row: 1 / span 1;
       text-align: right;
+    }
+
+    &:before {
+      content: '$ ';
     }
   }
 
@@ -203,6 +223,23 @@
 
     &:hover {
       background-color: $accent-color-hov;
+    }
+  }
+}
+
+.empty-cart {
+  &__main-text {
+    margin-bottom: 10px;
+    color: $accent-color;
+  }
+
+  &__additional-text {
+    margin-bottom: 20px;
+  }
+
+  & .categories {
+    &__title {
+      display: none;
     }
   }
 }

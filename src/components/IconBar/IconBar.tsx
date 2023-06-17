@@ -1,32 +1,22 @@
+import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
-import { useContext, useEffect, useState } from 'react';
 import { useTheme } from '../../providers/ThemeContext';
 import { useSearchPanel } from '../../providers/SearchContext';
-import { SearchingArea } from '../SearchingArea';
-import { IconTranslate } from '../Icons/IconTranslate';
-import { IconLikeEmpty } from '../Icons/IconLikeEmpty';
-import { IconCart } from '../Icons/IconCart';
-import { IconThemeLight } from '../Icons/IconThemeLight';
-import { IconThemeDark } from '../Icons/IconThemeDark';
-import { IconWithCounter } from '../Icons/IconWithCounter';
 import { CountFavoritesContext } from '../../providers/CountFavorites';
 import { CartItemContext } from '../../providers/CartItemsContext';
-import { IconAuthorization } from '../Icons/IconAuthorization';
+import { SearchingArea } from '../SearchingArea';
+import {
+  IconLikeEmpty, IconCart, IconWithCounter,
+  IconThemeLight, IconThemeDark, IconTranslate,
+  IconAuthorization,
+} from '../Icons/_IconKit';
 
 export const IconBar = () => {
-  const { closeSearch } = useSearchPanel();
   const { theme, toggleTheme } = useTheme();
-  const { countFavorites } = useContext(CountFavoritesContext);
   const { cartItemCount } = useContext(CartItemContext);
-  const [
-    updatedCartItemCount,
-    setUpdatedCartItemCount,
-  ] = useState(cartItemCount);
-
-  useEffect(() => {
-    setUpdatedCartItemCount(cartItemCount);
-  }, [cartItemCount]);
+  const { countFavorites } = useContext(CountFavoritesContext);
+  const { closeSearch } = useSearchPanel();
 
   return (
     <ul className="icon-bar">
@@ -67,7 +57,7 @@ export const IconBar = () => {
           className={({ isActive }) => cn('icon-bar__link',
             { 'icon-bar__link--active': isActive })}
         >
-          <IconWithCounter icon={<IconCart />} count={updatedCartItemCount} />
+          <IconWithCounter icon={<IconCart />} count={cartItemCount} />
         </NavLink>
       </li>
 
