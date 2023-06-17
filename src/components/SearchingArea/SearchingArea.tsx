@@ -1,7 +1,6 @@
 import { useSearchPanel } from '../../providers/SearchContext';
 import { SearchingField } from '../SearchingField';
-import { IconSearching } from '../Icons/IconSearching';
-import { IconArrow } from '../Icons/IconArrow';
+import { IconSearching, IconArrow } from '../Icons/_IconKit';
 
 export const SearchingArea = () => {
   const { toggleSearch, isSearching } = useSearchPanel();

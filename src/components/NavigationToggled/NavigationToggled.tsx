@@ -2,18 +2,16 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useContext } from 'react';
 import { CountFavoritesContext } from '../../providers/CountFavorites';
-import { CountCartItemsContext } from '../../providers/CountCartItems';
-import { IconMenu } from '../Icons/IconMenu';
-import { IconLikeEmpty } from '../Icons/IconLikeEmpty';
-import { IconCart } from '../Icons/IconCart';
-import { IconClose } from '../Icons/IconClose';
+import { CartItemContext } from '../../providers/CartItemsContext';
+import {
+  IconMenu, IconClose, IconLikeEmpty, IconCart, IconWithCounter,
+} from '../Icons/_IconKit';
 import { useBurger } from '../../providers/BurgerContext';
-import { IconWithCounter } from '../Icons/IconWithCounter';
 
 export const NavigationToggled = () => {
   const { toggleBurger, isOpenBurger } = useBurger();
   const { countFavorites } = useContext(CountFavoritesContext);
-  const { countCartItems } = useContext(CountCartItemsContext);
+  const { cartItemCount } = useContext(CartItemContext);
 
   return (
     <ul className="navigation--toggled">
@@ -39,7 +37,7 @@ export const NavigationToggled = () => {
           className={({ isActive }) => cn('icon-bar__link',
             { 'icon-bar__link--active': isActive })}
         >
-          <IconWithCounter icon={<IconCart />} count={countCartItems} />
+          <IconWithCounter icon={<IconCart />} count={cartItemCount} />
         </NavLink>
       </li>
 

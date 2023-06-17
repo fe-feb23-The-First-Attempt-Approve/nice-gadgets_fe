@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { SelectChangeEvent } from '@mui/material';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { GadgetsDisplayControl } from '../../components/GadgetsDisplayControl';
 import { ProductList } from '../../components/ProductList';
@@ -56,17 +57,17 @@ export const TabletsPage = () => {
   }, [searchParams]);
 
   const handlePageCountChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
+    event: SelectChangeEvent<number>,
   ) => {
     const { value } = event.target;
 
     setSearchParams(getSearchWith(searchParams, {
       page: null,
-      perPage: value,
+      perPage: value.toString(),
     }));
   };
 
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleSortChange = (event: SelectChangeEvent<SortType>) => {
     const { value } = event.target;
 
     setSearchParams(getSearchWith(searchParams, { sort: value }));

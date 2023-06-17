@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { NavLink } from 'react-router-dom';
-import { IconHome } from '../Icons/IconHome';
-import { IconArrow } from '../Icons/IconArrow';
+import { IconHome, IconArrow } from '../Icons/_IconKit';
 
 interface Props {
   category: 'Phones' | 'Tablets' | 'Accessories' | 'Favorites';

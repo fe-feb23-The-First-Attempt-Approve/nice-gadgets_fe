@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import cn from 'classnames';
 import { useSearchPanel } from '../../providers/SearchContext';
-import { IconSearching } from '../Icons/IconSearching';
+import { IconSearching } from '../Icons/_IconKit';
 
 export const SearchingField = () => {
   const { toggleSearch, isSearching } = useSearchPanel();
