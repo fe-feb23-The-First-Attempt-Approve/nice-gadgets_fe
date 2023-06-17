@@ -14,7 +14,6 @@ export const CartCard: FC<CartCardProps> = ({ gadget }) => {
   const updateQuantityInCartItems = (newQuantity: number) => {
     const updatedCartItems = cartItems.map((cartItem) => {
       if (cartItem.id === gadget.id) {
-
         return { ...cartItem, quantity: newQuantity };
       }
 
