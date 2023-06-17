@@ -39,10 +39,6 @@ export const AboutPage: React.FC = () => {
     setPhones(phonesFromServer);
   };
 
-  const heartGaget = phones.find(({ itemId }) => {
-    return itemId === device.id;
-  });
-
   const getCorectedColor = (color: string): string => {
     switch (color) {
       case 'rosegold':
@@ -113,9 +109,9 @@ export const AboutPage: React.FC = () => {
               <section className="card-page__settings settings">
                 <div className="settings__color-container">
                   <p className="settings__title">Available colors</p>
-                  <p className="settings__title">
-                    {heartGaget && `ID: ${heartGaget.id}`}
-                  </p>
+                  {/* <p className="settings__title">
+                    {`ID: ${device.id}`}
+                  </p> */}
                 </div>
 
                 <div className="settings__colors">
@@ -187,7 +183,7 @@ export const AboutPage: React.FC = () => {
                       Add to cart
                     </button>
                     <button type="button" className="settings__like">
-                      {heartGaget && <HeartButton itemId={phoneTemplate.id} />}
+                      <HeartButton itemId={device.id} name={device.name} />
                     </button>
                   </div>
                 </div>
