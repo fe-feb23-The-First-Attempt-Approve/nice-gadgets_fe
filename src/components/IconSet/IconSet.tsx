@@ -5,7 +5,7 @@ import { useTheme } from '../../providers/ThemeContext';
 import { useSearchPanel } from '../../providers/SearchContext';
 import { useBurger } from '../../providers/BurgerContext';
 import { CartItemContext } from '../../providers/CartItemsContext';
-import { CountFavoritesContext } from '../../providers/CountFavorites';
+import { CountFavoritesContext } from '../../providers/FavoriteItemContext';
 import {
   IconLikeEmpty, IconThemeDark, IconThemeLight,
   IconTranslate, IconCart, IconWithCounter,

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useContext } from 'react';
-import { CountFavoritesContext } from '../../providers/CountFavorites';
+import { CountFavoritesContext } from '../../providers/FavoriteItemContext';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import {
   IconMenu, IconClose, IconLikeEmpty, IconCart, IconWithCounter,
