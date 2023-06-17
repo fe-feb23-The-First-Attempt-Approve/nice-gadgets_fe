@@ -1,3 +1,4 @@
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material';
 import { SortType } from '../../types/SortType';
 import { DoubleRangeSlider } from '../DoubleRangeSlider';
 
@@ -6,8 +7,12 @@ interface Props {
   sortType: SortType;
   priceRange: number | number[];
   onPriceChange: (e: Event, newValue: number | number[]) => void;
-  onPageCountChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  onSortingChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  onPageCountChange: (
+    event: SelectChangeEvent<number>, child: React.ReactNode,
+  ) => void;
+  onSortingChange: (
+    event: SelectChangeEvent<SortType>, child: React.ReactNode,
+  ) => void;
 }
 
 export const GadgetsDisplayControl: React.FC<Props> = ({
@@ -20,45 +25,61 @@ export const GadgetsDisplayControl: React.FC<Props> = ({
 }) => {
   return (
     <div className="gadgets-display-control">
-      <label htmlFor="perPageSelector" className="col-form-label col">
-        Sort by
-      </label>
-      <div className="col-3">
-        <select
-          className="form-control"
-          onChange={onSortingChange}
+      <div className="gadgets-display-control__sort">
+        <p>Sort by</p>
+        <Select
+          sx={{ width: 176, height: 40, bgcolor: 'white' }}
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
           value={sortType}
+          label="Age"
+          onChange={onSortingChange}
+          // MenuProps={{
+          //   PaperProps: {
+          //     sx: {
+          //       bgcolor: 'pink',
+          //     },
+          //   },
+          // }}
         >
-          <option value={SortType.New}>Newest</option>
-          <option value={SortType.Old}>Oldest</option>
-          <option value={SortType.Name}>Name A-Z</option>
-          <option value={SortType.HightPrice}>Price &#8595;</option>
-          <option value={SortType.LowPrice}>Price &#8593;</option>
-        </select>
+          <MenuItem value={SortType.New}>Newest</MenuItem>
+          <MenuItem value={SortType.Old}>Oldest</MenuItem>
+          <MenuItem value={SortType.Name}>Name A-Z</MenuItem>
+          <MenuItem value={SortType.HighPrice}>Price &#8595;</MenuItem>
+          <MenuItem value={SortType.LowPrice}>Price &#8593;</MenuItem>
+        </Select>
       </div>
 
-      <label htmlFor="perPageSelector" className="col-form-label col">
-        Items per page
-      </label>
-      <div className="col-3">
-        <select
-          className="form-control"
-          onChange={onPageCountChange}
+      <div className="gadgets-display-control__count-per-page">
+        <p>Items per page</p>
+        <Select
+          sx={{ width: 128, height: 40, bgcolor: 'white' }}
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
           value={itemsPerPage}
+          label="Age"
+          onChange={onPageCountChange}
+          // MenuProps={{
+          //   PaperProps: {
+          //     sx: {
+          //       bgcolor: 'pink',
+          //     },
+          //   },
+          // }}
         >
-          <option value="8">8</option>
-          <option value="16">16</option>
-          <option value="32">32</option>
-          <option value="64">64</option>
-        </select>
+          {[8, 16, 32, 64].map((perPageCount) => (
+            <MenuItem value={perPageCount}>{perPageCount}</MenuItem>
+          ))}
+        </Select>
       </div>
-
-      <p className="gadgets-display-control__price-title">Price</p>
-      <DoubleRangeSlider
-        min={Array.isArray(priceRange) ? priceRange[0] : 0}
-        max={Array.isArray(priceRange) ? priceRange[1] : priceRange}
-        onPriceChange={onPriceChange}
-      />
+      <div className="gadgets-display-control__price">
+        <p className="gadgets-display-control__price-title">Price</p>
+        <DoubleRangeSlider
+          min={Array.isArray(priceRange) ? priceRange[0] : 0}
+          max={Array.isArray(priceRange) ? priceRange[1] : priceRange}
+          onPriceChange={onPriceChange}
+        />
+      </div>
     </div>
   );
 };
