@@ -21,7 +21,7 @@
     "react-toastify": "^8.0.0",
     "sass-loader": "^13.3.2",
     "slick-carousel": "^1.8.1",
-    "swiper": "^9.4.0"
+    "swiper": "^9.4.1"
   },
   "devDependencies": {
     "@cypress/webpack-dev-server": "^1.8.4",

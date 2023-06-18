@@ -19,6 +19,7 @@ export const Banner = () => {
     <div className="banner">
       <Swiper
         effect="cube"
+        touchEventsTarget="container"
         style={{ width: '100%' }}
         modules={[Autoplay, Navigation, Pagination, A11y, EffectCube]}
         slidesPerView={1}
