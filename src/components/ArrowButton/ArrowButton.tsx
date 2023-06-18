@@ -15,8 +15,8 @@ export const ArrowButton: FC<Props> = ({ arrowDirection, hasBackground }) => {
     : arrowContainerClassName;
 
   return (
-    <button type="button" className={buttonClassName}>
+    <span className={buttonClassName}>
       <IconArrow />
-    </button>
+    </span>
   );
 };
