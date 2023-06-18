@@ -37,7 +37,7 @@ export const FavoritesPage = () => {
 
   return (
     <div className="container">
-      {!favorites.length && !favoriteItems && <Loader />}
+      {!favorites.length && !!favoriteItems.length && <Loader />}
 
       {favoriteItems.length
         ? (
