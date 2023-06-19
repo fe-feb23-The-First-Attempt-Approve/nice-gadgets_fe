@@ -1,0 +1,89 @@
+.contacts {
+  &__title {
+    font-style: normal;
+    font-size: 32px;
+    line-height: 41px;
+    color: $text-color-main;
+    text-align: center;
+    margin-bottom: 48px;
+  }
+}
+
+.dev-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 270px);
+  justify-content: center;
+  gap: 15px;
+
+  @media (min-width: 1170px) {
+      grid-template-columns: repeat(3, 270px);
+  }
+
+  &__developer {
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    width: 270px;
+  }
+
+  &__background {
+    filter: grayscale(100%) blur(10px);
+    opacity: 0.2;
+    vertical-align: top;
+    width: 100%;
+    transition: transform 3s ease;
+
+    &:hover {
+      transform: scale(2);
+    }
+  }
+
+  &__dev-photo {
+    border: 2px solid hsla(0, 0%, 100%, .5);
+    border-radius: 50%;
+    bottom: 50%;
+    box-shadow: 3px 3px 20px rgba(0, 0, 0, .5);
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    opacity: 1;
+    position: absolute;
+    transform: translate(-50%);
+  }
+
+  &__info {
+    display: block;
+    left: 0;
+    padding: 15px 25px;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+  }
+
+  &__dev-name {
+    margin: 0 0 5px;
+  }
+
+  &__dev-position {
+    color: #f39c12;
+    display: block;
+    font-size: 12px;
+    opacity: 0.75;
+  }
+
+  &__media-icons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  &__icon-item {
+    display: block;
+    height: 24px;
+    color: $text-color-main;
+    font-size: 24px;
+  }
+}
+

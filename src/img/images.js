@@ -8,6 +8,11 @@ import i01 from './green/01.jpg';
 import i00 from './green/00.jpg';
 import i03 from './green/03.jpg';
 import i02 from './green/02.jpg';
+import andrii from './developers/andrii.jpg';
+import myla from './developers/myla.jpg';
+import vadym from './developers/vadym.png';
+import pasha from './developers/pasha.jpg';
+import mykyta from './developers/mykyta.jpg';
 
 export {
   phone,
@@ -20,4 +25,9 @@ export {
   i00,
   i03,
   i02,
+  andrii,
+  myla,
+  pasha,
+  mykyta,
+  vadym,
 };
