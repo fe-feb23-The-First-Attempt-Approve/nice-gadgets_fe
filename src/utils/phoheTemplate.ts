@@ -2,6 +2,7 @@ import { GadgetItem } from '../types/GadgetItem';
 
 export const phoneTemplate: GadgetItem = {
   id: 'id',
+  category: '',
   namespaceId: 'namespaceId',
   name: 'name',
   capacityAvailable: [
