@@ -68,7 +68,12 @@ export const GadgetsDisplayControl: React.FC<Props> = ({
           // }}
         >
           {[8, 16, 32, 64].map((perPageCount) => (
-            <MenuItem value={perPageCount}>{perPageCount}</MenuItem>
+            <MenuItem
+              value={perPageCount}
+              key={perPageCount}
+            >
+              {perPageCount}
+            </MenuItem>
           ))}
         </Select>
       </div>
