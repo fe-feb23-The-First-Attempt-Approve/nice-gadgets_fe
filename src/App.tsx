@@ -10,6 +10,7 @@ import { CartPage } from './pages/CartPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { AboutPage } from './pages/AboutPage';
 import { Footer } from './components/Footer';
+import { Contacts } from './pages/Contacts';
 
 const App = () => (
   <>
@@ -45,8 +46,8 @@ const App = () => (
           <Route index element={<CartPage />} />
         </Route>
 
-        <Route path="/one">
-          <Route index element={<AboutPage />} />
+        <Route path="/contacts">
+          <Route index element={<Contacts />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
