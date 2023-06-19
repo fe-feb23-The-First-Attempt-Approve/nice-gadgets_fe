@@ -152,7 +152,7 @@ $maginBottom: 56px;
   background: transparent;
   border: 1px solid $separator-color;
   transition: background-color $transition-duration, scale $transition-duration;
-  
+
   &:hover {
     background: $bg-color-controllers;
     transform: scale(1.1);
@@ -169,7 +169,7 @@ $maginBottom: 56px;
 }
 
 #swiper-1 .swiper-pagination-bullet-active {
-    background: $bg-color-controllers;
+  background: $bg-color-controllers;
 }
 
 #swiper-1 .swiper-pagination-bullet .bullet-image {

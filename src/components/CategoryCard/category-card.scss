@@ -1,8 +1,4 @@
 .category-card {
-  &:hover .category-card__image {
-    transform: scale(1.1);
-  }
-
   &__img-container {
     max-width: 368px;
     height: 368px;
@@ -15,5 +11,9 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+  }
+
+  &:hover .category-card__image {
+    transform: scale(1.1);
   }
 }

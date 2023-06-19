@@ -12,10 +12,12 @@ import { Gadget } from '../../types/Gadget';
 import { FavoriteItemContext } from '../../providers/FavoriteItemContext';
 import { Categories } from '../../components/Categories';
 import { Loader } from '../../components/Loader';
+import { useProducts } from '../../providers/ProductsContext';
 
 export const FavoritesPage = () => {
   const [favorites, setFavorites] = useState<Gadget[]>([]);
   const { favoriteItems } = useContext(FavoriteItemContext);
+  const { productsAmount } = useProducts();
 
   const loadProducts = async () => {
     try {
@@ -63,7 +65,7 @@ export const FavoritesPage = () => {
               {'Let\'s explore some of these fantastic categories?'}
             </p>
 
-            <Categories />
+            <Categories productsAmount={productsAmount} />
           </div>
         )}
     </div>

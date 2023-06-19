@@ -52,4 +52,4 @@ export const getPhoneMinMaxPrices = async (): Promise<PriceRange> => {
 
 export const getHotProducts = async (): Promise<Gadget[]> => {
   return client.get('/products/hot');
-}
+};
