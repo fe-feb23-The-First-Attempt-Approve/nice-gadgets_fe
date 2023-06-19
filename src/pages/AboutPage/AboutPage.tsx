@@ -2,24 +2,30 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import cn from 'classnames';
 
+import { useProducts } from '../../providers/ProductsContext';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { HeartButton } from '../../components/HeartButton';
 import { Slider } from '../../components/Slider/Slider';
 import { GadgetItem } from '../../types/GadgetItem';
-import { getOnePhone, getPhones } from '../../api/phones';
+import { getOnePhone } from '../../api/phones';
 import { phoneTemplate } from '../../utils/phoneTemplate';
-import { Gadget } from '../../types/Gadget';
 import { Loader } from '../../components/Loader';
 import { AboutSlider } from '../../components/AboutSlider';
 import { DeviceDescription } from '../../components/DeviceDescription';
 import { DeviceCharacteristic } from '../../components/DeviceCharacteristic';
+import { BuyButton } from '../../components/BuyButton';
 
 export const AboutPage: React.FC = () => {
+  const { gadgets } = useProducts();
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const [phones, setPhones] = useState<Gadget[]>([]);
   const [device, setDevice] = useState<GadgetItem>(phoneTemplate);
-  const category = 'Phones';
+  const selectedGadget = gadgets.find((item) => item.itemId === device.id);
+  const category = selectedGadget
+    ? selectedGadget?.category.charAt(0).toUpperCase()
+      + selectedGadget?.category.slice(1).toLowerCase()
+    : '';
+
   const currentPage = device.name;
 
   const loadPhone = async () => {
@@ -31,12 +37,6 @@ export const AboutPage: React.FC = () => {
       // eslint-disable-next-line no-console
       console.log('failed to load phone');
     }
-  };
-
-  const loadPhones = async () => {
-    const { visibleProducts: phonesFromServer } = await getPhones();
-
-    setPhones(phonesFromServer);
   };
 
   const getCorectedColor = (color: string): string => {
@@ -90,10 +90,6 @@ export const AboutPage: React.FC = () => {
   };
 
   useEffect(() => {
-    loadPhones();
-  }, []);
-
-  useEffect(() => {
     loadPhone();
     window.scrollTo({
       top: 100,
@@ -104,7 +100,7 @@ export const AboutPage: React.FC = () => {
 
   return (
     <main className="main-page-card">
-      {!phones.length
+      {!gadgets.length
         ? <Loader />
         : (
           <div className="container">
@@ -188,9 +184,10 @@ export const AboutPage: React.FC = () => {
                   )}
 
                   <div className="settings__buttons-container">
-                    <button type="button" className="settings__button">
-                      Add to cart
-                    </button>
+                    {selectedGadget && (
+                      <BuyButton gadget={selectedGadget} />
+                    )}
+
                     <button type="button" className="settings__like">
                       <HeartButton itemId={device.id} name={device.name} />
                     </button>
@@ -256,7 +253,7 @@ export const AboutPage: React.FC = () => {
                 <div className="bottom-slider__container">
                   <Slider
                     title="You may also like"
-                    gadgets={phones}
+                    gadgets={gadgets}
                     navButtons={{
                       prevEl: '.models-slider-button-prev',
                       nextEl: '.models-slider-button-next',

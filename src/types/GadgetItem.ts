@@ -5,6 +5,7 @@ interface Description {
 
 export interface GadgetItem {
   'id': string;
+  'category': string;
   'namespaceId': string;
   'name': string;
   'capacityAvailable': string[];
