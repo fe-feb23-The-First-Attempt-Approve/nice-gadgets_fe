@@ -1,5 +1,15 @@
-export const NotFoundPage = () => (
-  <div className="container">
-    <h1 className="title">Page not found</h1>
-  </div>
-);
+import { NotFoundBlack } from '../../components/NotFoundBlack';
+import { NotFoundWhite } from '../../components/NotFoundWhite';
+import { useTheme } from '../../providers/ThemeContext';
+
+export const NotFoundPage = () => {
+  const { theme } = useTheme();
+
+  return (
+    <>
+      {theme === 'light'
+        ? <NotFoundWhite />
+        : <NotFoundBlack />}
+    </>
+  );
+};
