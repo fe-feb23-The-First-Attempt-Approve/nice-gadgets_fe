@@ -70,7 +70,6 @@
     display: flex;
     grid-template-columns: auto;
     width: 100%;
-    width: 80px;
     height: 80px;
 
     @include onDesktop {
@@ -165,10 +164,9 @@
     }
 
     &:before {
-      content: '$ ';
+      content: "$ ";
     }
   }
-
 
   // will be moved to other component
   &__billing {

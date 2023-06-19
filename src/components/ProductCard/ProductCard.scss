@@ -24,6 +24,14 @@
     padding: 0 32px 32px;
   }
 
+  &__photo-container {
+    display: flex;
+    width: 100%;
+    height: 196px;
+    margin-bottom: 24px;
+    transition: transform $transition-duration;
+  }
+
   &__link {
     display: flex;
     flex-direction: column;
@@ -34,17 +42,6 @@
     &:hover .product-card__photo-container {
       transform: scale(1.03);
     }
-  }
-
-  &__photo-container {
-    transition: transform $transition-duration;
-  }
-
-  &__photo-container {
-    display: flex;
-    width: 100%;
-    height: 196px;
-    margin-bottom: 24px;
   }
 
   &__image {

@@ -2,7 +2,10 @@
 [data-theme="dark"] {
   --accent-color: #905bff;
   --accent-color-hov: #a378ff;
-  --neon: 0 0 10px #905bff, 0 0 20px #905bff, 0 0 30px #905bff, 0 0 40px #905bff;
+  --neon: 0 0 10px #905bff,
+    0 0 20px #905bff,
+    0 0 30px #905bff,
+    0 0 40px #905bff;
   --selected-color: #eb5757;
   --nav-color-line: #f1f2f9;
 
@@ -22,7 +25,10 @@
 [data-theme="light"] {
   --accent-color: #f86800;
   --accent-color-hov: #f98837;
-  --neon: 0 0 20px #f86800, 0 0 40px #f86800, 0 0 60px #f86800, 0 0 80px #f86800;
+  --neon: 0 0 20px #f86800,
+    0 0 40px #f86800,
+    0 0 60px #f86800,
+    0 0 80px #f86800;
   --selected-color: #476df4;
   --nav-color-line: var(--accent-color);
 
