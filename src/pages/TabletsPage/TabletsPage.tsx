@@ -16,18 +16,21 @@ export const TabletsPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredTabletsCount, setFilteredTabletsCount] = useState(0);
   const [tabletsCount, setTabletsCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const currentPage = Number(searchParams.get('page') || 1);
   const sortType = searchParams.get('sort') || SortType.New;
   const itemsPerPage = Number(searchParams.get('perPage') || 8);
   const priceRange = [
-    Number(searchParams.get('minPrice')) || 0,
-    Number(searchParams.get('maxPrice')) || 5000,
+    Number(searchParams.get('minPrice')),
+    Number(searchParams.get('maxPrice')),
   ];
 
   const pageCount = Math.ceil(filteredTabletsCount / itemsPerPage);
 
   const loadTablets = async () => {
+    setIsLoading(true);
+
     try {
       const [min, max] = priceRange;
 
@@ -49,6 +52,8 @@ export const TabletsPage = () => {
     } catch {
       // eslint-disable-next-line no-console
       console.log('failed to load phones');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -87,7 +92,7 @@ export const TabletsPage = () => {
 
   return (
     <>
-      {!tablets.length
+      {!tablets.length || isLoading
         ? <Loader />
         : (
           <div className="container">
@@ -100,6 +105,7 @@ export const TabletsPage = () => {
             </p>
 
             <GadgetsDisplayControl
+              category="tablets"
               itemsPerPage={itemsPerPage}
               sortType={sortType as SortType}
               priceRange={priceRange}
