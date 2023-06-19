@@ -6,10 +6,10 @@ export const NotFoundPage = () => {
   const { theme } = useTheme();
 
   return (
-    <>
+    <div className="not-found">
       {theme === 'light'
         ? <NotFoundWhite />
         : <NotFoundBlack />}
-    </>
+    </div>
   );
 };
