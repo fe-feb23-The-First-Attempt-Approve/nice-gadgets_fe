@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import cn from 'classnames';
 import {
   Autocomplete, Stack, TextField,
@@ -10,6 +10,10 @@ import { Gadget } from '../../types/Gadget';
 import { getProductsByQuery } from '../../api/products';
 
 export const SearchingField = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [productsList, setProductsList] = useState<Gadget[]>([]);
+  const query = searchParams.get('query') || '';
   const { toggleSearch, isSearching } = useSearchPanel();
   const inputRef = useRef<HTMLDivElement | null>(null);
 
@@ -52,15 +56,26 @@ export const SearchingField = () => {
   useEffect(() => {
     if (isSearching) {
       inputRef.current?.focus();
-      inputRef.current?.select();
-    } else if (inputRef.current) {
-      inputRef.current.value = '';
     }
   }, [isSearching]);
 
-  const handleFormBlur = () => {
-    toggleSearch();
-  };
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      if (query !== searchQuery) {
+        setSearchParams(getSearchWith(searchParams, {
+          query: searchQuery || null,
+        }));
+      }
+    }, 777);
+
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
+  }, [searchQuery]);
+
+  useEffect(() => {
+    loadSimilar();
+  }, [searchParams]);
 
   return (
     <div
