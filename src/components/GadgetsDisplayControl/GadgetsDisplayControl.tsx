@@ -3,6 +3,7 @@ import { SortType } from '../../types/SortType';
 import { DoubleRangeSlider } from '../DoubleRangeSlider';
 
 interface Props {
+  category: string,
   itemsPerPage: number;
   sortType: SortType;
   priceRange: number | number[];
@@ -16,6 +17,7 @@ interface Props {
 }
 
 export const GadgetsDisplayControl: React.FC<Props> = ({
+  category,
   itemsPerPage,
   sortType,
   priceRange,
@@ -80,6 +82,7 @@ export const GadgetsDisplayControl: React.FC<Props> = ({
       <div className="gadgets-display-control__price">
         <p className="gadgets-display-control__price-title">Price</p>
         <DoubleRangeSlider
+          category={category}
           min={Array.isArray(priceRange) ? priceRange[0] : 0}
           max={Array.isArray(priceRange) ? priceRange[1] : priceRange}
           onPriceChange={onPriceChange}

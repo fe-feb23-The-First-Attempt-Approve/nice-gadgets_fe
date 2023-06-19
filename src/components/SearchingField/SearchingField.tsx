@@ -3,9 +3,8 @@ import cn from 'classnames';
 import {
   Autocomplete, Stack, TextField,
 } from '@mui/material';
-import { Link, useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { useSearchPanel } from '../../providers/SearchContext';
-import { IconSearching } from '../Icons/_IconKit';
 import { getSearchWith } from '../../utils/searchHelper';
 import { Gadget } from '../../types/Gadget';
 import { getProductsByQuery } from '../../api/products';
@@ -18,14 +17,18 @@ export const SearchingField = () => {
   const { toggleSearch, isSearching } = useSearchPanel();
   const inputRef = useRef<HTMLDivElement | null>(null);
 
-  const chosenProduct = productsList
-    .find(product => product.name === searchQuery) || null;
-
   const handleInputChange = (
     _event: React.ChangeEvent<{}>,
     value: string,
   ) => {
-    setSearchQuery(value);
+    const chosenProduct = productsList.find(product => product.name === value);
+
+    if (chosenProduct) {
+      const { category, itemId } = chosenProduct;
+      const link = `#/${category}/${itemId}`;
+
+      window.location.href = link;
+    }
   };
 
   const handleSearchQueryChange = (
@@ -34,9 +37,9 @@ export const SearchingField = () => {
     setSearchQuery(event.target.value);
   };
 
-  // const handleFormBlur = () => {
-  //   toggleSearch();
-  // };
+  const handleFormBlur = () => {
+    toggleSearch();
+  };
 
   const loadSimilar = async () => {
     try {
@@ -77,9 +80,6 @@ export const SearchingField = () => {
   return (
     <div
       className="searching-field"
-      onBlur={() => {
-        // handleFormBlur();
-      }}
     >
       <Stack
         spacing={2}
@@ -97,6 +97,7 @@ export const SearchingField = () => {
           className={cn('searching-field', {
             'is-searching': isSearching,
           })}
+          onBlur={handleFormBlur}
           freeSolo
           disableClearable
           onInputChange={handleInputChange}
@@ -128,14 +129,6 @@ export const SearchingField = () => {
           )}
         />
       </Stack>
-
-      <Link
-        to={`/${chosenProduct?.category}/${chosenProduct?.itemId}`}
-        className="searching-field__button icon-bar__link"
-        onClick={toggleSearch}
-      >
-        <IconSearching />
-      </Link>
     </div>
   );
 };

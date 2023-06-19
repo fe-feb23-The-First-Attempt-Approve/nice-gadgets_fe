@@ -3,11 +3,14 @@ import { CartCard } from '../../components/CartCard';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import PaymentSuccessModal from '../../components/Modals/PaymentSuccessModal';
 import { Categories } from '../../components/Categories';
+import { useProducts } from '../../providers/ProductsContext';
 
 export const CartPage = () => {
   const { cartItems, updateCartItems } = useContext(CartItemContext);
   const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
   const [redirectToHome, setRedirectToHome] = useState(false);
+
+  const { productsAmount } = useProducts();
 
   const totalPrice = cartItems
     .reduce((total, item) => total + (item.price * (item.quantity || 0)), 0);
@@ -76,7 +79,7 @@ export const CartPage = () => {
             {'Let\'s explore some of these fantastic categories?'}
           </p>
 
-          <Categories />
+          <Categories productsAmount={productsAmount} />
         </div>
       )}
 

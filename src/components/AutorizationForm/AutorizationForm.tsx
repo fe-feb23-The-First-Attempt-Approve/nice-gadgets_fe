@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react';
+import { register } from '../../api/auth';
 
 export const AutorizationForm = () => {
   const [isRegistrationMode, setIsRegistrationMode] = useState(false);
@@ -6,9 +7,13 @@ export const AutorizationForm = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // more code here
+
+    const response = await register(name, email, password);
+
+    // eslint-disable-next-line no-console
+    console.log(response);
   };
 
   const toggleRegistrationMode = () => {
