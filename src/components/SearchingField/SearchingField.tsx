@@ -80,9 +80,6 @@ export const SearchingField = () => {
   return (
     <div
       className="searching-field"
-      onBlur={() => {
-        // handleFormBlur();
-      }}
     >
       <Stack
         spacing={2}
