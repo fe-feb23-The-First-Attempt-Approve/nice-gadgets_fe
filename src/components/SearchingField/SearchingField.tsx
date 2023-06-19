@@ -63,12 +63,8 @@ export const SearchingField = () => {
   };
 
   return (
-    <form
-      className={cn('searching-field', {
-        'is-searching': isSearching,
-      })}
-      onBlur={handleFormBlur}
-      ref={formRef}
+    <div
+      className="searching-field"
     >
       <Stack
         spacing={2}
