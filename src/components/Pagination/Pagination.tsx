@@ -1,3 +1,5 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable no-continue */
 import cn from 'classnames';
 import { Link, useSearchParams } from 'react-router-dom';
 import { ArrowButton } from '../ArrowButton';
@@ -13,21 +15,43 @@ export const Pagination: React.FC<Props> = ({
   currentPage,
 }) => {
   const [searchParams] = useSearchParams();
-  const pages: number[] = Array.from(Array(pageCount), (_, i) => i + 1);
+  const pages: number[] = [];
   const nextPage = currentPage + 1;
   const prevPage = currentPage - 1;
   const isFirstPage = prevPage < 1;
   const isLastPage = nextPage > pageCount;
 
+  for (let i = 1; i <= pageCount; i++) {
+    if ((i < currentPage - 1 && i !== 1 && currentPage !== pageCount)
+      || (i < currentPage - 2 && i !== 1)) {
+      continue;
+    }
+
+    if ((i > currentPage + 1 && i !== pageCount && currentPage !== 1)
+      || (i > currentPage + 2 && i !== pageCount)) {
+      continue;
+    }
+
+    if ((i > currentPage + 2) || (i > currentPage + 3)) {
+      pages.push(NaN);
+    }
+
+    pages.push(i);
+
+    if ((i < currentPage - 2) || (i < currentPage - 3)) {
+      pages.push(NaN);
+    }
+  }
+
   return (
     <div className="pagination">
       <ul className="pagination__page-list">
-        <li className={cn('page-item', {
-          disabled: isFirstPage,
+        <li className={cn('pagination__page-item', {
+          'pagination__page-item--disabled': isFirstPage,
         })}
         >
           <Link
-            className="page-link"
+            className="pagination__page-link"
             to={{
               search: getSearchWith(
                 searchParams, {
@@ -44,51 +68,80 @@ export const Pagination: React.FC<Props> = ({
         </li>
 
         {pages.map(pageNum => (
-          <li
-            key={pageNum}
-            className={cn('page-item', {
-              active: currentPage === pageNum,
-            })}
-          >
+          pageNum
+            ? (
+              <li
+                key={pageNum}
+                className={cn('pagination__page-item', {
+                  'pagination__page-item--disabled': currentPage === pageNum,
+                })}
+              >
+                <Link
+                  className="pagination__page-link"
+                  to={{
+                    search: getSearchWith(
+                      searchParams, { page: pageNum.toString() },
+                    ),
+                  }}
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  <div
+                    className={cn('pagination__button', {
+                      'pagination__button--active': currentPage === pageNum,
+                    })}
+                  >
+                    {pageNum}
+                  </div>
+                </Link>
+              </li>
+            ) : (
+              <li
+                key={pageNum}
+                className={cn('pagination__page-item',
+                  'pagination__page-item--disabled')}
+              >
+                <Link
+                  className="pagination__page-link"
+                  to={{
+                    search: getSearchWith(
+                      searchParams, { page: pageNum.toString() },
+                    ),
+                  }}
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  <div className={cn(
+                    'pagination__button',
+                  )}
+                  >
+                    ...
+                  </div>
+                </Link>
+              </li>
+            )
+        ))}
+
+        <li
+          className={cn('pagination__page-item', {
+            'pagination__page-item--disabled': isLastPage,
+          })}
+        >
+          {!isLastPage ? (
             <Link
-              className="page-link"
               to={{
                 search: getSearchWith(
-                  searchParams, { page: pageNum.toString() },
+                  searchParams, {
+                    page: nextPage.toString(),
+                  },
                 ),
               }}
               onClick={() => window.scrollTo(0, 0)}
             >
-              <div className={cn(
-                'page-button',
-                'arrow-container',
-                { 'page-button--active': currentPage === pageNum },
-              )}
-              >
-                {pageNum}
-              </div>
+              <ArrowButton arrowDirection="right" />
             </Link>
-          </li>
-        ))}
-
-        <li className={cn('page-item', {
-          disabled: isLastPage,
-        })}
-        >
-          <Link
-            to={{
-              search: getSearchWith(
-                searchParams, {
-                  page: isLastPage
-                    ? currentPage.toString()
-                    : nextPage.toString(),
-                },
-              ),
-            }}
-            onClick={() => window.scrollTo(0, 0)}
-          >
+          ) : (
             <ArrowButton arrowDirection="right" />
-          </Link>
+          )}
+
         </li>
       </ul>
     </div>

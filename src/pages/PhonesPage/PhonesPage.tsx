@@ -26,6 +26,7 @@ export const PhonesPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredPhonesCount, setFilteredPhonesCount] = useState(0);
   const [phonesCount, setPhonesCount] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const currentPage = Number(searchParams.get('page') || 1);
   const sortType = searchParams.get('sort') || SortType.New;
@@ -40,6 +41,8 @@ export const PhonesPage = () => {
   const pageCount = Math.ceil(filteredPhonesCount / itemsPerPage);
 
   const loadPhones = async () => {
+    setIsLoading(true);
+
     try {
       const [min, max] = priceRangeSP;
 
@@ -60,6 +63,8 @@ export const PhonesPage = () => {
       setPhones(phonesFromServer);
     } catch {
       throw new Error('failed to load phones');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -111,7 +116,7 @@ export const PhonesPage = () => {
 
   return (
     <>
-      {!phones.length
+      {!phones.length || isLoading
         ? <Loader />
         : (
           <div className="container gadgets-page">
@@ -124,6 +129,7 @@ export const PhonesPage = () => {
             </p>
 
             <GadgetsDisplayControl
+              category="phones"
               itemsPerPage={itemsPerPage}
               sortType={sortType as SortType}
               priceRange={priceRange}

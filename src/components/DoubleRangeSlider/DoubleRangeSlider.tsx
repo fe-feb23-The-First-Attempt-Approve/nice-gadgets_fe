@@ -1,15 +1,17 @@
 import { Slider } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { PriceRange } from '../../types/priceRange';
-import { getPhoneMinMaxPrices } from '../../api/phones';
+import { getProductsMinMaxPrices } from '../../api/products';
 
 type Props = {
+  category: string;
   min: number;
   max: number;
   onPriceChange: (e: Event, newValue: number | number[]) => void;
 };
 
 export const DoubleRangeSlider: React.FC<Props> = ({
+  category,
   min,
   max,
   onPriceChange,
@@ -18,7 +20,7 @@ export const DoubleRangeSlider: React.FC<Props> = ({
 
   const loadPrices = async () => {
     try {
-      const proceRangeFromServer = await getPhoneMinMaxPrices();
+      const proceRangeFromServer = await getProductsMinMaxPrices(category);
 
       setPriceRange(proceRangeFromServer);
     } catch {
