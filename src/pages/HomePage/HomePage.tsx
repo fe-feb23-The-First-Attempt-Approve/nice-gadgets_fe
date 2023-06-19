@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { getPhones } from '../../api/phones';
+import {useEffect, useMemo, useState} from 'react';
+import {getHotProducts, getPhones} from '../../api/phones';
 import { Banner } from '../../components/Banner';
 import { Categories } from '../../components/Categories';
 import { Slider } from '../../components/Slider';
@@ -8,24 +8,26 @@ import { Loader } from '../../components/Loader';
 
 export const HomePage = () => {
   const [gadgets, setPhones] = useState<Gadget[]>([]);
+  const [hotGadgets, setHotGadgets] = useState<Gadget[]>([])
 
   const loadPhones = async () => {
-    const { visibleProducts: phonesFromServer } = await getPhones();
+    const { visibleProducts: gadgetsFromServer } = await getPhones();
+    const hotGadgetsFromServer = await getHotProducts();
 
-    setPhones(phonesFromServer);
+    setPhones(gadgetsFromServer);
+    setHotGadgets(hotGadgetsFromServer);
   };
 
   useEffect(() => {
     loadPhones();
   }, []);
 
-  const sortedByDiscount = [...gadgets].sort((phoneA, phoneB) => {
-    const firstDiscount = phoneA.fullPrice - phoneA.price;
-    const secondDiscount = phoneB.fullPrice - phoneB.price;
-    const difference = secondDiscount - firstDiscount;
-
-    return difference;
-  });
+  const sortedByNewModel = useMemo(() => (
+    [...hotGadgets].sort((firstGadget, secondGadget) => (
+        secondGadget.year - firstGadget.year
+      )
+    )
+  ),[])
 
   return (
     <div className="home-page">
@@ -44,7 +46,7 @@ export const HomePage = () => {
             <section className="home-page__section">
               <Slider
                 title="Brand new models"
-                gadgets={gadgets}
+                gadgets={sortedByNewModel}
                 navButtons={{
                   prevEl: '.models-slider-button-prev',
                   nextEl: '.models-slider-button-next',
@@ -59,7 +61,7 @@ export const HomePage = () => {
             <section className="home-page__section">
               <Slider
                 title="Hot prices"
-                gadgets={sortedByDiscount}
+                gadgets={hotGadgets}
                 navButtons={{
                   prevEl: '.prices-slider-button-prev',
                   nextEl: '.prices-slider-button-next',
