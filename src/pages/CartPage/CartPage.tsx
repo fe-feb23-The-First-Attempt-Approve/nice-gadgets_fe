@@ -29,6 +29,7 @@ export const CartPage = () => {
       setTimeout(() => {
         setIsPaymentSuccess(false);
         setRedirectToHome(true);
+        document.body.classList.remove('scrolling-blocked');
       }, 3000);
       localStorage.removeItem('cartItems');
       updateCartItems([]);
