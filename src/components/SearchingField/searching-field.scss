@@ -6,10 +6,12 @@
   width: 100%;
 
   &__query {
-    flex-grow: 1 !important;
-    padding: 10px !important;
-    border-bottom: 1px solid $text-color-secondary !important;
-    font-family: Mont, sans-serif !important;
+    // flex-grow: 1 !important;
+    // padding: 10px !important;
+    // border-bottom: 1px solid $text-color-secondary !important;
+    // font-family: Mont, sans-serif !important;
+    // background-color: $bg-color-main;
+    // color: $text-color-main;
 
     @include onDesktop {
       width: auto;
