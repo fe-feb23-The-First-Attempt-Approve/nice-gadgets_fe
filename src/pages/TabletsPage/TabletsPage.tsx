@@ -85,6 +85,7 @@ export const TabletsPage = () => {
     const [min, max] = Array.isArray(value) ? value.map(String) : [null, null];
 
     setSearchParams(getSearchWith(searchParams, {
+      page: null,
       minPrice: min,
       maxPrice: max,
     }));
