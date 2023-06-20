@@ -21,10 +21,12 @@ export const TabletsPage = () => {
   const currentPage = Number(searchParams.get('page') || 1);
   const sortType = searchParams.get('sort') || SortType.New;
   const itemsPerPage = Number(searchParams.get('perPage') || 8);
-  const priceRange = [
+  const priceRangeSP = [
     Number(searchParams.get('minPrice')),
     Number(searchParams.get('maxPrice')),
   ];
+
+  const [priceRange, setPriceRange] = useState<number | number[]>([]);
 
   const pageCount = Math.ceil(filteredTabletsCount / itemsPerPage);
 
@@ -32,7 +34,7 @@ export const TabletsPage = () => {
     setIsLoading(true);
 
     try {
-      const [min, max] = priceRange;
+      const [min, max] = priceRangeSP;
 
       const {
         allProductsCount,
@@ -78,17 +80,30 @@ export const TabletsPage = () => {
     setSearchParams(getSearchWith(searchParams, { sort: value }));
   };
 
+  useEffect(() => {
+    const debounceTimeout = setTimeout(() => {
+      const [min, max] = Array.isArray(priceRange) ? priceRange : [null, null];
+
+      if ((min !== priceRangeSP[0] || max !== priceRangeSP[1])
+      && (min && max)) {
+        setSearchParams(getSearchWith(searchParams, {
+          page: null,
+          minPrice: min.toString(),
+          maxPrice: max.toString(),
+        }));
+      }
+    }, 500);
+
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
+  }, [priceRange]);
+
   const handlePriceChange = (
     _event: Event,
     value: number | number[],
   ) => {
-    const [min, max] = Array.isArray(value) ? value.map(String) : [null, null];
-
-    setSearchParams(getSearchWith(searchParams, {
-      page: null,
-      minPrice: min,
-      maxPrice: max,
-    }));
+    setPriceRange(value);
   };
 
   return (
