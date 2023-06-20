@@ -8,6 +8,7 @@ import { useSearchPanel } from '../../providers/SearchContext';
 import { getSearchWith } from '../../utils/searchHelper';
 import { Gadget } from '../../types/Gadget';
 import { getProductsByQuery } from '../../api/products';
+import { useTheme } from '../../providers/ThemeContext';
 
 export const SearchingField = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,7 +16,9 @@ export const SearchingField = () => {
   const [productsList, setProductsList] = useState<Gadget[]>([]);
   const query = searchParams.get('query') || '';
   const { toggleSearch, isSearching } = useSearchPanel();
+  const { theme } = useTheme();
   const inputRef = useRef<HTMLDivElement | null>(null);
+  const inputTextColor = theme === 'dark' ? 'white' : 'black';
 
   const handleInputChange = (
     _event: React.ChangeEvent<{}>,
@@ -105,14 +108,18 @@ export const SearchingField = () => {
           renderInput={(params) => (
             <TextField
               sx={{
-                width: 200,
-                bgcolor: 'white',
+                minWidth: 200,
                 '& .MuiOutlinedInput-root': {
-                  // border: "1px solid yellow",
+                  borderBottom: '1px solid gray',
                   borderRadius: '0',
+                  color: inputTextColor,
+                  width: '100%',
                 },
                 '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
                   border: 'none',
+                },
+                '& .css-7u0vwp-MuiFormControl-root-MuiTextField-root': {
+                  width: '100%',
                 },
               }}
               placeholder="Searching..."
