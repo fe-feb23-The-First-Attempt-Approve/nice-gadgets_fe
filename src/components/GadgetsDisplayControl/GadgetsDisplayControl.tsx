@@ -30,7 +30,13 @@ export const GadgetsDisplayControl: React.FC<Props> = ({
       <div className="gadgets-display-control__sort">
         <p>Sort by</p>
         <Select
-          sx={{ width: 176, height: 40, bgcolor: 'white' }}
+          sx={
+            {
+              width: 176,
+              height: 40,
+              bgcolor: 'white',
+            }
+          }
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={sortType}
