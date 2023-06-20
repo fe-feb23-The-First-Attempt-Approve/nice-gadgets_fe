@@ -20,3 +20,7 @@ export const getProductsMinMaxPrices = async (
 export const getHotProducts = async (): Promise<Gadget[]> => {
   return client.get('/products/hot');
 };
+
+export const getProductsByIds = async (ids: string[]): Promise<Gadget[]> => {
+  return client.post('/products/ids', { ids });
+};
