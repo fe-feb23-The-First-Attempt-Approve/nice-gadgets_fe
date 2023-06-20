@@ -11,6 +11,8 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { AboutPage } from './pages/AboutPage';
 import { Footer } from './components/Footer';
 import { Contacts } from './pages/Contacts';
+import { AutorizationForm } from './components/AutorizationForm';
+import { ActivationPage } from './pages/ActivationPage';
 
 const App = () => (
   <>
@@ -54,10 +56,17 @@ const App = () => (
 
         <Route path="*" element={<Navigate to="/not-found-page" replace />} />
 
+        <Route path="/activation">
+          <Route path=":Link" element={<ActivationPage />} />
+        </Route>
+
       </Routes>
     </div>
+
     <ToastContainer />
     <Footer />
+
+    <AutorizationForm />
   </>
 );
 
