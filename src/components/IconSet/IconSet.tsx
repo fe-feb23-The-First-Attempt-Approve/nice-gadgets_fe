@@ -8,7 +8,8 @@ import { CartItemContext } from '../../providers/CartItemsContext';
 import { CountFavoritesContext } from '../../providers/FavoriteItemContext';
 import {
   IconLikeEmpty, IconThemeDark, IconThemeLight,
-  IconTranslate, IconCart, IconWithCounter,
+  // IconTranslate,
+  IconCart, IconWithCounter,
 } from '../Icons/_IconKit';
 
 export const IconSet = () => {
@@ -47,11 +48,11 @@ export const IconSet = () => {
         </NavLink>
       </li>
 
-      <li className="icon-set__item icon-set__item--100">
+      {/* <li className="icon-set__item icon-set__item--100">
         <button type="button" className="icon-bar__link icon-bar__mobile">
           <IconTranslate />
         </button>
-      </li>
+      </li> */}
 
       <li className="icon-set__item icon-set__item--100">
         <button

@@ -1,5 +1,6 @@
 export const phoneTemplate = {
   id: 'id',
+  category: '',
   namespaceId: 'namespaceId',
   name: 'name',
   capacityAvailable: [

@@ -67,6 +67,10 @@
 // contacts
 @import "../pages/Contacts/Contacts.scss";
 
+//not found page
+@import "../components/NotFoundWhite/NotFoundWhite.scss";
+@import "../components/NotFoundBlack/NotFoundBlack.scss";
+
 // should be moved to other folder
 .content {
   height: fit-content;

@@ -13,6 +13,8 @@ export const HomePage = () => {
     hotGadgets,
   } = useContext(ProductsContext);
 
+  const renderedHotGagets = hotGadgets.slice(0, 8);
+
   return (
     <div className="home-page">
       {!gadgets.length
@@ -45,7 +47,7 @@ export const HomePage = () => {
             <section className="home-page__section">
               <Slider
                 title="Hot prices"
-                gadgets={hotGadgets}
+                gadgets={renderedHotGagets}
                 navButtons={{
                   prevEl: '.prices-slider-button-prev',
                   nextEl: '.prices-slider-button-next',

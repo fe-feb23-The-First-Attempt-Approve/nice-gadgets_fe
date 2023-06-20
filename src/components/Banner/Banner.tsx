@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   Autoplay,
@@ -13,8 +14,30 @@ import {
 } from 'react-icons/md';
 
 import 'swiper/swiper-bundle.css';
+import {
+  iphoneFull,
+  iphoneSquere1,
+  iphoneSquere2,
+  iphoneSquere3,
+} from '../../img/images';
 
 export const Banner = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 640);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="banner">
       <Swiper
@@ -44,16 +67,27 @@ export const Banner = () => {
         }}
       >
         <SwiperSlide>
-          {/* eslint-disable-next-line max-len */}
-          <img src="https://media.idownloadblog.com/wp-content/uploads/2021/09/Apple-iPhone-13-Pro-advertisement.jpg" alt="test-slide" />
+          {isMobile ? (
+            <img src={iphoneSquere1} alt="test-slide" />
+          ) : (
+            // eslint-disable-next-line max-len
+            <img src="https://media.idownloadblog.com/wp-content/uploads/2021/09/Apple-iPhone-13-Pro-advertisement.jpg" alt="test-slide" />
+          )}
         </SwiperSlide>
         <SwiperSlide>
-          {/* eslint-disable-next-line max-len */}
-          <img src="https://media.idownloadblog.com/wp-content/uploads/2021/04/Apple-ad-Mission-Implausible-iPad-Pro-Mac-M1-chip-001.jpg" alt="test-slide" />
+          {isMobile ? (
+            <img src={iphoneSquere2} alt="test-slide" />
+          ) : (
+            // eslint-disable-next-line max-len
+            <img src="https://media.idownloadblog.com/wp-content/uploads/2021/04/Apple-ad-Mission-Implausible-iPad-Pro-Mac-M1-chip-001.jpg" alt="test-slide" className="bunner__image" />
+          )}
         </SwiperSlide>
         <SwiperSlide>
-          {/* eslint-disable-next-line max-len */}
-          <img src="https://i.ytimg.com/vi/V8x3ais9nes/maxresdefault.jpg" alt="test-slide" />
+          {isMobile ? (
+            <img src={iphoneSquere3} alt="test-slide" />
+          ) : (
+            <img src={iphoneFull} alt="test-slide" />
+          )}
         </SwiperSlide>
       </Swiper>
 

@@ -1,4 +1,5 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartCard } from '../../components/CartCard';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import PaymentSuccessModal from '../../components/Modals/PaymentSuccessModal';
@@ -9,6 +10,7 @@ export const CartPage = () => {
   const { cartItems, updateCartItems } = useContext(CartItemContext);
   const [isPaymentSuccess, setIsPaymentSuccess] = useState(false);
   const [redirectToHome, setRedirectToHome] = useState(false);
+  const nav = useNavigate();
 
   const { productsAmount } = useProducts();
 
@@ -19,24 +21,32 @@ export const CartPage = () => {
 
   const handleCheckout = () => {
     setIsPaymentSuccess(true);
-
-    setTimeout(() => {
-      setIsPaymentSuccess(false);
-      setRedirectToHome(true);
-    }, 3000);
-    localStorage.removeItem('cartItems');
-    updateCartItems([]);
+    document.body.classList.add('scrolling-blocked');
   };
 
-  if (redirectToHome) {
-    window.location.href = '/';
-  }
+  useEffect(() => {
+    if (isPaymentSuccess) {
+      setTimeout(() => {
+        setIsPaymentSuccess(false);
+        setRedirectToHome(true);
+        document.body.classList.remove('scrolling-blocked');
+      }, 3000);
+      localStorage.removeItem('cartItems');
+      updateCartItems([]);
+    }
+  }, [isPaymentSuccess]);
+
+  useEffect(() => {
+    if (redirectToHome) {
+      nav('/');
+    }
+  }, [redirectToHome, nav]);
 
   return (
     <div className="container gadgets-page">
       <h1 className="gadgets-page__title cart-title">Cart</h1>
 
-      {cartItems.length > 0 ? (
+      {cartItems.length > 0 && (
         <div className="cart">
           <div className="cart__list">
             {cartItems.map((gadget) => (
@@ -69,7 +79,14 @@ export const CartPage = () => {
             </button>
           </div>
         </div>
-      ) : (
+      )}
+
+      {isPaymentSuccess && (
+        <PaymentSuccessModal />
+      )}
+
+      {/* eslint-disable-next-line */}
+      {isPaymentSuccess || cartItems.length < 1 && (
         <div className="empty-cart">
           <h2 className="empty-cart__main-text">
             Oops! Looks like your cart is empty at the moment...
@@ -81,10 +98,6 @@ export const CartPage = () => {
 
           <Categories productsAmount={productsAmount} />
         </div>
-      )}
-
-      {isPaymentSuccess && (
-        <PaymentSuccessModal />
       )}
     </div>
   );

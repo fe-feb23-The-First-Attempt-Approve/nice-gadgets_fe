@@ -21,6 +21,7 @@ export const Categories: FC<Props> = ({ productsAmount }) => {
           title="Modile phones"
           amount={productsAmount.phonesAmount}
         />
+
         <CategoryCard
           link="/tablets"
           // eslint-disable-next-line
@@ -28,6 +29,7 @@ export const Categories: FC<Props> = ({ productsAmount }) => {
           title="Tablets"
           amount={productsAmount.tabletsAmount}
         />
+
         <CategoryCard
           link="/accessories"
           // eslint-disable-next-line

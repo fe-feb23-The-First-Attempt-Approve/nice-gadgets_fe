@@ -8,7 +8,8 @@ import { CartItemContext } from '../../providers/CartItemsContext';
 import { SearchingArea } from '../SearchingArea';
 import {
   IconLikeEmpty, IconCart, IconWithCounter,
-  IconThemeLight, IconThemeDark, IconTranslate,
+  IconThemeLight, IconThemeDark,
+  // IconTranslate,
   IconAuthorization,
 } from '../Icons/_IconKit';
 
@@ -24,11 +25,11 @@ export const IconBar = () => {
         <SearchingArea />
       </li>
 
-      <li className="icon-bar__item">
+      {/* <li className="icon-bar__item">
         <button type="button" className="icon-bar__link">
           <IconTranslate />
         </button>
-      </li>
+      </li> */}
 
       <li className="icon-bar__item">
         <button
