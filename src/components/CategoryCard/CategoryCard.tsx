@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 
 type Props = {
   link: string;
@@ -18,7 +19,10 @@ export const CategoryCard: FC<Props> = ({
     <Link to={link} className="category-card__link">
       <div className="category-card__img-container">
         <img
-          className="category-card__image"
+          className={cn(
+            'category-card__image',
+            { 'category-card__image_disabled': !amount },
+          )}
           src={image}
           alt={title}
         />
@@ -29,7 +33,7 @@ export const CategoryCard: FC<Props> = ({
       </h4>
 
       <p className="category-card__models-amount">
-        {`${amount} models`}
+        {amount ? `${amount} models` : 'Goods awaiting delivery'}
       </p>
     </Link>
   </div>

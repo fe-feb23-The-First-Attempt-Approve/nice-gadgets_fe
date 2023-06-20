@@ -11,6 +11,10 @@
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+
+    &_disabled {
+        filter: grayscale(100%);
+      }
   }
 
   &:hover .category-card__image {

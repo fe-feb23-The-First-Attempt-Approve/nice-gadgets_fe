@@ -92,3 +92,9 @@
 .dev-active {
   border: 2px solid $accent-color;
 }
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
