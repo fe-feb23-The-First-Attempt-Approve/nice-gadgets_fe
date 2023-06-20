@@ -102,6 +102,7 @@ export const PhonesPage = () => {
       if ((min !== priceRangeSP[0] || max !== priceRangeSP[1])
       && (min && max)) {
         setSearchParams(getSearchWith(searchParams, {
+          page: null,
           minPrice: min.toString(),
           maxPrice: max.toString(),
         }));

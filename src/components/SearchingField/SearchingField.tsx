@@ -1,7 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import cn from 'classnames';
 import {
-  Autocomplete, Stack, TextField,
+  Autocomplete, CircularProgress, Stack, TextField,
 } from '@mui/material';
 import { useSearchParams } from 'react-router-dom';
 import { useSearchPanel } from '../../providers/SearchContext';
@@ -11,6 +11,7 @@ import { getProductsByQuery } from '../../api/products';
 import { useTheme } from '../../providers/ThemeContext';
 
 export const SearchingField = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState('');
   const [productsList, setProductsList] = useState<Gadget[]>([]);
@@ -45,6 +46,8 @@ export const SearchingField = () => {
   };
 
   const loadSimilar = async () => {
+    setIsLoading(true);
+
     try {
       if (query) {
         const productsFromServer = await getProductsByQuery(query);
@@ -52,7 +55,9 @@ export const SearchingField = () => {
         setProductsList(productsFromServer);
       }
     } catch {
-      // throw new Error('Cant load products from server');
+      throw new Error('Cant load products from server');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -63,13 +68,17 @@ export const SearchingField = () => {
   }, [isSearching]);
 
   useEffect(() => {
+    setIsLoading(true);
+    setProductsList([]);
     const debounceTimeout = setTimeout(() => {
-      if (query !== searchQuery) {
+      if (query !== searchQuery && searchQuery) {
         setSearchParams(getSearchWith(searchParams, {
           query: searchQuery || null,
         }));
       }
-    }, 777);
+
+      setIsLoading(false);
+    }, 500);
 
     return () => {
       clearTimeout(debounceTimeout);
@@ -86,22 +95,14 @@ export const SearchingField = () => {
     >
       <Stack
         spacing={2}
-        sx={{
-          // display: 'flex',
-          // flexDirection: 'row',
-          // justifyContent: 'center',
-          // alignItems: 'center',
-          // alignContent: 'center',
-          // height: 40,
-        }}
-
       >
         <Autocomplete
           className={cn('searching-field', {
             'is-searching': isSearching,
           })}
+          noOptionsText="Nothing was found"
+          freeSolo={!searchQuery.length || isLoading}
           onBlur={handleFormBlur}
-          freeSolo
           disableClearable
           onInputChange={handleInputChange}
           options={productsList.map(product => product.name)}
@@ -122,7 +123,7 @@ export const SearchingField = () => {
                   width: '100%',
                 },
               }}
-              placeholder="Searching..."
+              placeholder="Enter product name"
               inputRef={inputRef}
               className="searching-field__query"
               value={searchQuery}
@@ -131,6 +132,14 @@ export const SearchingField = () => {
               InputProps={{
                 ...params.InputProps,
                 type: 'search',
+                endAdornment: (
+                  <>
+                    {isLoading
+                      ? <CircularProgress color="inherit" size={20} />
+                      : null}
+                    {params.InputProps.endAdornment}
+                  </>
+                ),
               }}
             />
           )}
