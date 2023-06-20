@@ -1,19 +1,27 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useContext, useState } from 'react';
 import { register } from '../../api/auth';
+import { AuthContext } from '../../providers/AuthContext';
 
 export const AutorizationForm = () => {
   const [isRegistrationMode, setIsRegistrationMode] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const { isModalActive, setIsModalActive } = useContext(AuthContext);
+  const hasAllData = email && name && password;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await register(name, email, password);
-
+    try {
+      await register(name, email, password);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    } finally {
+      setIsModalActive(false);
+    }
     // eslint-disable-next-line no-console
-    console.log(response);
   };
 
   const toggleRegistrationMode = () => {
@@ -22,6 +30,10 @@ export const AutorizationForm = () => {
     setPassword('');
     setName('');
   };
+
+  if (!isModalActive) {
+    return null;
+  }
 
   return (
     <div className="modal">
@@ -76,8 +88,20 @@ export const AutorizationForm = () => {
           />
         </div>
 
-        <button type="submit" className="modal__action">
+        <button
+          type="submit"
+          className="modal__action"
+          disabled={!hasAllData}
+        >
           {isRegistrationMode ? 'Submit' : 'Log in'}
+        </button>
+
+        <button
+          className="modal__close"
+          type="button"
+          onClick={() => setIsModalActive(false)}
+        >
+          X
         </button>
       </form>
     </div>

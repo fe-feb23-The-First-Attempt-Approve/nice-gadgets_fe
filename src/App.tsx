@@ -11,6 +11,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { AboutPage } from './pages/AboutPage';
 import { Footer } from './components/Footer';
 import { Contacts } from './pages/Contacts';
+import { AutorizationForm } from './components/AutorizationForm';
 
 const App = () => (
   <>
@@ -58,6 +59,8 @@ const App = () => (
     </div>
     <ToastContainer />
     <Footer />
+
+    <AutorizationForm />
   </>
 );
 

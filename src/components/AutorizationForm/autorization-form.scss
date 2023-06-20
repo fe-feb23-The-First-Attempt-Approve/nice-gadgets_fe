@@ -47,4 +47,12 @@
     border-radius: 4px;
     color: $text-color-accent-btn;
   }
+
+  &__close {
+    border: 1px solid white;
+    color: white;
+    width: 32px;
+    height: 32px;
+    top: 0;
+  }
 }
