@@ -1,6 +1,5 @@
 // import { NavLink } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import { home, arrow } from '../../img/images';
 import { useSearchParams } from 'react-router-dom';
 import { SelectChangeEvent } from '@mui/material';
 import { Pagination } from '../../components/Pagination';

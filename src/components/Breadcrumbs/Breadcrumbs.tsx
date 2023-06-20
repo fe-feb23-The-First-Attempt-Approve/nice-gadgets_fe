@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { IconHome, IconArrow } from '../Icons/_IconKit';
 
 interface Props {
-  category: 'Phones' | 'Tablets' | 'Accessories' | 'Favorites';
+  category: 'Phones' | 'Tablets' | 'Accessories' | 'Favorites' | string;
   currentPage?: string;
 }
 
