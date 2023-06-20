@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import cn from 'classnames';
 import { useTheme } from '../../providers/ThemeContext';
 import { useSearchPanel } from '../../providers/SearchContext';
-import { CountFavoritesContext } from '../../providers/FavoriteItemContext';
+import { FavoriteItemContext } from '../../providers/FavoriteItemContext';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import { SearchingArea } from '../SearchingArea';
 import {
@@ -16,7 +16,7 @@ import {
 export const IconBar = () => {
   const { theme, toggleTheme } = useTheme();
   const { cartItemCount } = useContext(CartItemContext);
-  const { countFavorites } = useContext(CountFavoritesContext);
+  const { favoriteItemCount } = useContext(FavoriteItemContext);
   const { closeSearch } = useSearchPanel();
 
   return (
@@ -48,7 +48,7 @@ export const IconBar = () => {
             { 'icon-bar__link--active': isActive })}
           onClick={closeSearch}
         >
-          <IconWithCounter icon={<IconLikeEmpty />} count={countFavorites} />
+          <IconWithCounter icon={<IconLikeEmpty />} count={favoriteItemCount} />
         </NavLink>
       </li>
 

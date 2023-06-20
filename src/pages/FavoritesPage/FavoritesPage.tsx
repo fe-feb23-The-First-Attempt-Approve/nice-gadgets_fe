@@ -2,17 +2,16 @@
 import {
   useContext,
   useEffect,
-  useMemo,
   useState,
 } from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { ProductList } from '../../components/ProductList';
-import { getProducts } from '../../api/products';
 import { Gadget } from '../../types/Gadget';
 import { FavoriteItemContext } from '../../providers/FavoriteItemContext';
 import { Categories } from '../../components/Categories';
 import { Loader } from '../../components/Loader';
 import { useProducts } from '../../providers/ProductsContext';
+import { getProductsByIds } from '../../api/products';
 
 export const FavoritesPage = () => {
   const [favorites, setFavorites] = useState<Gadget[]>([]);
@@ -21,7 +20,7 @@ export const FavoritesPage = () => {
 
   const loadProducts = async () => {
     try {
-      const products = await getProducts();
+      const products = await getProductsByIds(favoriteItems);
 
       setFavorites(products);
     } catch (error) {
@@ -32,10 +31,6 @@ export const FavoritesPage = () => {
   useEffect(() => {
     loadProducts();
   }, [favoriteItems]);
-
-  const filterFavorits = useMemo(() => favorites.filter(({ itemId }) => (
-    favoriteItems.includes(itemId)
-  )), [favorites]);
 
   return (
     <div className="container">
@@ -49,10 +44,10 @@ export const FavoritesPage = () => {
             <h1 className="gadgets-page__title">Favorites</h1>
 
             <p className="gadgets-page__description">
-              {`${filterFavorits.length} items`}
+              {`${favorites.length} items`}
             </p>
 
-            <ProductList gadgets={filterFavorits} />
+            <ProductList gadgets={favorites} />
           </>
         )
         : (
