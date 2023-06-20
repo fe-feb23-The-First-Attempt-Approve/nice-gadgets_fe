@@ -1,4 +1,4 @@
-const BASE_URL = 'https://the-first-attempt-approve.onrender.com';
+const BASE_URL = 'http://localhost:4000';
 
 type RequestMethod = 'GET' | 'POST';
 

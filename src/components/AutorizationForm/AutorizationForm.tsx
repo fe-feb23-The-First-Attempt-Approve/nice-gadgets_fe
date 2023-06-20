@@ -8,20 +8,16 @@ export const AutorizationForm = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const { isModalActive, setIsModalActive } = useContext(AuthContext);
-  const hasAllData = email && name && password;
 
+  const hasAllData = email && name && password;
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    try {
-      await register(name, email, password);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
-    } finally {
+    const response = await register(name, email, password);
+
+    if (response.message) {
       setIsModalActive(false);
     }
-    // eslint-disable-next-line no-console
   };
 
   const toggleRegistrationMode = () => {
