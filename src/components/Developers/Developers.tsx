@@ -36,7 +36,6 @@ export const Developers: React.FC<Props> = (
         className={cn(
           'dev-content__dev-photo', { 'dev-active': isTeamLead },
         )}
-        className="dev-content__dev-photo"
       />
       <figcaption className="dev-content__info">
         <h3 className="dev-content__dev-name">
