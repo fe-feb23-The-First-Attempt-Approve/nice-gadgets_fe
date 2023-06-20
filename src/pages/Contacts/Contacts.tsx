@@ -18,6 +18,7 @@ export const Contacts = () => {
               isTeamLead,
             }) => (
               <Developers
+                key={name}
                 name={name}
                 gh={gh}
                 linkedin={linkedin}
