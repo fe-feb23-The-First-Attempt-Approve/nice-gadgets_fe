@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import cn from 'classnames';
 import { VscGithub } from 'react-icons/vsc';
 import { AiFillLinkedin, AiOutlineMail } from 'react-icons/ai';
 
@@ -8,6 +9,7 @@ type Props = {
   linkedin: string;
   mail: string;
   photo?: string;
+  isTeamLead?: boolean;
 };
 
 export const Developers: React.FC<Props> = (
@@ -17,6 +19,7 @@ export const Developers: React.FC<Props> = (
     linkedin,
     mail,
     photo,
+    isTeamLead,
   },
 ) => {
   return (
@@ -30,7 +33,10 @@ export const Developers: React.FC<Props> = (
       <img
         src={photo}
         alt={name}
-        className="dev-content__dev-photo"
+        className={cn(
+          'dev-content__dev-photo', { 'dev-active': isTeamLead },
+        )}
+
       />
       <figcaption className="dev-content__info">
         <h3 className="dev-content__dev-name">
@@ -44,6 +50,7 @@ export const Developers: React.FC<Props> = (
           <Link
             to={gh}
             className="dev-content__icon-item"
+            target="_blank"
           >
             <VscGithub size="22px" />
           </Link>
@@ -51,6 +58,7 @@ export const Developers: React.FC<Props> = (
           <Link
             to={linkedin}
             className="dev-content__icon-item"
+            target="_blank"
           >
             <AiFillLinkedin />
           </Link>
@@ -58,6 +66,8 @@ export const Developers: React.FC<Props> = (
           <Link
             to={mail}
             className="dev-content__icon-item"
+            target="_blank"
+            title={mail}
           >
             <AiOutlineMail />
           </Link>

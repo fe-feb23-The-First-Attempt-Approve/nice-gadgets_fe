@@ -66,8 +66,9 @@
   }
 
   &__dev-position {
-    color: #f39c12;
+    color: #f86800;
     display: block;
+    font-weight: 600;
     font-size: 12px;
     opacity: 0.75;
   }
@@ -85,5 +86,9 @@
     color: $text-color-main;
     font-size: 24px;
   }
+}
+
+.dev-active {
+  border: 2px solid $accent-color;
 }
 

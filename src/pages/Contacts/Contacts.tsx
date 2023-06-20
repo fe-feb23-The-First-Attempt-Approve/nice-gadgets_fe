@@ -15,6 +15,7 @@ export const Contacts = () => {
               linkedin,
               mail,
               photo,
+              isTeamLead,
             }) => (
               <Developers
                 name={name}
@@ -22,6 +23,7 @@ export const Contacts = () => {
                 linkedin={linkedin}
                 mail={mail}
                 photo={photo}
+                isTeamLead={isTeamLead}
               />
             ))
           }
