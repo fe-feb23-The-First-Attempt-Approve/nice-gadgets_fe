@@ -13,6 +13,7 @@ export const developers = [
     linkedin: 'https://www.linkedin.com/in/pasha-malyshkin-21239927a/',
     mail: 'pashamalyshkin2003@gmail.com',
     photo: pasha,
+    isTeamLead: true,
   },
   {
     name: 'Myla Voronevska',
