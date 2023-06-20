@@ -50,7 +50,10 @@ const App = () => (
           <Route index element={<Contacts />} />
         </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/not-found-page" element={<NotFoundPage />} />
+
+        <Route path="*" element={<Navigate to="/not-found-page" replace />} />
+
       </Routes>
     </div>
     <ToastContainer />
