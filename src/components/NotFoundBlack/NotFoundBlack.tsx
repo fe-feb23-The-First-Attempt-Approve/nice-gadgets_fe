@@ -24,7 +24,6 @@ export const NotFoundBlack: FC = () => (
 
     <div className="astronaut">
       <img
-        // eslint-disable-next-line max-len
         src="img/not-found/black.png"
         alt="404"
         className="src"

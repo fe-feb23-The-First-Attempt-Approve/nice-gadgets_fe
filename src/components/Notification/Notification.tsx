@@ -17,8 +17,10 @@ const NotificationMessage = ({ message, redirection, isError }: Props) => {
     : 'dark';
 
   const handleClick = () => {
-    nav(`/${redirection}`);
-    window.scrollTo(0, 0);
+    if (redirection) {
+      nav(`/${redirection}`);
+      window.scrollTo(0, 0);
+    }
   };
 
   const options: ToastOptions = {

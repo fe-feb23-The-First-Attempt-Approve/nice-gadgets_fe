@@ -22,12 +22,29 @@
     border-radius: 4px;
 
     &--active {
-      background-color: $bg-color-controllers;
+      background-color: $bg-color-controllers-hov;
       border-color: $accent-color-hov;
     }
 
     &:hover {
       background-color: $accent-color-hov;
+      color: $text-color-accent-btn;
+    }
+  }
+
+  &__button {
+    margin-right: 8px;
+
+    &--hide {
+      display: none;
+    }
+
+    &--controls {
+      border: none;
+
+      & button {
+        border: none;
+      }
     }
   }
 }

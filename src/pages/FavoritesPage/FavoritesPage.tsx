@@ -20,7 +20,11 @@ export const FavoritesPage = () => {
 
   const loadProducts = async () => {
     try {
-      const products = await getProductsByIds(favoriteItems);
+      let products: Gadget[] = [];
+
+      if (favoriteItems.length !== 0) {
+        products = await getProductsByIds(favoriteItems);
+      }
 
       setFavorites(products);
     } catch (error) {

@@ -32,23 +32,22 @@ export const GadgetsDisplayControl: React.FC<Props> = ({
         <Select
           sx={
             {
+              bgcolor: 'white',
               width: 176,
               height: 40,
-              bgcolor: 'white',
+              padding: 2,
             }
           }
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          variant="standard"
           value={sortType}
-          label="Age"
           onChange={onSortingChange}
-          // MenuProps={{
-          //   PaperProps: {
-          //     sx: {
-          //       bgcolor: 'pink',
-          //     },
-          //   },
-          // }}
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                bgcolor: '#fff',
+              },
+            },
+          }}
         >
           <MenuItem value={SortType.New}>Newest</MenuItem>
           <MenuItem value={SortType.Old}>Oldest</MenuItem>
@@ -61,11 +60,14 @@ export const GadgetsDisplayControl: React.FC<Props> = ({
       <div className="gadgets-display-control__count-per-page">
         <p>Items per page</p>
         <Select
-          sx={{ width: 128, height: 40, bgcolor: 'white' }}
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
+          sx={{
+            width: 128,
+            height: 40,
+            bgcolor: 'white',
+            padding: 2,
+          }}
+          variant="standard"
           value={itemsPerPage}
-          label="Age"
           onChange={onPageCountChange}
           // MenuProps={{
           //   PaperProps: {

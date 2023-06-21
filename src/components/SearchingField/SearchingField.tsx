@@ -42,6 +42,7 @@ export const SearchingField = () => {
   };
 
   const handleFormBlur = () => {
+    setProductsList([]);
     toggleSearch();
   };
 

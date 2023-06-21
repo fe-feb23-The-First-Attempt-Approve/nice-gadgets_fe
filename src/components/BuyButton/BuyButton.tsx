@@ -4,7 +4,7 @@ import {
 import cn from 'classnames';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import { Gadget } from '../../types/Gadget';
-import NotificationMessage from '../Notification/NotificationSuccess';
+import NotificationMessage from '../Notification/Notification';
 
 interface Props {
   gadget: Gadget;

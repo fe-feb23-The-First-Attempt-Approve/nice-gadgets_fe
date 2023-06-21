@@ -33,9 +33,9 @@
 
 // gadgets page
 @import "../components/GadgetsPage/gadgets-page.scss";
+@import "../pages/GadgetsPage/gadgets-page.scss";
 @import "../components/GadgetsDisplayControl/gadgetsDisplayControl.scss";
 @import "../components/ProductList/ProductList.scss";
-@import "../pages/PhonesPage/phone-page.scss";
 
 // product card
 @import "../components/ProductCard/ProductCard.scss";
@@ -73,10 +73,9 @@
 @import "../components/NotFoundBlack/NotFoundBlack.scss";
 
 // accessories
-@import "../pages/AccessoriesPage/AccessoriesPage.scss";
-@import "../pages/Contacts/Contacts.scss";
+@import "../pages/ProfilePage/profile-page.scss";
 
-@import '../pages/ProfilePage/profile-page.scss';
+@import "../components/NoGadgetsMessage/no-gadget-message.scss";
 
 // should be moved to other folder
 .content {

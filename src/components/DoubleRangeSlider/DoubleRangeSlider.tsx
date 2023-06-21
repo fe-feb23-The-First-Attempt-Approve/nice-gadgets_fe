@@ -37,7 +37,7 @@ export const DoubleRangeSlider: React.FC<Props> = ({
       <div className="filterPrice">
         <div className="filterPrice__container">
           <span className="filterPrice__value">
-            {`$${min || priceRange.min}`}
+            {`$${min || priceRange.min || 0}`}
           </span>
 
           <Slider
@@ -51,7 +51,7 @@ export const DoubleRangeSlider: React.FC<Props> = ({
           />
 
           <span className="filterPrice__value">
-            {`$${max || priceRange.max}`}
+            {`$${max || priceRange.max || 0}`}
           </span>
         </div>
       </div>

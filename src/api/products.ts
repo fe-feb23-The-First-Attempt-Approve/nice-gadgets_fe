@@ -1,5 +1,7 @@
 import { Gadget } from '../types/Gadget';
 import { GadgetItem } from '../types/GadgetItem';
+import { RequestWithParamsResult } from '../types/RequestWithParams';
+import { SortType } from '../types/SortType';
 import { PriceRange } from '../types/priceRange';
 import { client } from '../utils/fetchClient';
 
@@ -30,4 +32,40 @@ export const getOneProduct = async (phoneId: string): Promise<GadgetItem> => {
   const path = phoneId.trim();
 
   return client.get<GadgetItem>(path);
+};
+
+export const getProductsPaginated = async (
+  category: string,
+  perPage?: number,
+  page?: number,
+  sort?: SortType,
+  priceMin?: number,
+  priceMax?: number,
+): Promise<RequestWithParamsResult> => {
+  const queryParams = [];
+
+  if (perPage) {
+    queryParams.push(`perPage=${perPage}`);
+  }
+
+  if (page) {
+    queryParams.push(`page=${page}`);
+  }
+
+  if (sort) {
+    queryParams.push(`sort=${sort}`);
+  }
+
+  if (priceMin) {
+    queryParams.push(`minPrice=${priceMin}`);
+  }
+
+  if (priceMax) {
+    queryParams.push(`maxPrice=${priceMax}`);
+  }
+
+  const path = `/${category}${queryParams.length ? `?${queryParams.join('&')}` : ''
+    }`; // eslint-disable-line
+
+  return client.get<RequestWithParamsResult>(path);
 };

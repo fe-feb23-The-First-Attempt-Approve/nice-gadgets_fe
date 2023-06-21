@@ -8,6 +8,7 @@ interface Props {
     accessoriesAmount: number
   }
 }
+
 export const Categories: FC<Props> = ({ productsAmount }) => {
   return (
     <div className="categories">
