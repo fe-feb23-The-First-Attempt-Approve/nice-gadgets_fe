@@ -1,7 +1,7 @@
-import { MdOutlineProductionQuantityLimits } from 'react-icons/md';
 import { useContext } from 'react';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { ProductsContext } from '../../providers/ProductsContext';
+import { NotFoundGadgets } from '../../components/NotFoundGadgets';
 
 export const AccessoriesPage = () => {
   const { productsAmount } = useContext(ProductsContext);
@@ -19,17 +19,7 @@ export const AccessoriesPage = () => {
       </p>
       {!!productsAmount.accessoriesAmount || (
         <main className="main-accessories main-accessories_position">
-          <MdOutlineProductionQuantityLimits
-            className="main-accessories__icon bounce-top"
-          />
-
-          <h3 className="main-accessories__sorry tracking-in-contract">
-            Sorry
-          </h3>
-
-          <h3 className="main-accessories__title-sorry">
-            no products found in this category
-          </h3>
+          <NotFoundGadgets text="No found products in this category" />
         </main>
       )}
     </div>
