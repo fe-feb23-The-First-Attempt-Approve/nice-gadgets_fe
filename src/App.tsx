@@ -11,6 +11,7 @@ import { NotFoundPage } from './pages/NotFoundPage';
 import { AboutPage } from './pages/AboutPage';
 import { Footer } from './components/Footer';
 import { Contacts } from './pages/Contacts';
+import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 
 const App = () => (
   <>
@@ -48,6 +49,10 @@ const App = () => (
 
         <Route path="/contacts">
           <Route index element={<Contacts />} />
+        </Route>
+
+        <Route path="/profile">
+          <Route index element={<ProfilePage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
