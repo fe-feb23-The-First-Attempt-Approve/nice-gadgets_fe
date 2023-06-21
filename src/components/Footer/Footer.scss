@@ -93,6 +93,10 @@
     &:hover {
       color: $text-color-main;
 
+      & button {
+        background-color: $accent-color-hov;
+      }
+
       & svg {
         fill: $text-color-accent-btn;
       }
