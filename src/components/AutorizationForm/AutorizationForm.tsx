@@ -1,19 +1,117 @@
-import { FormEvent, useState } from 'react';
-import { register } from '../../api/auth';
+import { FormEvent, useContext, useState } from 'react';
+import { login, register } from '../../api/auth';
+import { AuthContext } from '../../providers/AuthContext';
+import NotificationMessage from '../Notification/NotificationSuccess';
 
 export const AutorizationForm = () => {
   const [isRegistrationMode, setIsRegistrationMode] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
+  const { isModalActive, setIsModalActive } = useContext(AuthContext);
+
+  const notificationEmailError = NotificationMessage({
+    message: 'Email is not valid',
+    isError: true,
+  });
+
+  const notificationPasswordError = NotificationMessage({
+    message: 'Password should be at least 6 characters',
+    isError: true,
+  });
+
+  const notificationEmailIsTakenError = NotificationMessage({
+    message: 'Email is already taken',
+    isError: true,
+  });
+
+  const notificationSuccessRegistration = NotificationMessage({
+    message: 'You will receive activation link for your registration',
+  });
+
+  const registerUser = async () => {
+    const registrationResponse = await register(name, email, password);
+
+    if (registrationResponse.message) {
+      setIsModalActive(false);
+      notificationSuccessRegistration();
+
+      return;
+    }
+
+    if (registrationResponse.email === 'Email is already taken') {
+      notificationEmailIsTakenError();
+
+      return;
+    }
+
+    if (registrationResponse.email) {
+      notificationEmailError();
+    }
+
+    if (registrationResponse.password) {
+      notificationPasswordError();
+    }
+  };
+
+  const successLoggingNotification = NotificationMessage({
+    message: 'Successful Login',
+  });
+
+  const errorEmailLoggingNotification = NotificationMessage({
+    message: 'User with this Email does not exist',
+    isError: true,
+  });
+
+  const errorPasswordLoggingNotification = NotificationMessage({
+    message: 'Password does not match',
+    isError: true,
+  });
+
+  const errorAuthLoggingNotification = NotificationMessage({
+    message: 'You should activate your account',
+    isError: true,
+  });
+
+  const loginUser = async () => {
+    const loginResponse = await login(email, password);
+
+    // eslint-disable-next-line no-console
+    console.log(loginResponse);
+
+    if (loginResponse.accessToken) {
+      window.localStorage.setItem('token', loginResponse.accessToken);
+      successLoggingNotification();
+      setIsModalActive(false);
+
+      return;
+    }
+
+    if (loginResponse.activationToken) {
+      errorAuthLoggingNotification();
+
+      return;
+    }
+
+    if (loginResponse.email) {
+      errorEmailLoggingNotification();
+    }
+
+    if (loginResponse.password) {
+      errorPasswordLoggingNotification();
+    }
+  };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const response = await register(name, email, password);
+    if (isRegistrationMode) {
+      registerUser();
 
-    // eslint-disable-next-line no-console
-    console.log(response);
+      return;
+    }
+
+    loginUser();
   };
 
   const toggleRegistrationMode = () => {
@@ -22,6 +120,10 @@ export const AutorizationForm = () => {
     setPassword('');
     setName('');
   };
+
+  if (!isModalActive) {
+    return null;
+  }
 
   return (
     <div className="modal">
@@ -76,8 +178,19 @@ export const AutorizationForm = () => {
           />
         </div>
 
-        <button type="submit" className="modal__action">
+        <button
+          type="submit"
+          className="modal__action"
+        >
           {isRegistrationMode ? 'Submit' : 'Log in'}
+        </button>
+
+        <button
+          className="modal__close"
+          type="button"
+          onClick={() => setIsModalActive(false)}
+        >
+          X
         </button>
       </form>
     </div>

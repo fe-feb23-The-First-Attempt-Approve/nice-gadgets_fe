@@ -5,6 +5,7 @@ import { BurgerContextProvider } from './BurgerContext';
 import { FavoriteItemProvider } from './FavoriteItemContext';
 import { CartItemProvider } from './CartItemsContext';
 import { ProductsProvider } from './ProductsContext';
+import { AuthContextProvider } from './AuthContext';
 
 const Provider: FC = ({ children }) => {
   return (
@@ -14,7 +15,9 @@ const Provider: FC = ({ children }) => {
           <FavoriteItemProvider>
             <CartItemProvider>
               <ProductsProvider>
-                {children}
+                <AuthContextProvider>
+                  {children}
+                </AuthContextProvider>
               </ProductsProvider>
             </CartItemProvider>
           </FavoriteItemProvider>

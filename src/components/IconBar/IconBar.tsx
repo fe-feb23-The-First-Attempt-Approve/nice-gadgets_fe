@@ -12,12 +12,14 @@ import {
   // IconTranslate,
   IconAuthorization,
 } from '../Icons/_IconKit';
+import { useAuth } from '../../providers/AuthContext';
 
 export const IconBar = () => {
   const { theme, toggleTheme } = useTheme();
   const { cartItemCount } = useContext(CartItemContext);
   const { favoriteItemCount } = useContext(FavoriteItemContext);
   const { closeSearch } = useSearchPanel();
+  const { isModalActive, setIsModalActive } = useAuth();
 
   return (
     <ul className="icon-bar">
@@ -63,7 +65,11 @@ export const IconBar = () => {
       </li>
 
       <li className="icon-bar__item">
-        <button type="button" className="icon-bar__link">
+        <button
+          type="button"
+          className="icon-bar__link"
+          onClick={() => setIsModalActive(!isModalActive)}
+        >
           <IconAuthorization />
         </button>
       </li>
