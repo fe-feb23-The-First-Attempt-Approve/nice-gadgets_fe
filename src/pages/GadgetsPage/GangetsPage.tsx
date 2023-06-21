@@ -56,6 +56,16 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
   const pageTitle = category[0].toUpperCase() + category.slice(1);
 
   const loadGadgets = async () => {
+    if (gadgets.length
+        && (Number(searchPage) <= 0
+        || Number.isNaN(Number(searchPage)))) {
+      setSearchParams({ page: '1' });
+    }
+
+    if (gadgets.length && pageCount < Number(searchPage)) {
+      setSearchParams({ page: `${pageCount}` });
+    }
+
     setIsLoading(true);
 
     try {

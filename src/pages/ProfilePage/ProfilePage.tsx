@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../components/Logo';
+import { SupportPage } from '../SupportPage';
 
 // eslint-disable-next-line
 type SectionId = 'main' | 'cart' | 'viewed' | 'favorites' | 'settings' | 'support';
@@ -141,7 +142,7 @@ export const ProfilePage = () => {
 
         {activeSection === 'support' && (
           <div id="support">
-            <h2>Support</h2>
+            {/* <h2>Support</h2>
 
             <p>Form for sending letter</p>
             <p>** Have some questions? Text Us...</p>
@@ -151,7 +152,9 @@ export const ProfilePage = () => {
               // eslint-disable-next-line max-len
               src="https://cdn.dribbble.com/users/4983384/screenshots/11118849/airslate_contact0.png?resize=400x0"
               alt="example"
-            />
+            /> */}
+
+            <SupportPage />
           </div>
         )}
       </div>
