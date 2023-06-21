@@ -10,7 +10,7 @@ import {
   IconLikeEmpty, IconCart, IconWithCounter,
   IconThemeLight, IconThemeDark,
   // IconTranslate,
-  IconAuthorization,
+  IconAuthorization, IconPerson
 } from '../Icons/_IconKit';
 import { useAuth } from '../../providers/AuthContext';
 
@@ -20,6 +20,7 @@ export const IconBar = () => {
   const { favoriteItemCount } = useContext(FavoriteItemContext);
   const { closeSearch } = useSearchPanel();
   const { isModalActive, setIsModalActive } = useAuth();
+  const token = localStorage.getItem('token');
 
   return (
     <ul className="icon-bar">
@@ -65,13 +66,19 @@ export const IconBar = () => {
       </li>
 
       <li className="icon-bar__item">
-        <button
-          type="button"
-          className="icon-bar__link"
-          onClick={() => setIsModalActive(!isModalActive)}
-        >
-          <IconAuthorization />
-        </button>
+        {token ? (
+          <NavLink to="/profile" className="icon-bar__link">
+            <IconPerson />
+          </NavLink>
+        ) : (
+          <button
+            type="button"
+            className="icon-bar__link"
+            onClick={() => setIsModalActive(!isModalActive)}
+          >
+            <IconAuthorization />
+          </button>
+        )}
       </li>
     </ul>
   );

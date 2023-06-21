@@ -91,7 +91,7 @@ export const SearchingField = () => {
 
   return (
     <div
-      className="searching-field"
+      className="searching-block"
     >
       <Stack
         spacing={2}
@@ -111,16 +111,17 @@ export const SearchingField = () => {
               sx={{
                 minWidth: 200,
                 '& .MuiOutlinedInput-root': {
-                  borderBottom: '1px solid gray',
-                  borderRadius: '0',
+                  // borderBottom: '1px solid gray',
+                  // borderRadius: '0',
                   color: inputTextColor,
-                  width: '100%',
+                  // width: '100%',
                 },
                 '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
                   border: 'none',
+                  // backgroundColor: 'red',
                 },
                 '& .css-7u0vwp-MuiFormControl-root-MuiTextField-root': {
-                  width: '100%',
+                  // width: '100%',
                 },
               }}
               placeholder="Enter product name"
