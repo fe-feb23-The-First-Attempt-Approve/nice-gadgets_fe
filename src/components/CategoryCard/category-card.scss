@@ -10,7 +10,8 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: filter $transition-duration ease, transform $transition-duration ease;
+    transition: filter $transition-duration ease,
+      transform $transition-duration ease;
   }
 
   &:hover .category-card__image {
