@@ -17,17 +17,33 @@ interface Props {
   category: string;
 }
 
+const getNormalizedPage = (
+  searchParams: URLSearchParams,
+  pageCount: number,
+) => {
+  let currentPage = Number(searchParams.get('page'));
+
+  if (currentPage <= 0
+    || currentPage > pageCount
+    || Number.isNaN(currentPage)) {
+    currentPage = 1;
+  }
+
+  return currentPage;
+};
+
 export const GadgetsPage: React.FC<Props> = ({ category }) => {
   const [gadgets, setGadgets] = useState<Gadget[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredPhonesCount, setFilteredPhonesCount] = useState(0);
   const [gadgetsCount, setGadgetsCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const searchPage = searchParams.get('page');
 
-  const currentPage = Number(searchParams.get('page') || 1);
-  const sortType = searchParams.get('sort') || SortType.New;
   const itemsPerPage = Number(searchParams.get('perPage') || 8);
+  const pageCount = Math.ceil(filteredPhonesCount / itemsPerPage);
+  const currentPage = getNormalizedPage(searchParams, pageCount);
+  const sortType = searchParams.get('sort') || SortType.New;
+
   const priceRangeSP = [
     Number(searchParams.get('minPrice')) || 0,
     Number(searchParams.get('maxPrice')) || 0,
@@ -36,8 +52,6 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
   const [priceRange, setPriceRange] = useState<number | number[]>([
     priceRangeSP[0], priceRangeSP[1],
   ]);
-
-  const pageCount = Math.ceil(filteredPhonesCount / itemsPerPage);
 
   const pageTitle = category[0].toUpperCase() + category.slice(1);
 
@@ -95,16 +109,6 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
   };
 
   useEffect(() => {
-    if (gadgets.length
-        && (Number(searchPage) <= 0
-        || Number.isNaN(Number(searchPage)))) {
-      setSearchParams({ page: '1' });
-    }
-
-    if (gadgets.length && pageCount < Number(searchPage)) {
-      setSearchParams({ page: `${pageCount}` });
-    }
-
     loadGadgets();
   }, [searchParams]);
 
