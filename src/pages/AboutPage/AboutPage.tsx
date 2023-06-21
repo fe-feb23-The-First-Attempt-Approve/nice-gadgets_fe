@@ -36,6 +36,7 @@ export const AboutPage: React.FC = () => {
     } catch {
       // eslint-disable-next-line no-console
       console.log('failed to load phone');
+      navigate('/not-found-page');
     }
   };
 
