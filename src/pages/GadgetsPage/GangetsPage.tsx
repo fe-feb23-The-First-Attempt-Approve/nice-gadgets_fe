@@ -38,6 +38,8 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
 
   const pageCount = Math.ceil(filteredPhonesCount / itemsPerPage);
 
+  const pageTitle = category[0].toUpperCase() + category.slice(1);
+
   const loadGadgets = async () => {
     setIsLoading(true);
 
@@ -120,9 +122,11 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
         ? <Loader />
         : (
           <div className="container gadgets-page">
-            <Breadcrumbs category={category} />
+            <Breadcrumbs category={pageTitle} />
 
-            <h1 className="gadgets-page__title">Mobile phones</h1>
+            <h1 className="gadgets-page__title">
+              {pageTitle}
+            </h1>
 
             <p className="gadgets-page__description">
               {`${phonesCount} models`}
