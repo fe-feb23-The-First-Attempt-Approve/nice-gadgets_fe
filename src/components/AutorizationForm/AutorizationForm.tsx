@@ -1,7 +1,10 @@
-import { FormEvent, useContext, useState } from 'react';
+import {
+  FormEvent, useContext, useEffect, useState,
+} from 'react';
 import { login, register } from '../../api/auth';
 import { AuthContext } from '../../providers/AuthContext';
 import NotificationMessage from '../Notification/NotificationSuccess';
+import { IconClose } from '../Icons/_IconKit';
 
 export const AutorizationForm = () => {
   const [isRegistrationMode, setIsRegistrationMode] = useState(false);
@@ -9,6 +12,12 @@ export const AutorizationForm = () => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const { isModalActive, setIsModalActive } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isModalActive) {
+      document.body.classList.add('scrolling-blocked');
+    }
+  }, [isModalActive]);
 
   const notificationEmailError = NotificationMessage({
     message: 'Email is not valid',
@@ -122,12 +131,22 @@ export const AutorizationForm = () => {
   };
 
   if (!isModalActive) {
+    document.body.classList.remove('scrolling-blocked');
+
     return null;
   }
 
   return (
     <div className="modal">
       <form onSubmit={handleSubmit} className="modal__form">
+        <button
+          className="modal__close"
+          type="button"
+          onClick={() => setIsModalActive(false)}
+        >
+          <IconClose />
+        </button>
+
         <button
           type="button"
           onClick={toggleRegistrationMode}
@@ -183,14 +202,6 @@ export const AutorizationForm = () => {
           className="modal__action"
         >
           {isRegistrationMode ? 'Submit' : 'Log in'}
-        </button>
-
-        <button
-          className="modal__close"
-          type="button"
-          onClick={() => setIsModalActive(false)}
-        >
-          X
         </button>
       </form>
     </div>

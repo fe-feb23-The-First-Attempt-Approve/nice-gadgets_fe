@@ -7,7 +7,7 @@ import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { HeartButton } from '../../components/HeartButton';
 import { Slider } from '../../components/Slider/Slider';
 import { GadgetItem } from '../../types/GadgetItem';
-import { getOnePhone } from '../../api/phones';
+import { getOneProduct } from '../../api/products';
 import { phoneTemplate } from '../../utils/phoneTemplate';
 import { Loader } from '../../components/Loader';
 import { AboutSlider } from '../../components/AboutSlider';
@@ -30,7 +30,7 @@ export const AboutPage: React.FC = () => {
 
   const loadPhone = async () => {
     try {
-      const deviceFromServer = await getOnePhone(pathname);
+      const deviceFromServer = await getOneProduct(pathname);
 
       setDevice(deviceFromServer);
     } catch {
