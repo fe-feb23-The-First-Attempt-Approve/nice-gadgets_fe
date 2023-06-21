@@ -142,17 +142,7 @@ export const ProfilePage = () => {
 
         {activeSection === 'support' && (
           <div id="support">
-            {/* <h2>Support</h2>
-
-            <p>Form for sending letter</p>
-            <p>** Have some questions? Text Us...</p>
-            <p>**name & email - by default (but can be changed as well)</p>
-            <p>fields: name, emain, question, text</p>
-            <img
-              // eslint-disable-next-line max-len
-              src="https://cdn.dribbble.com/users/4983384/screenshots/11118849/airslate_contact0.png?resize=400x0"
-              alt="example"
-            /> */}
+            <h1 className="support-title">Have some questions? Ask us!</h1>
 
             <SupportPage />
           </div>
