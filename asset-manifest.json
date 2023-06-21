@@ -1,38 +1,24 @@
 {
   "files": {
-    "main.css": "./static/css/main.4aaa7eeb.chunk.css",
-    "main.js": "./static/js/main.ed573700.chunk.js",
-    "main.js.map": "./static/js/main.ed573700.chunk.js.map",
+    "main.css": "./static/css/main.477021fb.chunk.css",
+    "main.js": "./static/js/main.e48d9f18.chunk.js",
+    "main.js.map": "./static/js/main.e48d9f18.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.330dba63.js",
     "runtime-main.js.map": "./static/js/runtime-main.330dba63.js.map",
     "static/css/2.12303e90.chunk.css": "./static/css/2.12303e90.chunk.css",
-    "static/js/2.ce584d58.chunk.js": "./static/js/2.ce584d58.chunk.js",
-    "static/js/2.ce584d58.chunk.js.map": "./static/js/2.ce584d58.chunk.js.map",
+    "static/js/2.fc1a9727.chunk.js": "./static/js/2.fc1a9727.chunk.js",
+    "static/js/2.fc1a9727.chunk.js.map": "./static/js/2.fc1a9727.chunk.js.map",
     "index.html": "./index.html",
     "static/css/2.12303e90.chunk.css.map": "./static/css/2.12303e90.chunk.css.map",
-    "static/css/main.4aaa7eeb.chunk.css.map": "./static/css/main.4aaa7eeb.chunk.css.map",
-    "static/js/2.ce584d58.chunk.js.LICENSE.txt": "./static/js/2.ce584d58.chunk.js.LICENSE.txt",
-    "static/media/index.scss": "./static/media/Mont-SemiBold.8979d71a.otf",
-    "static/media/andrii.66f585e7.jpg": "./static/media/andrii.66f585e7.jpg",
-    "static/media/arrow-right.c0e3521d.svg": "./static/media/arrow-right.c0e3521d.svg",
-    "static/media/arrow.756d3b79.svg": "./static/media/arrow.756d3b79.svg",
-    "static/media/heart-like-red.e06f6852.svg": "./static/media/heart-like-red.e06f6852.svg",
-    "static/media/heart-like.40477fe0.svg": "./static/media/heart-like.40477fe0.svg",
-    "static/media/home.901f72c9.svg": "./static/media/home.901f72c9.svg",
-    "static/media/iphone-full.63c16913.webp": "./static/media/iphone-full.63c16913.webp",
-    "static/media/iphone-squere1.4cf84915.webp": "./static/media/iphone-squere1.4cf84915.webp",
-    "static/media/iphone-squere2.b46af89b.webp": "./static/media/iphone-squere2.b46af89b.webp",
-    "static/media/iphone-squere3.d7b01b95.webp": "./static/media/iphone-squere3.d7b01b95.webp",
-    "static/media/mykyta.af7f714b.jpg": "./static/media/mykyta.af7f714b.jpg",
-    "static/media/myla.341196d6.jpg": "./static/media/myla.341196d6.jpg",
-    "static/media/pasha.177670ef.jpg": "./static/media/pasha.177670ef.jpg",
-    "static/media/vadym.93862c8d.png": "./static/media/vadym.93862c8d.png"
+    "static/css/main.477021fb.chunk.css.map": "./static/css/main.477021fb.chunk.css.map",
+    "static/js/2.fc1a9727.chunk.js.LICENSE.txt": "./static/js/2.fc1a9727.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "./static/media/Mont-SemiBold.8979d71a.otf"
   },
   "entrypoints": [
     "static/js/runtime-main.330dba63.js",
     "static/css/2.12303e90.chunk.css",
-    "static/js/2.ce584d58.chunk.js",
-    "static/css/main.4aaa7eeb.chunk.css",
-    "static/js/main.ed573700.chunk.js"
+    "static/js/2.fc1a9727.chunk.js",
+    "static/css/main.477021fb.chunk.css",
+    "static/js/main.e48d9f18.chunk.js"
   ]
 }
