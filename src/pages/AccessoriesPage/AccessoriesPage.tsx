@@ -20,7 +20,7 @@ export const AccessoriesPage = () => {
       {!!productsAmount.accessoriesAmount || (
         <main className="main-accessories main-accessories_position">
           <MdOutlineProductionQuantityLimits
-            className="main-accessories__icon"
+            className="main-accessories__icon bounce-top"
           />
 
           <h3 className="main-accessories__sorry">Sorry</h3>
