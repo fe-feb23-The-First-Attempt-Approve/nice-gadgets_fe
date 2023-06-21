@@ -34,15 +34,17 @@ export const IconBar = () => {
         </button>
       </li> */}
 
-      <li className="icon-bar__item">
-        <button
-          type="button"
-          className="icon-bar__link"
-          onClick={toggleTheme}
-        >
-          {theme === 'light' ? <IconThemeDark /> : <IconThemeLight />}
-        </button>
-      </li>
+      {!token && (
+        <li className="icon-bar__item">
+          <button
+            type="button"
+            className="icon-bar__link"
+            onClick={toggleTheme}
+          >
+            {theme === 'light' ? <IconThemeDark /> : <IconThemeLight />}
+          </button>
+        </li>
+      )}
 
       <li className="icon-bar__item">
         <NavLink
@@ -51,7 +53,10 @@ export const IconBar = () => {
             { 'icon-bar__link--active': isActive })}
           onClick={closeSearch}
         >
-          <IconWithCounter icon={<IconLikeEmpty />} count={favoriteItemCount} />
+          <IconWithCounter
+            icon={<IconLikeEmpty />}
+            count={favoriteItemCount}
+          />
         </NavLink>
       </li>
 
