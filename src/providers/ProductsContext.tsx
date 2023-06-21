@@ -6,8 +6,7 @@ import {
   useContext, useMemo,
 } from 'react';
 import { Gadget } from '../types/Gadget';
-import { getProducts } from '../api/products';
-import { getHotProducts } from '../api/phones';
+import { getProducts, getHotProducts } from '../api/products';
 
 interface ProductsContextValue {
   gadgets: Gadget[];

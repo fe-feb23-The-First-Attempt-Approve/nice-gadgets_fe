@@ -10,7 +10,7 @@ import {
   IconLikeEmpty, IconCart, IconWithCounter,
   IconThemeLight, IconThemeDark,
   // IconTranslate,
-  IconAuthorization, IconPerson
+  IconAuthorization, IconPerson,
 } from '../Icons/_IconKit';
 import { useAuth } from '../../providers/AuthContext';
 

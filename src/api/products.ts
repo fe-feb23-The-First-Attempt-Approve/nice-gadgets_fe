@@ -1,4 +1,5 @@
 import { Gadget } from '../types/Gadget';
+import { GadgetItem } from '../types/GadgetItem';
 import { PriceRange } from '../types/priceRange';
 import { client } from '../utils/fetchClient';
 
@@ -23,4 +24,10 @@ export const getHotProducts = async (): Promise<Gadget[]> => {
 
 export const getProductsByIds = async (ids: string[]): Promise<Gadget[]> => {
   return client.post('/products/ids', { ids });
+};
+
+export const getOneProduct = async (phoneId: string): Promise<GadgetItem> => {
+  const path = phoneId.trim();
+
+  return client.get<GadgetItem>(path);
 };
