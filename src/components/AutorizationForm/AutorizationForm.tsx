@@ -3,7 +3,7 @@ import {
 } from 'react';
 import { login, register } from '../../api/auth';
 import { AuthContext } from '../../providers/AuthContext';
-import NotificationMessage from '../Notification/NotificationSuccess';
+import NotificationMessage from '../Notification/Notification';
 import { IconClose } from '../Icons/_IconKit';
 
 export const AutorizationForm = () => {
@@ -25,7 +25,8 @@ export const AutorizationForm = () => {
   });
 
   const notificationPasswordError = NotificationMessage({
-    message: 'Password should be at least 6 characters',
+    // eslint-disable-next-line max-len
+    message: 'Password must contain at least one lowercase letter, one uppercase letter, one number, and one special character',
     isError: true,
   });
 
@@ -165,6 +166,7 @@ export const AutorizationForm = () => {
                 type="text"
                 id="name"
                 name="name"
+                placeholder="Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -179,6 +181,7 @@ export const AutorizationForm = () => {
             type="email"
             id="email"
             name="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -191,17 +194,35 @@ export const AutorizationForm = () => {
             type="password"
             id="password"
             name="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
 
+        {isRegistrationMode && (
+          <>
+            <div className="modal__input modal__input-checkbox">
+              <label htmlFor="checkbox">I accept all terms</label>
+              <input
+                type="checkbox"
+                id="checkbox"
+                name="checkbox"
+                placeholder="Checkbox"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+          </>
+        )}
+
         <button
           type="submit"
           className="modal__action"
         >
-          {isRegistrationMode ? 'Submit' : 'Log in'}
+          {isRegistrationMode ? 'Sign up' : 'Log n'}
         </button>
       </form>
     </div>
