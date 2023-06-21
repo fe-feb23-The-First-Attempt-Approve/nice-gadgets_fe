@@ -23,7 +23,9 @@ export const AccessoriesPage = () => {
             className="main-accessories__icon bounce-top"
           />
 
-          <h3 className="main-accessories__sorry">Sorry</h3>
+          <h3 className="main-accessories__sorry tracking-in-contract">
+            Sorry
+          </h3>
 
           <h3 className="main-accessories__title-sorry">
             no products found in this category
