@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SelectChangeEvent } from '@mui/material';
 import { Pagination } from '../../components/Pagination';
-import { getPhones } from '../../api/phones';
 import { Gadget } from '../../types/Gadget';
 import { Breadcrumbs } from '../../components/Breadcrumbs';
 import { GadgetsDisplayControl } from '../../components/GadgetsDisplayControl';
@@ -11,17 +10,15 @@ import { SortType } from '../../types/SortType';
 import { getSearchWith } from '../../utils/searchHelper';
 import { ProductList } from '../../components/ProductList';
 import { Loader } from '../../components/Loader';
+import { getProductsPaginated } from '../../api/products';
+import { NoGadgetsMessage } from '../../components/NoGadgetsMessage';
 
-export const getMinMaxPrice = (items: Gadget[]) => {
-  const prices = items.map(item => item.price);
-  const min = Math.min(...prices);
-  const max = Math.max(...prices);
+interface Props {
+  category: string;
+}
 
-  return [min, max];
-};
-
-export const PhonesPage = () => {
-  const [phones, setPhones] = useState<Gadget[]>([]);
+export const GadgetsPage: React.FC<Props> = ({ category }) => {
+  const [gadgets, setGadgets] = useState<Gadget[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredPhonesCount, setFilteredPhonesCount] = useState(0);
   const [phonesCount, setPhonesCount] = useState(0);
@@ -31,15 +28,17 @@ export const PhonesPage = () => {
   const sortType = searchParams.get('sort') || SortType.New;
   const itemsPerPage = Number(searchParams.get('perPage') || 8);
   const priceRangeSP = [
-    Number(searchParams.get('minPrice')),
-    Number(searchParams.get('maxPrice')),
+    Number(searchParams.get('minPrice')) || 0,
+    Number(searchParams.get('maxPrice')) || 0,
   ];
 
-  const [priceRange, setPriceRange] = useState<number | number[]>([]);
+  const [priceRange, setPriceRange] = useState<number | number[]>([
+    priceRangeSP[0], priceRangeSP[1],
+  ]);
 
   const pageCount = Math.ceil(filteredPhonesCount / itemsPerPage);
 
-  const loadPhones = async () => {
+  const loadGadgets = async () => {
     setIsLoading(true);
 
     try {
@@ -49,7 +48,8 @@ export const PhonesPage = () => {
         allProductsCount,
         filteredCount,
         visibleProducts: phonesFromServer,
-      } = await getPhones(
+      } = await getProductsPaginated(
+        category,
         itemsPerPage,
         currentPage,
         sortType as SortType,
@@ -59,7 +59,7 @@ export const PhonesPage = () => {
 
       setFilteredPhonesCount(filteredCount);
       setPhonesCount(allProductsCount);
-      setPhones(phonesFromServer);
+      setGadgets(phonesFromServer);
     } catch {
       throw new Error('failed to load phones');
     } finally {
@@ -92,7 +92,7 @@ export const PhonesPage = () => {
   };
 
   useEffect(() => {
-    loadPhones();
+    loadGadgets();
   }, [searchParams]);
 
   useEffect(() => {
@@ -116,11 +116,11 @@ export const PhonesPage = () => {
 
   return (
     <>
-      {!phones.length || isLoading
+      {isLoading
         ? <Loader />
         : (
           <div className="container gadgets-page">
-            <Breadcrumbs category="Phones" />
+            <Breadcrumbs category={category} />
 
             <h1 className="gadgets-page__title">Mobile phones</h1>
 
@@ -129,7 +129,7 @@ export const PhonesPage = () => {
             </p>
 
             <GadgetsDisplayControl
-              category="phones"
+              category={category}
               itemsPerPage={itemsPerPage}
               sortType={sortType as SortType}
               priceRange={priceRange}
@@ -138,11 +138,15 @@ export const PhonesPage = () => {
               onSortingChange={handleSortChange}
             />
 
-            <div className="pagination__items">
-              <ProductList gadgets={phones} />
-            </div>
+            {gadgets.length ? (
+              <div className="pagination__items">
+                <ProductList gadgets={gadgets} />
+              </div>
+            ) : <NoGadgetsMessage />}
 
-            <Pagination pageCount={pageCount} currentPage={currentPage} />
+            {pageCount > 1
+            && <Pagination pageCount={pageCount} currentPage={currentPage} />}
+
           </div>
         )}
     </>
