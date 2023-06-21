@@ -47,11 +47,13 @@ export const Pagination: React.FC<Props> = ({
     <div className="pagination">
       <ul className="pagination__page-list">
         <li className={cn('pagination__page-item', {
-          'pagination__page-item--disabled': isFirstPage,
+          // eslint-disable-next-line max-len
+          'pagination__page-item--disabled pagination__button--hide': isFirstPage,
         })}
         >
           <Link
-            className="pagination__page-link"
+            // eslint-disable-next-line max-len
+            className="pagination__page-link pagination__button pagination__button--controls"
             to={{
               search: getSearchWith(
                 searchParams, {
@@ -110,7 +112,7 @@ export const Pagination: React.FC<Props> = ({
                   onClick={() => window.scrollTo(0, 0)}
                 >
                   <div className={cn(
-                    'pagination__button',
+                    'pagination__button pagination__button--controls',
                   )}
                   >
                     ...
@@ -122,11 +124,13 @@ export const Pagination: React.FC<Props> = ({
 
         <li
           className={cn('pagination__page-item', {
-            'pagination__page-item--disabled': isLastPage,
+            // eslint-disable-next-line max-len
+            'pagination__page-item--disabled pagination__button--hide': isLastPage,
           })}
         >
           {!isLastPage ? (
             <Link
+              className="pagination__button--controls"
               to={{
                 search: getSearchWith(
                   searchParams, {
