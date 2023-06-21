@@ -42,7 +42,6 @@ export const SearchingField = () => {
   };
 
   const handleFormBlur = () => {
-    setProductsList([]);
     toggleSearch();
   };
 
@@ -72,7 +71,7 @@ export const SearchingField = () => {
     setIsLoading(true);
     setProductsList([]);
     const debounceTimeout = setTimeout(() => {
-      if (query !== searchQuery && searchQuery) {
+      if (query !== searchQuery) {
         setSearchParams(getSearchWith(searchParams, {
           query: searchQuery || null,
         }));
@@ -88,6 +87,11 @@ export const SearchingField = () => {
 
   useEffect(() => {
     loadSimilar();
+
+    return (() => {
+      getSearchWith(searchParams, { query: null });
+      setProductsList([]);
+    });
   }, [searchParams]);
 
   return (
