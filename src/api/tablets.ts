@@ -39,7 +39,7 @@ export const getTablets = async (
   return client.get<RequestWithParamsResult>(path);
 };
 
-export const getOnePhone = async (tabletId: string): Promise<GadgetItem> => {
+export const getOneTablet = async (tabletId: string): Promise<GadgetItem> => {
   const path = tabletId.trim();
 
   return client.get<GadgetItem>(path);
