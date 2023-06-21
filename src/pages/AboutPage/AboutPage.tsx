@@ -101,7 +101,7 @@ export const AboutPage: React.FC = () => {
 
   return (
     <main className="main-page-card">
-      {!gadgets.length
+      {device.id === 'id'
         ? <Loader />
         : (
           <div className="container">
