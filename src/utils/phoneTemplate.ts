@@ -7,8 +7,8 @@ export const phoneTemplate = {
     'capacityAvailable',
   ],
   capacity: 'capacity',
-  priceRegular: 999,
-  priceDiscount: 999,
+  priceRegular: 0,
+  priceDiscount: 0,
   colorsAvailable: [
     'color',
   ],
