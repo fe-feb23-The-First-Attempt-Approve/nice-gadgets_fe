@@ -74,7 +74,7 @@ const App = () => (
       </Routes>
     </div>
 
-    <ToastContainer />
+    <ToastContainer style={{ zIndex: '1002' }} />
     <Footer />
 
     <AutorizationForm />

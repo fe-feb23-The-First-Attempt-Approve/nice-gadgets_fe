@@ -4,7 +4,7 @@ import {
 import { IconLikeEmpty, IconLikeFull } from '../Icons/_IconKit';
 import { FavoriteItemContext } from '../../providers/FavoriteItemContext';
 
-import NotificationMessage from '../Notification/NotificationSuccess';
+import NotificationMessage from '../Notification/Notification';
 
 interface Props {
   itemId: string;
