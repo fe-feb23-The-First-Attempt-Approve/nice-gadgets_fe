@@ -1,0 +1,69 @@
+.profile {
+  min-width: 50%;
+  min-height: 80%;
+  background-color: $bg-color-main;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  &__avatar {
+    width: 128px;
+    height: 128px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: #fff;
+  }
+
+  &__info {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    height: max-content;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: space-between;
+    min-width: 350px;
+    margin-top: 10%;
+    padding: 25px;
+    background-color: $bg-color-main;
+    border: 1px solid $bg-color-controllers;
+    border-radius: 4px;
+  }
+
+  &__input {
+    display: grid;
+    margin-bottom: 20px;
+
+    & label {
+      margin: 5px;
+    }
+
+    & input {
+      padding: 15px;
+      border: 1px solid $bg-color-controllers;
+      border-radius: 4px;
+    }
+  }
+
+  &__action {
+    margin-top: 30px;
+    width: 200px;
+    padding: 15px;
+    background-color: $accent-color;
+    color: $text-color-accent-btn;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $accent-color-hov;
+    }
+  }
+}
