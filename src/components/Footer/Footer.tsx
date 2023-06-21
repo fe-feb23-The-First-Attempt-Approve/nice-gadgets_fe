@@ -1,9 +1,18 @@
 /* eslint-disable max-len */
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Logo } from '../Logo';
 import { ArrowButton } from '../ArrowButton';
 
 export const Footer = () => {
+  const location = useLocation();
+  const hiddenPaths = ['/profile'];
+  const shouldHideNavigation = hiddenPaths
+    .some(path => location.pathname.startsWith(path));
+
+  if (shouldHideNavigation) {
+    return null;
+  }
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,

@@ -1,0 +1,23 @@
+.scrolling-blocked {
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  border-left: 1px solid $separator-color;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $text-selection;
+  border-radius: 4px;
+}
+
+::-moz-scrollbar {
+  width: 8px;
+  border-left: 1px solid $separator-color;
+}
+
+::-moz-scrollbar-thumb {
+  background-color: $text-selection;
+  border-radius: 4px;
+}

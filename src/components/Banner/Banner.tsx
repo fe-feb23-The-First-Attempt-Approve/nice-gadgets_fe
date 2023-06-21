@@ -14,12 +14,6 @@ import {
 } from 'react-icons/md';
 
 import 'swiper/swiper-bundle.css';
-import {
-  iphoneFull,
-  iphoneSquere1,
-  iphoneSquere2,
-  iphoneSquere3,
-} from '../../img/images';
 
 export const Banner = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -68,25 +62,25 @@ export const Banner = () => {
       >
         <SwiperSlide>
           {isMobile ? (
-            <img src={iphoneSquere1} alt="test-slide" />
+            <img src="./img/banner/iphone-squere1.webp" alt="m1-chip" />
           ) : (
             // eslint-disable-next-line max-len
-            <img src="https://media.idownloadblog.com/wp-content/uploads/2021/09/Apple-iPhone-13-Pro-advertisement.jpg" alt="test-slide" />
+            <img src="./img/banner/banner-1.jpg" alt="iphone-13-pro" />
           )}
         </SwiperSlide>
         <SwiperSlide>
           {isMobile ? (
-            <img src={iphoneSquere2} alt="test-slide" />
+            <img src="./img/banner/iphone-squere2.webp" alt="iphone-cases" />
           ) : (
             // eslint-disable-next-line max-len
-            <img src="https://media.idownloadblog.com/wp-content/uploads/2021/04/Apple-ad-Mission-Implausible-iPad-Pro-Mac-M1-chip-001.jpg" alt="test-slide" className="bunner__image" />
+            <img src="./img/banner/banner-2.jpg" alt="ipad-pro" className="bunner__image" />
           )}
         </SwiperSlide>
         <SwiperSlide>
           {isMobile ? (
-            <img src={iphoneSquere3} alt="test-slide" />
+            <img src="./img/banner/iphone-squere3.webp" alt="iphone-12" />
           ) : (
-            <img src={iphoneFull} alt="test-slide" />
+            <img src="./img/banner/banner-3.webp" alt="iphone-cases" />
           )}
         </SwiperSlide>
       </Swiper>

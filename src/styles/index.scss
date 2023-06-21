@@ -6,6 +6,7 @@
 @import "utils/normalize";
 @import "utils/container";
 @import "utils/fonts";
+@import "utils/scrolling";
 @import "utils/animations";
 
 @import "../components/Logo/logo.scss";
@@ -73,6 +74,9 @@
 
 // accessories
 @import "../pages/AccessoriesPage/AccessoriesPage.scss";
+@import "../pages/Contacts/Contacts.scss";
+
+@import '../pages/ProfilePage/profile-page.scss';
 
 // should be moved to other folder
 .content {

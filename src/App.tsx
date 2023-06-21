@@ -13,6 +13,7 @@ import { Footer } from './components/Footer';
 import { Contacts } from './pages/Contacts';
 import { AutorizationForm } from './components/AutorizationForm';
 import { ActivationPage } from './pages/ActivationPage';
+import { ProfilePage } from './pages/ProfilePage/ProfilePage';
 
 const App = () => (
   <>
@@ -54,12 +55,15 @@ const App = () => (
 
         <Route path="/not-found-page" element={<NotFoundPage />} />
 
-        <Route path="*" element={<Navigate to="/not-found-page" replace />} />
-
         <Route path="/activation">
           <Route path=":Link" element={<ActivationPage />} />
         </Route>
 
+        <Route path="/profile">
+          <Route index element={<ProfilePage />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/not-found-page" replace />} />
       </Routes>
     </div>
 

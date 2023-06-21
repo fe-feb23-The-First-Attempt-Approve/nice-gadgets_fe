@@ -13,6 +13,10 @@
     text-align: right;
     margin-bottom: 10px;
     opacity: 0.7;
+
+    &:hover {
+      color: $accent-color;
+    }
   }
 
   &__form {
@@ -44,15 +48,29 @@
     margin-top: 10px;
     padding: 15px;
     background-color: $accent-color;
-    border-radius: 4px;
     color: $text-color-accent-btn;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: $accent-color-hov;
+    }
   }
 
   &__close {
-    border: 1px solid white;
-    color: white;
+    position: relative;
+    top: -20px;
+    right: -20px;
+    justify-self: end;
     width: 32px;
     height: 32px;
-    top: 0;
+    border-radius: 4px;
+
+    & svg {
+      margin: auto;
+    }
+
+    &:hover svg {
+      fill: $selected-color;
+    }
   }
 }
