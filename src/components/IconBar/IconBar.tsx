@@ -20,7 +20,7 @@ export const IconBar = () => {
   const { favoriteItemCount } = useContext(FavoriteItemContext);
   const { closeSearch } = useSearchPanel();
   const { isModalActive, setIsModalActive } = useAuth();
-  const token = localStorage.getItem('token');
+  const token = !!localStorage.getItem('token');
 
   return (
     <ul className="icon-bar">
