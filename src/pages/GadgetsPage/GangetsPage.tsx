@@ -21,8 +21,9 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
   const [gadgets, setGadgets] = useState<Gadget[]>([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [filteredPhonesCount, setFilteredPhonesCount] = useState(0);
-  const [phonesCount, setPhonesCount] = useState(0);
+  const [gadgetsCount, setGadgetsCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const searchPage = searchParams.get('page');
 
   const currentPage = Number(searchParams.get('page') || 1);
   const sortType = searchParams.get('sort') || SortType.New;
@@ -60,10 +61,10 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
       );
 
       setFilteredPhonesCount(filteredCount);
-      setPhonesCount(allProductsCount);
+      setGadgetsCount(allProductsCount);
       setGadgets(phonesFromServer);
     } catch {
-      throw new Error('failed to load phones');
+      throw new Error('failed to load gadgets');
     } finally {
       setIsLoading(false);
     }
@@ -94,6 +95,16 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
   };
 
   useEffect(() => {
+    if (gadgets.length
+        && (Number(searchPage) <= 0
+        || Number.isNaN(Number(searchPage)))) {
+      setSearchParams({ page: '1' });
+    }
+
+    if (gadgets.length && pageCount < Number(searchPage)) {
+      setSearchParams({ page: `${pageCount}` });
+    }
+
     loadGadgets();
   }, [searchParams]);
 
@@ -123,24 +134,27 @@ export const GadgetsPage: React.FC<Props> = ({ category }) => {
         : (
           <div className="container gadgets-page">
             <Breadcrumbs category={pageTitle} />
-
             <h1 className="gadgets-page__title">
               {pageTitle}
             </h1>
 
-            <p className="gadgets-page__description">
-              {`${phonesCount} models`}
-            </p>
+            {!!gadgetsCount && (
+              <>
+                <p className="gadgets-page__description">
+                  {`${gadgetsCount} models`}
+                </p>
+                <GadgetsDisplayControl
+                  category={category}
+                  itemsPerPage={itemsPerPage}
+                  sortType={sortType as SortType}
+                  priceRange={priceRange}
+                  onPriceChange={handlePriceChange}
+                  onPageCountChange={handlePageCountChange}
+                  onSortingChange={handleSortChange}
+                />
 
-            <GadgetsDisplayControl
-              category={category}
-              itemsPerPage={itemsPerPage}
-              sortType={sortType as SortType}
-              priceRange={priceRange}
-              onPriceChange={handlePriceChange}
-              onPageCountChange={handlePageCountChange}
-              onSortingChange={handleSortChange}
-            />
+              </>
+            )}
 
             {gadgets.length ? (
               <div className="pagination__items">
