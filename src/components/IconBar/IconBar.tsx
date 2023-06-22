@@ -34,17 +34,15 @@ export const IconBar = () => {
         </button>
       </li> */}
 
-      {!token && (
-        <li className="icon-bar__item">
-          <button
-            type="button"
-            className="icon-bar__link"
-            onClick={toggleTheme}
-          >
-            {theme === 'light' ? <IconThemeDark /> : <IconThemeLight />}
-          </button>
-        </li>
-      )}
+      <li className="icon-bar__item">
+        <button
+          type="button"
+          className="icon-bar__link"
+          onClick={toggleTheme}
+        >
+          {theme === 'light' ? <IconThemeDark /> : <IconThemeLight />}
+        </button>
+      </li>
 
       <li className="icon-bar__item">
         <NavLink

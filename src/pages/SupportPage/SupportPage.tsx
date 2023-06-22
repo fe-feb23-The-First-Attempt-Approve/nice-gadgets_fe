@@ -83,17 +83,15 @@ export const SupportPage = () => {
           />
         </label>
 
-        <label htmlFor="password">
-          Password
+        <label htmlFor="text">
+          Subject
 
           <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
+            type="subject"
+            id="subject"
+            name="subject"
+            placeholder="Subject"
             className="support-form__input"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>

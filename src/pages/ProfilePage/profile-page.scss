@@ -3,7 +3,7 @@
   min-height: 100vh;
 
   &__navigation {
-    width: 20%;
+    width: 15%;
     min-width: 250px;
     background-color: $bg-color-main;
     color: $text-color-main;
@@ -13,7 +13,7 @@
   &__content {
     width: auto;
     flex-grow: 1;
-    background-color: $bg-color-controllers;
+    background-color: $bg-color-products;
   }
 
   &__item {
@@ -39,4 +39,8 @@
       background-color: $accent-color-hov;
     }
   }
+}
+
+#viewed {
+  padding-bottom: 40px;
 }
