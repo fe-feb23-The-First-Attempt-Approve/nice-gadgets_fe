@@ -59,33 +59,6 @@ export const ProfilePage = () => {
 
             <li className="profile-page__item">
               <a
-                href="#/profile/#cart"
-                onClick={() => handleSectionClick('cart')}
-              >
-                Cart
-              </a>
-            </li>
-
-            <li className="profile-page__item">
-              <a
-                href="#/profile/#favorites"
-                onClick={() => handleSectionClick('favorites')}
-              >
-                Favorites
-              </a>
-            </li>
-
-            <li className="profile-page__item">
-              <a
-                href="#/profile/#settings"
-                onClick={() => handleSectionClick('settings')}
-              >
-                Settings
-              </a>
-            </li>
-
-            <li className="profile-page__item">
-              <a
                 href="#/profile/#support"
                 onClick={() => handleSectionClick('support')}
               >
@@ -103,39 +76,9 @@ export const ProfilePage = () => {
           </div>
         )}
 
-        {activeSection === 'cart' && (
-          <div id="cart">
-            <h2>My Cart</h2>
-
-            <p>Content of Cart + recent purchases?</p>
-          </div>
-        )}
-
         {activeSection === 'viewed' && (
           <div id="viewed">
             <LastViewed />
-          </div>
-        )}
-
-        {activeSection === 'favorites' && (
-          <div id="favorites">
-            <h2>Favorites</h2>
-
-            <p>Content of last Favorites</p>
-          </div>
-        )}
-
-        {activeSection === 'settings' && (
-          <div id="settings">
-            <h2>Settings</h2>
-
-            <p>Change personal data, password...</p>
-            <p>Toogle theme</p>
-            <img
-              // eslint-disable-next-line max-len
-              src="https://uidesigndaily.fra1.digitaloceanspaces.com/uploads/1388/day_1388.png"
-              alt="example"
-            />
           </div>
         )}
 
