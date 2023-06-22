@@ -1,8 +1,8 @@
 import {
-  FormEvent, useContext, useEffect, useState,
+  FormEvent, useEffect, useState,
 } from 'react';
 import { login, register } from '../../api/auth';
-import { AuthContext } from '../../providers/AuthContext';
+import { useAuth } from '../../providers/AuthContext';
 import NotificationMessage from '../Notification/Notification';
 import { IconClose } from '../Icons/_IconKit';
 
@@ -11,7 +11,10 @@ export const AutorizationForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const { isModalActive, setIsModalActive } = useContext(AuthContext);
+  const {
+    isModalActive,
+    setIsModalActive,
+  } = useAuth();
 
   useEffect(() => {
     if (isModalActive) {
@@ -86,11 +89,9 @@ export const AutorizationForm = () => {
   const loginUser = async () => {
     const loginResponse = await login(email, password);
 
-    // eslint-disable-next-line no-console
-    console.log(loginResponse);
-
-    if (loginResponse.accessToken) {
+    if (loginResponse.accessToken && loginResponse.user) {
       window.localStorage.setItem('token', loginResponse.accessToken);
+      window.localStorage.setItem('user', JSON.stringify(loginResponse.user));
       successLoggingNotification();
       setIsModalActive(false);
 
@@ -222,7 +223,7 @@ export const AutorizationForm = () => {
           type="submit"
           className="modal__action"
         >
-          {isRegistrationMode ? 'Sign up' : 'Log n'}
+          {isRegistrationMode ? 'Sign up' : 'Log in'}
         </button>
       </form>
     </div>

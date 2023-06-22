@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { LastViewed } from '../../components/LastViewed';
 import { Logo } from '../../components/Logo';
 import { SupportPage } from '../SupportPage';
+import { Profile } from '../../components/Profile';
 
 // eslint-disable-next-line
 type SectionId = 'main' | 'cart' | 'viewed' | 'favorites' | 'settings' | 'support';
@@ -32,13 +33,13 @@ export const ProfilePage = () => {
           </Link>
 
           <ul>
-            <li>
-              <Link to="/" className="logo">
+            <li className="profile-page__item">
+              <Link to="/">
                 Back to Shop
               </Link>
             </li>
 
-            <li>
+            <li className="profile-page__item">
               <a
                 href="#/profile/#main"
                 onClick={() => handleSectionClick('main')}
@@ -47,7 +48,7 @@ export const ProfilePage = () => {
               </a>
             </li>
 
-            <li>
+            <li className="profile-page__item">
               <a
                 href="#/profile/#viewed"
                 onClick={() => handleSectionClick('viewed')}
@@ -56,7 +57,7 @@ export const ProfilePage = () => {
               </a>
             </li>
 
-            <li>
+            <li className="profile-page__item">
               <a
                 href="#/profile/#cart"
                 onClick={() => handleSectionClick('cart')}
@@ -65,7 +66,7 @@ export const ProfilePage = () => {
               </a>
             </li>
 
-            <li>
+            <li className="profile-page__item">
               <a
                 href="#/profile/#favorites"
                 onClick={() => handleSectionClick('favorites')}
@@ -74,7 +75,7 @@ export const ProfilePage = () => {
               </a>
             </li>
 
-            <li>
+            <li className="profile-page__item">
               <a
                 href="#/profile/#settings"
                 onClick={() => handleSectionClick('settings')}
@@ -83,7 +84,7 @@ export const ProfilePage = () => {
               </a>
             </li>
 
-            <li>
+            <li className="profile-page__item">
               <a
                 href="#/profile/#support"
                 onClick={() => handleSectionClick('support')}
@@ -97,9 +98,8 @@ export const ProfilePage = () => {
 
       <div className="profile-page__content">
         {activeSection === 'main' && (
-          <div id="main">
-            <h2>My Profile</h2>
-            <p>Content of profile</p>
+          <div id="main" className="profile-page__main">
+            <Profile />
           </div>
         )}
 
