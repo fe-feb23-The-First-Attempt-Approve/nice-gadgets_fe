@@ -2,46 +2,44 @@ import {
   FC,
   FormEvent,
   memo,
+  useEffect,
   useState,
 } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
-// import Select from 'react-select';
 
 import countryList from 'react-select-country-list';
 import ReactFlagsSelect from 'react-flags-select';
 import { useAuth } from '../../providers/AuthContext';
-
-export default function CountryDropdown() {
-  const [select, setSelect] = useState('');
-  const onSelect = (code: any) => setSelect(code);
-  const countryOptions = countryList().getData().map(country => country.value);
-
-  return (
-    <div className="App">
-      <h1>Hello CodeSandbox</h1>
-      <h2>Start editing to see some magic happen!</h2>
-      <br />
-
-      <ReactFlagsSelect
-        selected={select}
-        onSelect={onSelect}
-        countries={countryOptions}
-      />
-      <br />
-
-      <div className="react-tel-input flag us" />
-    </div>
-  );
-}
+import NotificationMessage from '../Notification/Notification';
 
 export const Profile: FC = memo(() => {
   const { user, setUser } = useAuth();
   const [phone, setPhone] = useState<any>(user?.phone || '');
   const [userName, setUserName] = useState(user?.userName || '');
   const [city, setCity] = useState(user?.city || '');
-  const [country, setCountry] = useState(user?.country || '');
   const [address, setAddress] = useState(user?.address || '');
+  const [country, setCountry] = useState(user?.country || 'UA');
+  const onSelectCountry = (code: any) => setCountry(code);
+  const countryOptions = countryList().getData().map(c => c.value);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+
+      setPhone(parsedUser.phone || '');
+      setUserName(parsedUser.userName || '');
+      setCity(parsedUser.city || '');
+      setAddress(parsedUser.address || '');
+      setCountry(parsedUser.country || 'UA');
+    }
+  }, []);
+
+  const saveChangesMessage = NotificationMessage({
+    message: 'Changes have been saved',
+  });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -50,18 +48,21 @@ export const Profile: FC = memo(() => {
       ...user,
       userName,
       city,
-      country,
       address,
+      phone,
+      country,
     };
 
     localStorage.setItem('user', JSON.stringify(updatedUser));
     setUser(updatedUser);
+
+    saveChangesMessage();
   };
 
   return (
     <div className="profile">
       <div className="profile__info">
-        <div className="profile__avatar">{user?.userName?.slice(0, 1)}</div>
+        <div className="profile__avatar">{userName.slice(0, 1)}</div>
         <div className="profile__user-data">
           <div className="profile__name">{user?.userName}</div>
           <div className="profile__email">{user?.email}</div>
@@ -87,33 +88,38 @@ export const Profile: FC = memo(() => {
             />
           </div>
 
-          <label htmlFor="phone">Phone</label>
-          <PhoneInput
-            id="phone"
-            name="phone"
-            className="profile__input"
-            placeholder="Enter phone number"
-            value={phone}
-            onChange={setPhone}
-          />
+          <label htmlFor="phone">
+            Phone:
+            <PhoneInput
+              id="phone"
+              name="phone"
+              className="profile__input"
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={setPhone}
+            />
+          </label>
+
         </div>
 
         <div>
           <div className="profile__input">
-            <label htmlFor="country">Country</label>
-            <input
-              type="text"
-              id="country"
-              name="country"
-              placeholder="Country"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
-              required
-            />
+            <label htmlFor="country">Country:</label>
+            <div className="Profile__flags-elect">
+
+              <ReactFlagsSelect
+                id="country"
+                selected={country}
+                onSelect={onSelectCountry}
+                countries={countryOptions}
+              />
+
+              <div className="react-tel-input flag us" />
+            </div>
           </div>
 
           <div className="profile__input">
-            <label htmlFor="city">City</label>
+            <label htmlFor="city">City:</label>
             <input
               type="text"
               id="city"
@@ -126,7 +132,7 @@ export const Profile: FC = memo(() => {
           </div>
 
           <div className="profile__input">
-            <label htmlFor="address">Address</label>
+            <label htmlFor="address">Address:</label>
             <input
               type="text"
               id="address"
@@ -147,8 +153,6 @@ export const Profile: FC = memo(() => {
       >
         Save Changes
       </button>
-
-      <CountryDropdown />
     </div>
   );
 });
