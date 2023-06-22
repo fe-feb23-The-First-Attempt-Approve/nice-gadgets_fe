@@ -12,6 +12,7 @@ import countryList from 'react-select-country-list';
 import ReactFlagsSelect from 'react-flags-select';
 import { useAuth } from '../../providers/AuthContext';
 import NotificationMessage from '../Notification/Notification';
+import { IconPerson } from '../Icons/_IconKit';
 
 export const Profile: FC = memo(() => {
   const { user, setUser } = useAuth();
@@ -62,7 +63,11 @@ export const Profile: FC = memo(() => {
   return (
     <div className="profile">
       <div className="profile__info">
-        <div className="profile__avatar">{userName.slice(0, 1)}</div>
+        <div className="profile__avatar">
+          {userName
+            ? userName.slice(0, 1)
+            : <IconPerson />}
+        </div>
         <div className="profile__user-data">
           <div className="profile__name">{user?.userName}</div>
           <div className="profile__email">{user?.email}</div>
@@ -74,7 +79,7 @@ export const Profile: FC = memo(() => {
         className="profile__form"
         onSubmit={handleSubmit}
       >
-        <div>
+        <div className="profile__form-side">
           <div className="profile__input">
             <label htmlFor="name">Name:</label>
             <input
@@ -102,7 +107,7 @@ export const Profile: FC = memo(() => {
 
         </div>
 
-        <div>
+        <div className="profile__form-side">
           <div className="profile__input">
             <label htmlFor="country">Country:</label>
             <div className="Profile__flags-elect">
