@@ -23,6 +23,15 @@
   @include onDesktop {
     display: none;
   }
+
+  & * .MuiOutlinedInput-root {
+    background-color: $bg-color-products;
+    color: $text-color-main;
+  }
+
+  & * .searching-block {
+    border-radius: 4px;
+  }
 }
 
 // landscape version
@@ -53,4 +62,34 @@
     grid-row: 1 / span 1;
     padding-right: 20px;
   }
+}
+
+.MuiAutocomplete-listbox {
+  background-color: $bg-color-products;
+  color: $text-color-main;
+  height: 100vh;
+}
+
+.MuiAutocomplete-option {
+  border-bottom: 1px solid $separator-color;
+  transition: color $transition-duration;
+
+  &:hover {
+    color: $accent-color-hov;
+  }
+}
+
+// dropbox in filters
+.MuiPaper-root.MuiMenu-paper {
+  border-radius: 0 0 4px 4px;
+  border: 1px solid $separator-color;
+}
+
+// selected item in dropbox
+.Mui-selected {
+  background-color: $accent-color-hov !important;
+}
+
+.MuiStack-root {
+  width: 100%;
 }

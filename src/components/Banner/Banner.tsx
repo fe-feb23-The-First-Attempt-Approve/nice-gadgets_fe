@@ -62,28 +62,28 @@ export const Banner = () => {
       >
         <SwiperSlide>
           {isMobile ? (
-            <img src="./img/banner/smallBannerChip.webp" alt="m1-chip" />
+            <img src="./img/main_slider/chip.webp" alt="m1-chip" />
           ) : (
             // eslint-disable-next-line max-len
-            <img src="./img/banner/bannerIphone.jpg" alt="iphone-13-pro" />
+            <img src="./img/main_slider/Iphone.jpg" alt="iphone-13-pro" />
           )}
         </SwiperSlide>
         <SwiperSlide>
           {isMobile ? (
             <img
-              src="./img/banner/smallBannerIphones.webp"
+              src="./img/main_slider/phones.webp"
               alt="iphone-cases"
             />
           ) : (
             // eslint-disable-next-line max-len
-            <img src="./img/banner/banneriPadPro.jpg" alt="ipad-pro" className="bunner__image" />
+            <img src="./img/main_slider/iPadPro.jpg" alt="ipad-pro" className="bunner__image" />
           )}
         </SwiperSlide>
         <SwiperSlide>
           {isMobile ? (
-            <img src="./img/banner/smallBannerIphone.webp" alt="iphone-12" />
+            <img src="./img/main_slider/phone.webp" alt="iphone-12" />
           ) : (
-            <img src="./img/banner/bannerIphones.webp" alt="iphone-cases" />
+            <img src="./img/main_slider/Iphones.webp" alt="iphone-cases" />
           )}
         </SwiperSlide>
       </Swiper>

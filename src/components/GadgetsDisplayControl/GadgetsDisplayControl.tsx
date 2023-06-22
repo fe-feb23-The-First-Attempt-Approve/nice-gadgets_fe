@@ -63,7 +63,7 @@ export const GadgetsDisplayControl: React.FC<Props> = ({
           sx={{
             width: 128,
             height: 40,
-            bgcolor: 'white',
+            // bgcolor: 'white',
             padding: 2,
           }}
           variant="standard"

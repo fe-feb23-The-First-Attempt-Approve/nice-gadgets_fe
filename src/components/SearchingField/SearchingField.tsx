@@ -114,7 +114,7 @@ export const SearchingField = () => {
           renderInput={(params) => (
             <TextField
               sx={{
-                minWidth: 200,
+                minWidth: 300,
                 '& .MuiOutlinedInput-root': {
                   // borderBottom: '1px solid gray',
                   // borderRadius: '0',
