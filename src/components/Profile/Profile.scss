@@ -63,6 +63,10 @@
       border-radius: 4px;
       width: 100%;
     }
+
+    &--flex {
+      display: flex;
+    }
   }
 
   &__action {

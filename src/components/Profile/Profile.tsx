@@ -98,7 +98,7 @@ export const Profile: FC = memo(() => {
             <PhoneInput
               id="phone"
               name="phone"
-              className="profile__input"
+              className="profile__input profile__input--flex"
               placeholder="Enter phone number"
               value={phone}
               onChange={setPhone}
