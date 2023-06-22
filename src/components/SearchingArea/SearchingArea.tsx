@@ -7,15 +7,29 @@ export const SearchingArea = () => {
 
   return (
     <form className="searching-area">
-      <button
-        type="button"
-        className="icon-bar__link"
-        onClick={toggleSearch}
-      >
-        {isSearching ? <IconArrow /> : <IconSearching />}
-      </button>
+      {!isSearching && (
+        <button
+          type="button"
+          className="icon-bar__link"
+          onClick={toggleSearch}
+        >
+          <IconSearching />
+        </button>
+      )}
 
-      {isSearching && <SearchingField />}
+      {isSearching && (
+        <>
+          <button
+            type="button"
+            className="icon-bar__link"
+            onClick={toggleSearch}
+          >
+            <IconArrow />
+          </button>
+
+          <SearchingField />
+        </>
+      )}
     </form>
   );
 };

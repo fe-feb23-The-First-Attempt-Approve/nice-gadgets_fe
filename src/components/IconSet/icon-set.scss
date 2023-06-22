@@ -1,15 +1,14 @@
 .icon-set {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 10px;
 
   &__item {
     border: 1px solid $bg-color-controllers;
     border-radius: 4px;
-    // background-color: $bg-color-controllers;
 
-    &--100 {
-      grid-column: span 2;
+    &--2-3 {
+      grid-column-start: span 2;
     }
   }
 }

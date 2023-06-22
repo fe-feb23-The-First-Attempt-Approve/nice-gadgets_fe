@@ -20,8 +20,13 @@
     position: relative;
     display: flex;
     justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
     margin: auto;
     padding: 16px;
+    color: $text-color-main;
+    text-transform: uppercase;
 
     @include onDesktop {
       padding: 24px;
@@ -33,6 +38,7 @@
 
     &--active {
       @include underlineActive;
+      color: $accent-color;
     }
 
     &--hidden {
@@ -45,8 +51,8 @@
   }
   &__counter {
     position: absolute;
-    top: -30%;
-    right: -30%;
+    top: -40%;
+    right: -40%;
     display: block;
     height: 14px;
     width: 14px;
@@ -56,6 +62,11 @@
     color: $text-color-accent-btn;
     font-size: 9px;
     line-height: 14px;
+
+    @include onDesktop {
+      top: -30%;
+      right: -30%;
+    }
   }
 
   &__mobile {
