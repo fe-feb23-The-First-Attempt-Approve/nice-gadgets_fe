@@ -42,6 +42,14 @@ export const CartPage = () => {
     }
   }, [redirectToHome, nav]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+  }, []);
+
   return (
     <div className="container gadgets-page">
       <h1 className="gadgets-page__title cart-title">Cart</h1>

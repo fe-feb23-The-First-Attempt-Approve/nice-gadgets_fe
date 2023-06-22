@@ -7,6 +7,11 @@
   transition-property: margin, padding;
   transition-duration: $transition-duration*3;
 
+  & .nav__list {
+    margin-top: 50%;
+    transform: translateY(-70%);
+  }
+
   &--active {
     position: absolute;
     display: grid;

@@ -1,8 +1,9 @@
 import cn from 'classnames';
 import { useBurger } from '../../providers/BurgerContext';
-import { LinkList } from '../LinkList';
+// import { LinkList } from '../LinkList';
 import { IconSet } from '../IconSet';
-import { SearchingField } from '../SearchingField';
+import { LinkItem } from '../LinkItem';
+import { navLinks } from '../../variables/navLinks';
 
 export const Burger = () => {
   const { isOpenBurger } = useBurger();
@@ -13,9 +14,15 @@ export const Burger = () => {
 
   return (
     <div className={burgerClasses}>
-      <LinkList />
-
-      <SearchingField />
+      <ul className="nav__list">
+        {navLinks.slice(1).map(({ to, label }) => (
+          <LinkItem
+            key={to}
+            to={to}
+            label={label}
+          />
+        ))}
+      </ul>
 
       <IconSet />
     </div>
