@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { LastViewed } from '../../components/LastViewed';
 import { Logo } from '../../components/Logo';
 
 // eslint-disable-next-line
@@ -111,9 +112,7 @@ export const ProfilePage = () => {
 
         {activeSection === 'viewed' && (
           <div id="viewed">
-            <h2>Last Viewed</h2>
-
-            <p>Content of last viewed</p>
+            <LastViewed />
           </div>
         )}
 

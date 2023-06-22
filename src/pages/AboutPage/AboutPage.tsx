@@ -14,12 +14,15 @@ import { AboutSlider } from '../../components/AboutSlider';
 import { DeviceDescription } from '../../components/DeviceDescription';
 import { DeviceCharacteristic } from '../../components/DeviceCharacteristic';
 import { BuyButton } from '../../components/BuyButton';
+import { Gadget } from '../../types/Gadget';
 
 export const AboutPage: React.FC = () => {
   const { gadgets } = useProducts();
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [device, setDevice] = useState<GadgetItem>(phoneTemplate);
+  const [, setLastViewedGagets] = useState<Gadget[] | null>([]);
+
   const selectedGadget = gadgets.find((item) => item.itemId === device.id);
   const category = selectedGadget
     ? selectedGadget?.category.charAt(0).toUpperCase()
@@ -98,6 +101,39 @@ export const AboutPage: React.FC = () => {
       behavior: 'smooth',
     });
   }, [pathname]);
+
+  useEffect(() => {
+    const storedGagets = localStorage.getItem('gagets');
+
+    if (storedGagets) {
+      setLastViewedGagets(JSON.parse(storedGagets));
+    }
+  }, []);
+
+  const updateLastViewedGagets = (currentGaget: Gadget) => {
+    setLastViewedGagets((prevGagets: Gadget[] | null) => {
+      const correctedGagets = prevGagets || [];
+
+      const updatedGaget = correctedGagets
+        .filter(gag => gag.itemId !== currentGaget.itemId);
+
+      updatedGaget.push(currentGaget);
+
+      localStorage.setItem('gagets', JSON.stringify(updatedGaget));
+
+      return updatedGaget;
+    });
+  };
+
+  useEffect(() => {
+    const currentGaget = gadgets.find((item: Gadget) => {
+      return item.itemId === device.id;
+    });
+
+    if (currentGaget) {
+      updateLastViewedGagets(currentGaget);
+    }
+  }, [device]);
 
   return (
     <main className="main-page-card">

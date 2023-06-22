@@ -1,0 +1,19 @@
+.view {
+
+  &_position {
+    margin: 32px 0 0 24px;
+  }
+
+  &__title {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 140%;
+    margin-bottom: 32px;
+  }
+
+  &__slider-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, 270px);
+  }
+}
