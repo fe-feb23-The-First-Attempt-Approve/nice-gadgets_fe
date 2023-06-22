@@ -2,6 +2,7 @@ import { FC, useContext, useState } from 'react';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import { Gadget } from '../../types/Gadget';
 import { IconClose } from '../Icons/_IconKit';
+import { NavLink } from 'react-router-dom';
 
 type CartCardProps = {
   gadget: Gadget;
@@ -57,11 +58,15 @@ export const CartCard: FC<CartCardProps> = ({ gadget }) => {
       </button>
 
       <div className="cart__item">
-        <div className="cart__image-container">
-          <img src={gadget.image} alt="phone" className="cart__image" />
-        </div>
+        <NavLink to={`/${gadget.category}/${gadget.itemId}`} className="link-to-item">
+          <div className="cart__image-container">
+            <img src={gadget.image} alt="phone" className="cart__image" />
+          </div>
+        </NavLink>
 
-        <p className="cart__product-name">{gadget.name}</p>
+        <NavLink to={`/${gadget.category}/${gadget.itemId}`} className="link-to-item">
+          <p className="cart__product-name">{gadget.name}</p>
+        </NavLink>
 
         <div className="cart__calculated-field">
           <div className="cart__choose-amount">

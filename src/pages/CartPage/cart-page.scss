@@ -241,3 +241,11 @@
     }
   }
 }
+
+.link-to-item {
+  display: flex;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
