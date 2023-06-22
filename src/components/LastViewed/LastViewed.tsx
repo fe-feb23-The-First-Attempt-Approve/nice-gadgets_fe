@@ -10,7 +10,7 @@ export const LastViewed = () => {
 
     if (storedGagets) {
       const parsedGadgets = JSON.parse(storedGagets);
-      const limitedGadgets = parsedGadgets.slice(0, 9);
+      const limitedGadgets = [...parsedGadgets].reverse().slice(0, 9);
 
       setLastViewedGagets(limitedGadgets);
     }
