@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Logo } from '../../components/Logo';
+import { SupportPage } from '../SupportPage';
 
 // eslint-disable-next-line
 type SectionId = 'main' | 'cart' | 'viewed' | 'favorites' | 'settings' | 'support';
@@ -141,17 +142,9 @@ export const ProfilePage = () => {
 
         {activeSection === 'support' && (
           <div id="support">
-            <h2>Support</h2>
+            <h1 className="support-title">Have some questions? Ask us!</h1>
 
-            <p>Form for sending letter</p>
-            <p>** Have some questions? Text Us...</p>
-            <p>**name & email - by default (but can be changed as well)</p>
-            <p>fields: name, emain, question, text</p>
-            <img
-              // eslint-disable-next-line max-len
-              src="https://cdn.dribbble.com/users/4983384/screenshots/11118849/airslate_contact0.png?resize=400x0"
-              alt="example"
-            />
+            <SupportPage />
           </div>
         )}
       </div>
