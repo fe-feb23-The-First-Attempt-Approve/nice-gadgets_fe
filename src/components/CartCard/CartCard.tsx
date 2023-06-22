@@ -1,8 +1,8 @@
 import { FC, useContext, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { CartItemContext } from '../../providers/CartItemsContext';
 import { Gadget } from '../../types/Gadget';
 import { IconClose } from '../Icons/_IconKit';
-import { NavLink } from 'react-router-dom';
 
 type CartCardProps = {
   gadget: Gadget;
