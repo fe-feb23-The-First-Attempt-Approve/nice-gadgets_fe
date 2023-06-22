@@ -5,7 +5,8 @@
 
 .support-form {
   display: grid;
-  max-width: 450px;
+  // max-width: 450px;
+  width: 50%;
   margin: auto;
   padding: 25px;
   color: $text-color-main;
@@ -44,4 +45,13 @@
       background-color: $accent-color-hov;
     }
   }
+}
+
+.support-form__input {
+  font-size: 1em;
+}
+
+#massage {
+  font-size: 1em;
+  font-family: 'Mont', sans-serif;
 }
